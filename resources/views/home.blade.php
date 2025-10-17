@@ -303,65 +303,47 @@
 		</div>
 	</div>
 
-	<!-- Events -->
+    <!-- Events -->
+    
+    <div class="events">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2 class="section_title text-center">Upcoming Events</h2>
+                </div>
+            </div>
+            <div class="row events_row">
+                @foreach($events as $event)
+                    @php
+                        $day = \Carbon\Carbon::parse($event->event_date)->format('d');
+                        $month = \Carbon\Carbon::parse($event->event_date)->format('M');
+                        $year = \Carbon\Carbon::parse($event->date)->format('Y');
+                    @endphp
 
-	<div class="events">
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<h2 class="section_title text-center">Upcoming Events</h2>
-				</div>
-			</div>
-			<div class="row events_row">
+                    <div class="col-lg-4 event_col">
+                        <div class="event">
+                            <div class="event_image">
+                                <img src="{{ asset('storage/' . $event->image) }}" alt="{{ $event->title }}">
+                            </div>
 
-				<!-- Event -->
-				<div class="col-lg-4 event_col">
-					<div class="event">
-						<div class="event_image"><img src="images/event_1.jpg" alt=""></div>
-						<div class="event_date d-flex flex-column align-items-center justify-content-center">
-							<div class="event_day">26</div>
-							<div class="event_month">aug</div>
-						</div>
-						<div class="event_body d-flex flex-row align-items-center justify-content-start">
-							<div class="event_title"><a href="#">Networking Day</a></div>
-							<div class="event_tag ml-auto">Free</div>
-						</div>
-					</div>
-				</div>
+                            <div class="event_body">
+                                <div class="event_title"><a href="#">{{ $event->title }}</a></div>
 
-				<!-- Event -->
-				<div class="col-lg-4 event_col">
-					<div class="event">
-						<div class="event_image"><img src="images/event_2.jpg" alt=""></div>
-						<div class="event_date d-flex flex-column align-items-center justify-content-center">
-							<div class="event_day">26</div>
-							<div class="event_month">aug</div>
-						</div>
-						<div class="event_body d-flex flex-row align-items-center justify-content-start">
-							<div class="event_title"><a href="#">Networking Day</a></div>
-							<div class="event_tag ml-auto">Free</div>
-						</div>
-					</div>
-				</div>
+                                <div class="event_date">
+                                    <div class="event_day">{{ $day }}</div>
+                                    <div class="event_month">{{ strtolower($month) }}</div>
+                                    <div class="event_year">{{ $year }}</div>
+                                </div>
 
-				<!-- Event -->
-				<div class="col-lg-4 event_col">
-					<div class="event">
-						<div class="event_image"><img src="images/event_3.jpg" alt=""></div>
-						<div class="event_date d-flex flex-column align-items-center justify-content-center">
-							<div class="event_day">26</div>
-							<div class="event_month">aug</div>
-						</div>
-						<div class="event_body d-flex flex-row align-items-center justify-content-start">
-							<div class="event_title"><a href="#">Networking Day</a></div>
-							<div class="event_tag ml-auto">Free</div>
-						</div>
-					</div>
-				</div>
+                                <div class="event_tag">{{ $event->tag ?? '—' }}</div>
+                            </div>
+                        </div>
 
-			</div>
-		</div>
-	</div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
 
 	<!-- Blog -->
 
