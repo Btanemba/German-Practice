@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\NewsletterController;
 
 // --------------------------
 // Custom Backpack Routes
@@ -17,6 +18,11 @@ Route::group([
     'namespace' => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
     Route::crud('event', 'EventCrudController');
+    Route::crud('subscriber', 'SubscriberCrudController');
+
+
+Route::get('newsletter', [NewsletterController::class, 'showForm'])->name('admin.newsletter.form');
+Route::post('newsletter/send', [NewsletterController::class, 'send'])->name('admin.newsletter.send');
 }); // this should be the absolute last line of this file
 
 /**

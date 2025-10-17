@@ -49,6 +49,7 @@ class EventCrudController extends CrudController
 
     protected function setupListOperation()
     {
+          $this->crud->removeButton('show');
         // Event Image
         CRUD::addColumn([
             'name'  => 'image',
@@ -90,7 +91,7 @@ class EventCrudController extends CrudController
             ],
         ]);
 
-      
+
     }
 
 
