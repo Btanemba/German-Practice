@@ -23,6 +23,9 @@ Route::group([
 
 Route::get('newsletter', [NewsletterController::class, 'showForm'])->name('admin.newsletter.form');
 Route::post('newsletter/send', [NewsletterController::class, 'send'])->name('admin.newsletter.send');
+    Route::crud('hangout', 'HangoutCrudController');
+    Route::crud('class-schedule', 'ClassScheduleCrudController');
+    Route::crud('registration', 'RegistrationCrudController');
 }); // this should be the absolute last line of this file
 
 /**

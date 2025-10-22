@@ -2237,5 +2237,54 @@ section
     font-weight: 500;
     margin-top: 8px;
 }
+.register_form_container {
+  max-width: 600px;
+  margin: auto;
+}
 
+.register_form_container .form-control,
+.register_form_container .form-select {
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 15px;
+}
+
+#calendar {
+  min-height: 600px;
+  background-color: #f8f9fa;
+}
+
+#timeSlotButtons button {
+  border: 1px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  border-radius: 6px;
+  padding: 6px 12px;
+  transition: 0.2s ease;
+}
+
+#timeSlotButtons button:hover,
+#timeSlotButtons button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Reduce the height and padding of the calendar container */
+#calendar {
+  min-height: auto;
+  height: auto;
+  padding: 0;
+  margin-top: 0.5rem;
+}
+
+/* Make the input smaller and centered */
+#calendar input#calendarInput {
+  width: 200px;
+  height: 36px;
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin: 0 auto;
+  display: block;
+}
 
