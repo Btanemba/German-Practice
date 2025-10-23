@@ -834,13 +834,6 @@ section
 	font-weight: 500 !important;
 	color: rgba(0,0,0,0.15) !important;
 }
-.menu .search_input::input-placeholder
-{
-	font-family: 'Poppins', sans-serif;
-	font-size: 14px !important;
-	font-weight: 500 !important;
-	color: rgba(0,0,0,0.15) !important;
-}
 .menu .search_input:focus
 {
 	border-bottom: solid 2px #2e21df;
@@ -1659,6 +1652,41 @@ section
 	color: #FFFFFF;
 	font-weight: 600;
 }
+.event_description {
+    margin: 15px 0 !important;
+    color: #666 !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    padding-bottom: 10px;
+}
+
+.event_description p {
+    margin: 0 !important;
+}
+
+.event_date {
+    position: static !important;
+    margin-top: 20px !important;
+    text-align: center !important;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
+}
+
+.event_body {
+    padding: 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.event_title {
+    margin-bottom: 10px !important;
+}
+
+.event_tag {
+    margin-top: 10px !important;
+    text-align: center !important;
+}
+}
 
 /*********************************
 11. Blog
@@ -2287,4 +2315,50 @@ section
   margin: 0 auto;
   display: block;
 }
+
+/* Add this to your main CSS file or in the head of your layout */
+
+@media (max-width: 768px) {
+    /* Make table responsive */
+    .table-responsive {
+        overflow-x: hidden !important;
+    }
+
+    /* Full width cards on mobile */
+    .card {
+        margin: 0 !important;
+        border-radius: 8px !important;
+    }
+
+    /* Adjust padding for mobile */
+    .card-body {
+        padding: 1rem !important;
+    }
+
+    /* Make buttons smaller on mobile */
+    .btn-sm {
+        padding: 0.25rem 0.5rem !important;
+        font-size: 0.75rem !important;
+    }
+
+    /* Hide unnecessary columns on mobile */
+    .d-none-mobile {
+        display: none !important;
+    }
+
+    /* Ensure text doesn't overflow */
+    * {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+}
+
+/* Ensure cards stack properly */
+@media (max-width: 576px) {
+    .col-md-6, .col-lg-4 {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+}
+
 

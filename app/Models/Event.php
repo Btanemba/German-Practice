@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class Event extends Model
 {
     use CrudTrait,HasFactory;
-    protected $fillable = ['title', 'image', 'event_date', 'tag'];
+    protected $fillable = ['title', 'image', 'event_date', 'tag','description',];
     protected $appends = ['days_remaining'];
     protected $casts = ['event_date' => 'date'];
 
