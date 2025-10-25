@@ -25,7 +25,9 @@ Route::get('/get-hangouts', function () {
 Route::get('/get-class-levels', [ClassController::class, 'levels']);
 Route::get('/get-class-dates/{level}', [ClassController::class, 'dates']);
 Route::get('/get-class-times/{level}/{date}', [ClassController::class, 'times']);
-Route::post('/register-user', [ClassController::class, 'register']);
+Route::post('/register-user', [App\Http\Controllers\ClassController::class, 'registerUser']);
+
+Route::get('/get-events', [App\Http\Controllers\ClassController::class, 'getEvents']);
 
 Route::group([
     'prefix' => config('backpack.base.route_prefix', 'admin'),

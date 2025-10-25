@@ -10,7 +10,7 @@ class Registration extends Model
 {
     use HasFactory, CrudTrait;
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'phone', 'city', 'type', 'hangout_id', 'class_schedule_id'
+        'first_name', 'last_name', 'email', 'phone', 'city', 'type', 'hangout_id', 'class_schedule_id', 'event_title'
     ];
 
     public function hangout()
@@ -26,5 +26,17 @@ class Registration extends Model
     public function user()
 {
     return $this->belongsTo(\App\Models\User::class, 'user_id');
+}
+
+// Add this method to find the related event
+
+public function event()
+{
+    // If hangout_id is actually storing event_id for 'Hangout' type registrations
+    if ($this->type === 'Hangout') {
+        return \App\Models\Event::find($this->hangout_id);
+    }
+
+    return \App\Models\Event::where('title', $this->event_title)->first();
 }
 }

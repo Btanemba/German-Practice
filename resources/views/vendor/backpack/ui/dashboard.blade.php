@@ -4,7 +4,6 @@
     use Carbon\Carbon;
     use App\Models\Event;
     use App\Models\Subscriber;
-    use App\Models\Hangout;
     use App\Models\Registration;
 
     // Count upcoming events
@@ -13,15 +12,13 @@
     // Count active subscribers
     $activeSubscribersCount = Subscriber::where('subscribed', true)->count();
 
-     // Find the next hangout date
-    $nextHangout = Hangout::whereDate('date', '>=', Carbon::today())
-        ->orderBy('date', 'asc')
+    // ✅ FIXED: Find the next event date (changed from Hangout to Event)
+    $nextEvent = Event::whereDate('event_date', '>=', Carbon::today())
+        ->orderBy('event_date', 'asc')
         ->first();
 
-    // Count how many hangouts are on that date
-    $totalHangouts = $nextHangout
-        ? Hangout::whereDate('date', $nextHangout->date)->count()
-        : 0;
+    // ✅ FIXED: Count total registrations for events (not hangouts on a date)
+    $totalEventRegistrations = Registration::where('type', 'Hangout')->count();
 
     // Count total booked classes
     $totalBookedClasses = Registration::whereNotNull('class_schedule_id')->count();
@@ -152,22 +149,22 @@
             </div>
         </div>
 
-        {{-- Total Hangouts Card --}}
+        {{-- Total Event Registrations Card --}}
         <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="card dashboard-card card-hangouts shadow-lg p-4">
                 <div class="card-body text-center">
                     <div class="card-icon icon-hangouts">
-                        👥
+                        🎯
                     </div>
-                    <h5 class="fw-bold mb-2 text-dark">Registered for C-C</h5>
-                    <h1 class="stat-number hangouts">{{ $totalHangouts }}</h1>
-                    @if ($nextHangout)
+                    <h5 class="fw-bold mb-2 text-dark">Event Registrations</h5>
+                    <h1 class="stat-number hangouts">{{ $totalEventRegistrations }}</h1>
+                    @if ($nextEvent)
                         <p class="text-muted mb-0">
-                            <small>🗓️ for {{ Carbon::parse($nextHangout->date)->format('M d, Y') }}</small>
+                            <small>📅 Next: {{ Carbon::parse($nextEvent->event_date)->format('M d, Y') }}</small>
                         </p>
                     @else
                         <p class="text-muted mb-0">
-                            <small>😴 No upcoming hangouts</small>
+                            <small>😴 No upcoming events</small>
                         </p>
                     @endif
                 </div>

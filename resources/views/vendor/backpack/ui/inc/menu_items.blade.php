@@ -37,12 +37,12 @@
         <span>🎯 Activities</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="activitiesDropdown">
-        <li>
+        {{-- <li>
             <a class="dropdown-item" href="{{ backpack_url('hangout') }}">
                 <i class="la la-coffee nav-icon"></i>
                 ☕ Hangout Dates
             </a>
-        </li>
+        </li> --}}
         <li>
             <a class="dropdown-item" href="{{ backpack_url('class-schedule') }}">
                 <i class="la la-chalkboard-teacher nav-icon"></i>

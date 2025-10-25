@@ -1,11 +1,8 @@
 @include('layouts.nav')
 
 <div class="super_container">
-
     <!-- Header -->
-
     <header class="header">
-
         <!-- Top Bar -->
         <div class="top_bar">
             <div class="top_bar_container">
@@ -13,16 +10,13 @@
                     <div class="row">
                         <div class="col">
                             <div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
-
                                 <div class="top_bar_right ml-auto">
-
                                     <!-- Language -->
                                     <div class="top_bar_lang">
                                         <span class="top_bar_title">site language:</span>
                                         <ul class="lang_list">
                                             <li class="hassubs">
-                                                <a href="#">English<i class="fa fa-angle-down"
-                                                        aria-hidden="true"></i></a>
+                                                <a href="#">English<i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                                 <ul>
                                                     <li><a href="#">German</a></li>
                                                 </ul>
@@ -54,353 +48,898 @@
                     <div class="col">
                         <div class="header_content d-flex flex-row align-items-center justify-content-start">
                             <div class="logo_container mr-auto">
-                                <a href="#">
-                                    <div class="logo_text">LGWT</div>
+                                <a href="/">
+                                    <img src="{{ asset('images/logo2.jpg') }}" alt="Sprachraum" style="
+                                                                height: 80px;
+                                                                width: auto;
+                                                                max-width: 200px;
+                                                            ">
                                 </a>
                             </div>
                             <nav class="main_nav_contaner">
                                 <ul class="main_nav">
                                     <li class="active"><a href="">Home</a></li>
-                                    <li><a href="#">Events</a></li>
+                                    <li><a href="#events">Events</a></li>
                                     <li><a href="#">Contact</a></li>
                                 </ul>
                             </nav>
                             <div class="header_content_right ml-auto text-right">
-                                <div class="header_search">
-                                    <div class="search_form_container">
-                                        <form action="#" id="search_form" class="search_form trans_400">
-                                            <input type="search" class="header_search_input trans_400"
-                                                placeholder="Type for Search" required="required">
-                                            <div class="search_button">
-                                                <i class="fa fa-search" aria-hidden="true"></i>
-                                            </div>
-                                        </form>
-                                    </div>
+                                <div class="user">
+                                    <a href="{{ backpack_url('login') }}" target="_blank" title="Admin Login" style="
+                                                    display: inline-flex;
+                                                    align-items: center;
+                                                    justify-content: center;
+                                                    width: 40px;
+                                                    height: 40px;
+                                                    background: rgba(59, 130, 246, 0.1);
+                                                    border-radius: 50%;
+                                                    color: #3b82f6;
+                                                    text-decoration: none;
+                                                    transition: all 0.3s ease;
+                                                    border: 2px solid transparent;
+                                                "
+                                        onmouseover="this.style.background='#3b82f6'; this.style.color='white'; this.style.transform='scale(1.1)'"
+                                        onmouseout="this.style.background='rgba(59, 130, 246, 0.1)'; this.style.color='#3b82f6'; this.style.transform='scale(1)'">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                    </a>
                                 </div>
 
-                                <!-- Hamburger -->
-
-                                <div class="user"><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></div>
-                                <div class="hamburger menu_mm">
-                                    <i class="fa fa-bars menu_mm" aria-hidden="true"></i>
-                                </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </header>
 
-    <!-- Menu -->
-
-    <div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
-        <div class="menu_close_container">
-            <div class="menu_close">
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-        <div class="search">
-            <form action="#" class="header_search_form menu_mm">
-                <input type="search" class="search_input menu_mm" placeholder="Search" required="required">
-                <button
-                    class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">
-                    <i class="fa fa-search menu_mm" aria-hidden="true"></i>
-                </button>
-            </form>
-        </div>
-        <nav class="menu_nav">
-            <ul class="menu_mm">
-                <li class="menu_mm"><a href="index.html">Home</a></li>
-                <li class="menu_mm"><a href="courses.html">Courses</a></li>
-                <li class="menu_mm"><a href="instructors.html">Instructors</a></li>
-                <li class="menu_mm"><a href="#">Events</a></li>
-                <li class="menu_mm"><a href="blog.html">Blog</a></li>
-                <li class="menu_mm"><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="menu_extra">
-            <div class="menu_phone"><span class="menu_title">phone:</span>+44 300 303 0266</div>
-            <div class="menu_social">
-                <span class="menu_title">follow us</span>
-                <ul>
-                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                    <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- Home -->
-
-    <div class="home">
-        <div class="home_background" style="background-image: url(images/index_background.jpg);"></div>
-        <div class="home_content">
-            <div class="container">
-                <div class="row">
-                    <div class="col text-center">
-                        <h1 class="home_title">Learn German With Tamara</h1>
-                        <div class="home_button trans_200"><a href="#">get started</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Courses -->
-    <div class="courses">
-        <div class="courses_background"></div>
+    <!-- Modern Hero Section -->
+    <section class="hero-section" style="
+        background: linear-gradient(135deg, rgba(30, 58, 138, 0.9), rgba(59, 130, 246, 0.8)), url('images/index_background.jpg');
+        background-size: cover;
+        background-position: center;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+    ">
+        <div class="hero-particles"></div>
         <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h2 class="section_title text-center">Practice Sessions</h2>
-                </div>
-            </div>
-            <div class="row courses_row">
-
-                <!-- Course -->
-                <div class="col-lg-4 course_col">
-                    <div class="course">
-                        <div class="course_image"><img src="images/course_1.jpg" alt=""></div>
-                        <div class="course_body">
-                            <div class="course_title"><a href="course.html">Vocabulary</a></div>
-
-                            <div class="course_text">
-                                <p>Expand your German vocabulary with words, phrases, and interactive exercises that
-                                    help
-                                    you speak with confidence.</p>
-
-                            </div>
-                        </div>
-                        <div class="course_footer d-flex flex-row align-items-center justify-content-start">
-                            <div class="course_mark course_free trans_200"><a href="#">Free</a></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Course -->
-                <div class="col-lg-4 course_col">
-                    <div class="course">
-                        <div class="course_image"><img src="images/course_2.jpg" alt=""></div>
-                        <div class="course_body">
-                            <div class="course_title"><a href="course.html">Grammar</a></div>
-                            <div class="course_text">
-                                <p> Learn how to use verbs,
-                                    nouns, and cases correctly in everyday situations.</p>
-                            </div>
-                        </div>
-                        <div class="course_footer d-flex flex-row align-items-center justify-content-start">
-                            <div class="course_mark course_free trans_200"><a href="#">Free</a></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Course -->
-                <div class="col-lg-4 course_col">
-                    <div class="course">
-                        <div class="course_image"><img src="images/course_3.jpg" alt=""></div>
-                        <div class="course_body">
-                            <div class="course_title"><a href="course.html">Conversation</a></div>
-                            <div class="course_text">
-                                <p>Enhance your German fluency by practicing real conversations. Learn how to express
-                                    yourself confidently in daily situations and social settings.</p>
-
-                            </div>
-                        </div>
-                        <div class="course_footer d-flex flex-row align-items-center justify-content-start">
-                            <div class="course_mark course_free trans_200"><a href="#">Free</a></div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="instructors">
-        <div class="instructors_background" style="background-image:url(images/instructors_background.png)"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h2 class="section_title text-center">Your Favourite Tutor in Town</h2>
-                </div>
-            </div>
-            <div class="row instructors_row justify-content-center">
-                <div class="col-lg-4 instructor_col">
-                    <div class="instructor text-center">
-                        <div class="instructor_image_container">
-                            <div class="instructor_image"><img src="images/instructor_1.jpg" alt=""></div>
-                        </div>
-                        <div class="instructor_name"><a href="instructors.html">Tamara Terbul</a></div>
-                        <div class="instructor_title">Teacher</div>
-                        <div class="instructor_text">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce enim nulla, mollis eu
-                                metus in, sagittis fringilla tortor.</p>
-                        </div>
-                        <div class="instructor_social">
-                            <ul>
-                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                <li>
-                                    <a href="https://www.linkedin.com/" target="_blank">
-                                        <i class="fa fa-linkedin" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    {{-- Register for Practice Sessions --}}
-    <div class="register py-5" style="background: linear-gradient(135deg, #e3f2fd, #bbdefb);">
-        <div class="container">
-            <div class="row align-items-center g-5">
-
-                <!-- Registration Form -->
+            <div class="row align-items-center min-vh-100">
                 <div class="col-lg-6">
-                    <div class="register_form_container p-5 shadow-lg rounded-4 bg-white">
-                        <div class="register_form_title text-center mb-4 fw-bold fs-4 text-primary">
-                            Practice German with Tamara and Others
+                    <div class="hero-content text-white" style="animation: fadeInUp 1s ease-out;">
+                        <h1 class="hero-title mb-4" style="
+                            font-size: clamp(2.5rem, 5vw, 4rem);
+                            font-weight: 500;
+                            line-height: 1.2;
+                            background: linear-gradient(45deg, #fff, #e0e7ff);
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                            background-clip: text;
+                        ">
+
+                        </h1>
+                        <p class="hero-subtitle mb-5" style="
+                            font-size: 1.25rem;
+                            opacity: 0.9;
+                            line-height: 1.6;
+                        ">
+                            Master German through interactive hangout-sessions, personalized classes, and engaging conversations with native speakers.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#register" class="btn btn-hero-primary me-3 mb-3" style="
+                                background: linear-gradient(45deg, #10b981, #059669);
+                                border: none;
+                                padding: 15px 30px;
+                                font-weight: 600;
+                                border-radius: 50px;
+                                text-decoration: none;
+                                color: white;
+                                transition: all 0.3s ease;
+                                box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+                            ">
+                                Start Learning Today
+                            </a>
+                            <a href="#events" class="btn btn-hero-secondary mb-3" style="
+                                background: rgba(255, 255, 255, 0.1);
+                                border: 2px solid rgba(255, 255, 255, 0.3);
+                                padding: 13px 28px;
+                                font-weight: 600;
+                                border-radius: 50px;
+                                text-decoration: none;
+                                color: white;
+                                transition: all 0.3s ease;
+                                backdrop-filter: blur(10px);
+                            ">
+                                View Upcoming Events
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image text-center" style="animation: fadeInRight 1s ease-out 0.3s both;">
+                        <div class="floating-card" style="
+                            background: rgba(255, 255, 255, 0.1);
+                            backdrop-filter: blur(20px);
+                            border-radius: 20px;
+                            padding: 40px;
+                            border: 1px solid rgba(255, 255, 255, 0.2);
+                            animation: float 6s ease-in-out infinite;
+                        ">
+                            <div class="stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                <div class="stat-item text-center">
+                                    <div style="font-size: 2.5rem; font-weight: 700; color: #10b981;">500+</div>
+                                    <div style="color: rgba(255, 255, 255, 0.8);">Students</div>
+                                </div>
+                                <div class="stat-item text-center">
+                                    <div style="font-size: 2.5rem; font-weight: 700; color: #10b981;">50+</div>
+                                    <div style="color: rgba(255, 255, 255, 0.8);">Classes</div>
+                                </div>
+                                <div class="stat-item text-center">
+                                    <div style="font-size: 2.5rem; font-weight: 700; color: #10b981;">95%</div>
+                                    <div style="color: rgba(255, 255, 255, 0.8);">Success Rate</div>
+                                </div>
+                                <div class="stat-item text-center">
+                                    <div style="font-size: 2.5rem; font-weight: 700; color: #10b981;">A1-C2</div>
+                                    <div style="color: rgba(255, 255, 255, 0.8);">All Levels</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Practice Sessions -->
+    <section class="practice-sessions py-5" style="background: linear-gradient(135deg, #f8fafc, #e2e8f0);">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="section-title" style="
+                        font-size: clamp(2rem, 4vw, 3rem);
+                        font-weight: 700;
+                        color: #1e293b;
+                        margin-bottom: 1rem;
+                    ">Practice Sessions</h2>
+                    <p class="section-subtitle" style="
+                        font-size: 1.1rem;
+                        color: #64748b;
+                        max-width: 600px;
+                        margin: 0 auto;
+                    ">Choose from our interactive learning methods designed to accelerate your German language journey</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <!-- Vocabulary Card -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="practice-card h-100" style="
+                        background: white;
+                        border-radius: 20px;
+                        padding: 30px;
+                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                        transition: all 0.3s ease;
+                        border: none;
+                        position: relative;
+                        overflow: hidden;
+                    ">
+                        <div class="card-icon mb-4" style="
+                            width: 70px;
+                            height: 70px;
+                            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+                            border-radius: 20px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: white;
+                            font-size: 1.8rem;
+                        ">📚</div>
+                        <h4 style="font-weight: 600; color: #1e293b; margin-bottom: 15px;">Vocabulary</h4>
+                        <p style="color: #64748b; line-height: 1.6; margin-bottom: 20px;">
+                            Expand your German vocabulary with words, phrases, and interactive exercises that help you speak with confidence.
+                        </p>
+                        <div class="badge-container mb-3">
+                            <span style="
+                                background: linear-gradient(45deg, #10b981, #059669);
+                                color: white;
+                                padding: 8px 16px;
+                                border-radius: 20px;
+                                font-size: 0.875rem;
+                                font-weight: 600;
+                            ">Free</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grammar Card -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="practice-card h-100" style="
+                        background: white;
+                        border-radius: 20px;
+                        padding: 30px;
+                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                        transition: all 0.3s ease;
+                        border: none;
+                        position: relative;
+                        overflow: hidden;
+                    ">
+                        <div class="card-icon mb-4" style="
+                            width: 70px;
+                            height: 70px;
+                            background: linear-gradient(45deg, #8b5cf6, #7c3aed);
+                            border-radius: 20px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: white;
+                            font-size: 1.8rem;
+                        ">⚡</div>
+                        <h4 style="font-weight: 600; color: #1e293b; margin-bottom: 15px;">Grammar</h4>
+                        <p style="color: #64748b; line-height: 1.6; margin-bottom: 20px;">
+                            Learn how to use verbs, nouns, and cases correctly in everyday situations.
+                        </p>
+                        <div class="badge-container mb-3">
+                            <span style="
+                                background: linear-gradient(45deg, #10b981, #059669);
+                                color: white;
+                                padding: 8px 16px;
+                                border-radius: 20px;
+                                font-size: 0.875rem;
+                                font-weight: 600;
+                            ">Free</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conversation Card -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="practice-card h-100" style="
+                        background: white;
+                        border-radius: 20px;
+                        padding: 30px;
+                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                        transition: all 0.3s ease;
+                        border: none;
+                        position: relative;
+                        overflow: hidden;
+                    ">
+                        <div class="card-icon mb-4" style="
+                            width: 70px;
+                            height: 70px;
+                            background: linear-gradient(45deg, #f59e0b, #d97706);
+                            border-radius: 20px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: white;
+                            font-size: 1.8rem;
+                        ">💬</div>
+                        <h4 style="font-weight: 600; color: #1e293b; margin-bottom: 15px;">Conversation</h4>
+                        <p style="color: #64748b; line-height: 1.6; margin-bottom: 20px;">
+                            Enhance your German fluency by practicing real conversations. Learn how to express yourself confidently in daily situations and social settings.
+                        </p>
+                        <div class="badge-container mb-3">
+                            <span style="
+                                background: linear-gradient(45deg, #10b981, #059669);
+                                color: white;
+                                padding: 8px 16px;
+                                border-radius: 20px;
+                                font-size: 0.875rem;
+                                font-weight: 600;
+                            ">Free</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Instructor Section -->
+    <section class="instructor-section py-5" style="background: linear-gradient(135deg, #1e293b, #334155);">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="instructor-content text-white">
+                        <h2 style="
+                            font-size: clamp(2rem, 4vw, 3rem);
+                            font-weight: 700;
+                            margin-bottom: 1.5rem;
+                            background: linear-gradient(45deg, #fff, #e0e7ff);
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                            background-clip: text;
+                        ">Your Favourite Tutor in Town</h2>
+                        <div class="instructor-card" style="
+                            background: rgba(255, 255, 255, 0.1);
+                            backdrop-filter: blur(20px);
+                            border-radius: 20px;
+                            padding: 30px;
+                            border: 1px solid rgba(255, 255, 255, 0.2);
+                        ">
+                            <h4 style="color: #10b981; font-weight: 600; margin-bottom: 10px;">Tamara Terbul</h4>
+                            <p style="color: #94a3b8; margin-bottom: 15px; font-weight: 500;">German Language Expert</p>
+                            <p style="color: rgba(255, 255, 255, 0.9); line-height: 1.6; margin-bottom: 20px;">
+                                With over 10 years of experience teaching German to international students, Tamara brings passion, expertise, and personalized learning approaches to help you achieve fluency faster.
+                            </p>
+                            <div class="social-links">
+                                <a href="#" style="
+                                    display: inline-flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    width: 40px;
+                                    height: 40px;
+                                    background: rgba(255, 255, 255, 0.1);
+                                    border-radius: 10px;
+                                    color: white;
+                                    text-decoration: none;
+                                    margin-right: 10px;
+                                    transition: all 0.3s ease;
+                                "><i class="fa fa-facebook"></i></a>
+                                <a href="https://www.linkedin.com/" target="_blank" style="
+                                    display: inline-flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    width: 40px;
+                                    height: 40px;
+                                    background: rgba(255, 255, 255, 0.1);
+                                    border-radius: 10px;
+                                    color: white;
+                                    text-decoration: none;
+                                    margin-right: 10px;
+                                    transition: all 0.3s ease;
+                                "><i class="fa fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <div class="instructor-image" style="position: relative;">
+                        <img src="images/instructor_1.jpg" alt="Tamara Terbul" style="
+                            width: 300px;
+                            height: 300px;
+                            border-radius: 50%;
+                            object-fit: cover;
+                            border: 5px solid rgba(255, 255, 255, 0.2);
+                            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+                        ">
+                        <div style="
+                            position: absolute;
+                            top: -10px;
+                            right: 50px;
+                            background: linear-gradient(45deg, #10b981, #059669);
+                            color: white;
+                            padding: 10px 20px;
+                            border-radius: 20px;
+                            font-weight: 600;
+                            font-size: 0.875rem;
+                            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+                        ">10+ Years Experience</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modern Registration Section -->
+    <section id="register" class="register-section py-5" style="background: linear-gradient(135deg, #f0f9ff, #e0f2fe);">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 style="
+                        font-size: clamp(2rem, 4vw, 3rem);
+                        font-weight: 700;
+                        color: #1e293b;
+                        margin-bottom: 1rem;
+                    ">Join Our Learning Community</h2>
+                    <p style="
+                        font-size: 1.1rem;
+                        color: #64748b;
+                        max-width: 600px;
+                        margin: 0 auto;
+                    ">Register for interactive sessions and start your German learning journey today</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-xl-6">
+                    <div class="registration-form" style="
+                        background: white;
+                        border-radius: 25px;
+                        padding: 40px;
+                        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+                        border: 1px solid rgba(226, 232, 240, 0.8);
+                    ">
+                        <div class="form-header text-center mb-4">
+                            <h3 style="color: #1e293b; font-weight: 600; margin-bottom: 10px;">Start Learning Today</h3>
+                            <p style="color: #64748b;">Fill out the form below to register for our sessions</p>
                         </div>
 
                         <form id="register_form" method="POST" action="/register-user">
                             @csrf
                             <div class="row g-3">
                                 <div class="col-md-6">
-                                    <input type="text" name="first_name" class="form-control form-control-lg"
-                                        placeholder="First Name" required>
+                                    <div class="form-floating">
+                                        <input type="text" name="first_name" class="form-control modern-input" id="firstName" placeholder="First Name" required style="
+                                            border-radius: 15px;
+                                            border: 2px solid #e2e8f0;
+                                            padding: 20px 15px;
+                                            font-size: 1rem;
+                                            transition: all 0.3s ease;
+                                        ">
+                                        <label for="firstName" style="color: #64748b;">First Name</label>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" name="last_name" class="form-control form-control-lg"
-                                        placeholder="Last Name" required>
+                                    <div class="form-floating">
+                                        <input type="text" name="last_name" class="form-control modern-input" id="lastName" placeholder="Last Name" required style="
+                                            border-radius: 15px;
+                                            border: 2px solid #e2e8f0;
+                                            padding: 20px 15px;
+                                            font-size: 1rem;
+                                            transition: all 0.3s ease;
+                                        ">
+                                        <label for="lastName" style="color: #64748b;">Last Name</label>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="email" name="email" class="form-control form-control-lg"
-                                        placeholder="Email" required>
+                                    <div class="form-floating">
+                                        <input type="email" name="email" class="form-control modern-input" id="email" placeholder="Email" required style="
+                                            border-radius: 15px;
+                                            border: 2px solid #e2e8f0;
+                                            padding: 20px 15px;
+                                            font-size: 1rem;
+                                            transition: all 0.3s ease;
+                                        ">
+                                        <label for="email" style="color: #64748b;">Email Address</label>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="tel" name="phone" class="form-control form-control-lg"
-                                        placeholder="Phone">
+                                    <div class="form-floating">
+                                        <input type="tel" name="phone" class="form-control modern-input" id="phone" placeholder="Phone" style="
+                                            border-radius: 15px;
+                                            border: 2px solid #e2e8f0;
+                                            padding: 20px 15px;
+                                            font-size: 1rem;
+                                            transition: all 0.3s ease;
+                                        ">
+                                        <label for="phone" style="color: #64748b;">Phone Number</label>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" name="city" class="form-control form-control-lg"
-                                        placeholder="City">
+                                    <div class="form-floating">
+                                        <input type="text" name="city" class="form-control modern-input" id="city" placeholder="City" style="
+                                            border-radius: 15px;
+                                            border: 2px solid #e2e8f0;
+                                            padding: 20px 15px;
+                                            font-size: 1rem;
+                                            transition: all 0.3s ease;
+                                        ">
+                                        <label for="city" style="color: #64748b;">City</label>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <select id="typeSelect" name="type" class="form-select form-select-lg" required>
-                                        <option value="">Select Option</option>
-                                        <option value="Hangout">Coffee-Connect</option>
-                                        <option value="Classes">Classes</option>
-                                    </select>
+                                    <div class="form-floating">
+                                        <select id="typeSelect" name="type" class="form-select modern-input" required style="
+                                            border-radius: 15px;
+                                            border: 2px solid #e2e8f0;
+                                            padding: 20px 15px;
+                                            font-size: 1rem;
+                                            transition: all 0.3s ease;
+                                        ">
+                                            <option value="">Choose Option</option>
+                                            <option value="Hangout">🎯 Events & Hangouts</option>
+                                            <option value="Classes">📚 Structured Classes</option>
+                                        </select>
+                                        <label for="typeSelect" style="color: #64748b;">Learning Type</label>
+                                    </div>
                                 </div>
 
                                 <!-- Hangout Section -->
                                 <div id="hangoutSection" class="col-12" style="display:none;">
-                                    <select name="hangout_id" id="hangoutSelect" class="form-select form-select-lg">
-                                        <option value="">Select Hangout Date & Time</option>
-                                    </select>
+                                    <div class="modern-select-container mt-3">
+                                        <label style="color: #374151; font-weight: 500; margin-bottom: 10px; display: block;">
+                                            🎯 Select Your Event
+                                        </label>
+                                        <select name="hangout_id" id="hangoutSelect" class="form-select modern-input" style="
+                                            border-radius: 15px;
+                                            border: 2px solid #e2e8f0;
+                                            padding: 15px;
+                                            font-size: 1rem;
+                                        ">
+                                            <option value="">Loading events...</option>
+                                        </select>
+                                    </div>
                                 </div>
 
                                 <!-- Class Booking Section -->
                                 <div id="classBookingSection" class="col-12" style="display:none;">
-                                    <h5 class="mt-4 mb-3 text-center fw-semibold text-secondary">
-                                        Select Your Class Level and Schedule
-                                    </h5>
+                                    <div class="class-booking-container mt-3 p-4" style="
+                                        background: #f8fafc;
+                                        border-radius: 20px;
+                                        border: 2px solid #e2e8f0;
+                                    ">
+                                        <h5 class="text-center mb-4" style="color: #374151; font-weight: 600;">
+                                            📚 Select Your Class Level and Schedule
+                                        </h5>
 
-                                    <div class="mb-3">
-                                        <label for="classLevelSelect" class="form-label fw-medium">Choose Level</label>
-                                        <select id="classLevelSelect" class="form-select form-select-lg">
-                                            <option value="">Select Level (A1–B2)</option>
-                                        </select>
+                                        <div class="mb-4">
+                                            <label for="classLevelSelect" style="color: #374151; font-weight: 500; margin-bottom: 10px; display: block;">
+                                                Choose Your Level
+                                            </label>
+                                            <select id="classLevelSelect" class="form-select modern-input" style="
+                                                border-radius: 15px;
+                                                border: 2px solid #e2e8f0;
+                                                padding: 15px;
+                                            ">
+                                                <option value="">Select Level (A1–B2)</option>
+                                            </select>
+                                        </div>
+
+                                        <div id="calendar" class="mb-3"></div>
+                                        <div class="legend text-center mb-3">
+                                            <span class="badge bg-success me-2">Available</span>
+                                            <span class="badge bg-warning text-dark">Unavailable</span>
+                                        </div>
+
+                                        <div id="timeSlots" style="display:none;">
+                                            <h6 style="color: #374151; font-weight: 500; margin-bottom: 15px;">Available Time Slots</h6>
+                                            <div id="timeSlotButtons" class="d-flex flex-wrap gap-2"></div>
+                                        </div>
+
+                                        <input type="hidden" name="class_schedule_id" id="selectedClassSchedule">
                                     </div>
-
-                                    <div id="calendar"></div>
-                                    <div class="legend mt-3 text-center">
-                                        <span class="badge bg-success">Available</span>
-                                        <span class="badge bg-warning text-dark">Unavailable</span>
-                                    </div>
-
-
-                                    <div id="timeSlots" style="display:none; margin-top:20px;">
-                                        <h6 class="fw-semibold mb-2 text-secondary">Available Time Slots</h6>
-                                        <div id="timeSlotButtons" class="d-flex flex-wrap gap-2"></div>
-                                    </div>
-
-                                    <input type="hidden" name="class_schedule_id" id="selectedClassSchedule">
                                 </div>
 
                                 <div class="col-12 text-center mt-4">
-                                    <button type="submit"
-                                        class="btn btn-primary btn-lg px-5 py-2 shadow-sm rounded-pill">
-                                        Register Now
+                                    <button type="submit" class="btn-submit" style="
+                                        background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+                                        border: none;
+                                        color: white;
+                                        padding: 18px 40px;
+                                        border-radius: 50px;
+                                        font-size: 1.1rem;
+                                        font-weight: 600;
+                                        transition: all 0.3s ease;
+                                        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+                                        min-width: 200px;
+                                    ">
+                                        🚀 Register Now
                                     </button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
-
-                <!-- Info Section -->
-                <div class="col-lg-6">
-                    <div class="register_info text-center text-lg-start ps-lg-5">
-                        <h2 class="fw-bold text-white mb-3">Join Our Community</h2>
-                        <p class="fs-5 text-white-50 mb-4">
-                            Improve your German in a friendly environment! Whether you’re joining for fun hangouts or
-                            structured classes,
-                            you’ll get the support you need to grow your language skills.
-                        </p>
-                        <ul class="list-unstyled text-white-50 fs-6">
-                            <li>✔ Interactive classes with native speakers</li>
-                            <li>✔ Flexible schedules</li>
-                            <li>✔ Both online and in-person sessions</li>
-                        </ul>
-                    </div>
-                </div>
-
             </div>
         </div>
-    </div>
+    </section>
 
+    <!-- Modern Events Section -->
+    <section id="events" class="events-section py-5" style="background: linear-gradient(135deg, #1e293b, #334155);">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 style="
+                        font-size: clamp(2rem, 4vw, 3rem);
+                        font-weight: 700;
+                        color: white;
+                        margin-bottom: 1rem;
+                    ">Upcoming Events</h2>
+                    <p style="
+                        font-size: 1.1rem;
+                        color: #94a3b8;
+                        max-width: 600px;
+                        margin: 0 auto;
+                    ">Join our exciting events and immerse yourself in German culture and language</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                @forelse($events as $event)
+                    @php
+    $eventDate = \Carbon\Carbon::parse($event->event_date);
+    $day = $eventDate->format('d');
+    $month = $eventDate->format('M');
+    $year = $eventDate->format('Y');
+    $time = $event->event_time ? \Carbon\Carbon::parse($event->event_time)->format('H:i') : 'TBA';
+    $registrationCount = $event->getRegistrationCount();
+    $remainingSpots = $event->getRemainingSpots();
+    $isFull = $event->isFull();
+                    @endphp
 
+                    <div class="col-lg-4 col-md-6">
+                        <div class="event-card h-100" style="
+                            background: rgba(255, 255, 255, 0.05);
+                            backdrop-filter: blur(20px);
+                            border-radius: 20px;
+                            padding: 25px;
+                            border: 1px solid rgba(255, 255, 255, 0.1);
+                            transition: all 0.3s ease;
+                            position: relative;
+                            overflow: hidden;
+                        ">
+                            <div class="event-image mb-3" style="position: relative;">
+                                <img src="{{ $event->image ? asset('storage/' . $event->image) : asset('images/default-event.jpg') }}"
+                                     alt="{{ $event->title }}" style="
+                                    width: 100%;
+                                    height: 200px;
+                                    object-fit: cover;
+                                    border-radius: 15px;
+                                ">
+                                <div class="event-date-badge" style="
+                                    position: absolute;
+                                    top: 15px;
+                                    left: 15px;
+                                    background: rgba(59, 130, 246, 0.9);
+                                    backdrop-filter: blur(10px);
+                                    color: white;
+                                    padding: 10px 15px;
+                                    border-radius: 10px;
+                                    text-align: center;
+                                    min-width: 70px;
+                                ">
+                                    <div style="font-size: 1.5rem; font-weight: 700; line-height: 1;">{{ $day }}</div>
+                                    <div style="font-size: 0.75rem; opacity: 0.9;">{{ $month }}</div>
+                                </div>
+                                @if($isFull)
+                                    <div style="
+                                        position: absolute;
+                                        top: 15px;
+                                        right: 15px;
+                                        background: #ef4444;
+                                        color: white;
+                                        padding: 5px 12px;
+                                        border-radius: 15px;
+                                        font-size: 0.75rem;
+                                        font-weight: 600;
+                                    ">FULL</div>
+                                @endif
+                            </div>
 
-    {{-- Include Flatpickr CSS & JS --}}
+                            <div class="event-content">
+                                <h4 style="color: white; font-weight: 600; margin-bottom: 15px; font-size: 1.25rem;">
+                                    {{ $event->title }}
+                                </h4>
+
+                                <div class="event-details mb-3">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px; color: #94a3b8;">
+                                        <i class="fa fa-clock-o me-2"></i>
+                                        <span>{{ $time }}</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px; color: #94a3b8;">
+                                        <i class="fa fa-users me-2"></i>
+                                        <span>{{ $registrationCount }}/{{ $event->capacity }} registered</span>
+                                    </div>
+                                </div>
+
+                                <p style="color: #cbd5e1; line-height: 1.6; margin-bottom: 20px; font-size: 0.9rem;">
+                                    {{ Str::limit($event->description ?? 'Join us for an exciting German learning experience!', 100) }}
+                                </p>
+
+                                <div class="event-footer d-flex justify-content-between align-items-center">
+                                    <div class="event-tags">
+                                        <span style="
+                                            background: linear-gradient(45deg, #10b981, #059669);
+                                            color: white;
+                                            padding: 6px 12px;
+                                            border-radius: 15px;
+                                            font-size: 0.75rem;
+                                            font-weight: 600;
+                                        ">{{ ucfirst($event->tag ?? 'Event') }}</span>
+
+                                        @if(!$isFull)
+                                            <span style="
+                                                background: rgba(34, 197, 94, 0.2);
+                                                color: #22c55e;
+                                                padding: 6px 12px;
+                                                border-radius: 15px;
+                                                font-size: 0.75rem;
+                                                font-weight: 600;
+                                                margin-left: 8px;
+                                            ">{{ $remainingSpots }} spots left</span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="col-12 text-center">
+                        <div style="
+                            background: rgba(255, 255, 255, 0.05);
+                            backdrop-filter: blur(20px);
+                            border-radius: 20px;
+                            padding: 60px 40px;
+                            border: 1px solid rgba(255, 255, 255, 0.1);
+                        ">
+                            <div style="font-size: 3rem; margin-bottom: 20px;">📅</div>
+                            <h4 style="color: white; margin-bottom: 15px;">No Upcoming Events</h4>
+                            <p style="color: #94a3b8;">Check back soon for exciting new events and learning opportunities!</p>
+                        </div>
+                    </div>
+                @endforelse
+            </div>
+        </div>
+    </section>
+
+    <!-- Add SweetAlert2 for modern alerts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Include Flatpickr CSS & JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
+    <!-- Modern CSS -->
     <style>
-        /* Optional: Style available dates and selected buttons */
+        /* Modern animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Modern hover effects */
+        .practice-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-hero-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-hero-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Modern form styling */
+        .modern-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            outline: none;
+        }
+
+        /* Responsive improvements */
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: 90vh;
+                padding: 80px 0;
+            }
+
+            .floating-card {
+                margin-top: 40px;
+                padding: 30px 20px;
+            }
+
+            .hero-buttons {
+                text-align: center;
+            }
+
+            .btn-hero-primary, .btn-hero-secondary {
+                display: block;
+                width: 100%;
+                max-width: 280px;
+                margin: 0 auto 15px;
+            }
+
+            .registration-form {
+                padding: 30px 20px;
+            }
+
+            .practice-card {
+                margin-bottom: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .instructor-image img {
+                width: 250px;
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-section {
+                min-height: 80vh;
+                padding: 60px 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .registration-form {
+                border-radius: 15px;
+                margin: 0 10px;
+            }
+        }
+
+        /* Flatpickr styling */
         .flatpickr-day.available {
-            background-color: #28a745 !important;
+            background-color: #10b981 !important;
             color: white !important;
-            border-radius: 50%;
+            border-radius: 8px;
         }
 
         .flatpickr-day.selected {
-            background-color: #007bff !important;
+            background-color: #3b82f6 !important;
             color: white !important;
-            border-radius: 50%;
+            border-radius: 8px;
         }
 
         #timeSlotButtons button {
-            border: 1px solid #007bff;
+            border: 2px solid #3b82f6;
             background-color: white;
-            color: #007bff;
+            color: #3b82f6;
             border-radius: 20px;
-            padding: 6px 14px;
+            padding: 10px 20px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
+            font-weight: 500;
         }
 
-        #timeSlotButtons button.selected {
-            background-color: #007bff;
+        #timeSlotButtons button.selected,
+        #timeSlotButtons button:hover {
+            background-color: #3b82f6;
             color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Loading spinner styles */
+        .spinner-border-sm {
+            width: 1rem;
+            height: 1rem;
+            border-width: 0.125em;
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.8;
+            transform: none !important;
+            cursor: not-allowed;
+        }
+
+        .btn-submit:disabled:hover {
+            transform: none !important;
+        }
+
+        /* Custom spinner for SweetAlert */
+        .swal2-loading {
+            border-color: #3b82f6 !important;
         }
     </style>
 
@@ -419,6 +958,20 @@
             let selectedDate = null;
             let calendarInstance = null;
 
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
             // Handle type selection
             typeSelect.addEventListener('change', function () {
                 const type = this.value;
@@ -427,14 +980,27 @@
                 timeSlots.style.display = 'none';
 
                 if (type === 'Hangout') {
-                    fetch('/get-hangouts')
+                    // Load events with proper formatting
+                    fetch('/get-events')
                         .then(res => res.json())
                         .then(data => {
                             const hangoutSelect = document.getElementById('hangoutSelect');
-                            hangoutSelect.innerHTML = '<option value="">Select Hangout Date & Time</option>';
-                            data.forEach(item => {
-                                hangoutSelect.innerHTML += `<option value="${item.id}">${item.date} - ${item.time}</option>`;
-                            });
+                            hangoutSelect.innerHTML = '<option value="">Select Event</option>';
+
+                            if (data.length === 0) {
+                                hangoutSelect.innerHTML = '<option value="" disabled>No events available</option>';
+                            } else {
+                                data.forEach(event => {
+                                    const displayText = `${event.title} - ${event.date} Time ${event.time} (${event.remaining_spots} spots left)`;
+                                    hangoutSelect.innerHTML += `<option value="${event.id}">${displayText}</option>`;
+                                });
+                            }
+                            hangoutSection.style.display = 'block';
+                        })
+                        .catch(err => {
+                            console.error('Error loading events:', err);
+                            const hangoutSelect = document.getElementById('hangoutSelect');
+                            hangoutSelect.innerHTML = '<option value="" disabled>Error loading events</option>';
                             hangoutSection.style.display = 'block';
                         });
                 } else if (type === 'Classes') {
@@ -473,7 +1039,7 @@
             // Initialize Flatpickr dynamically
             function renderFlatpickrCalendar(dates) {
                 const calendarContainer = document.getElementById('calendar');
-                calendarContainer.innerHTML = '<input type="text" id="calendarInput" class="form-control form-control-lg" placeholder="Select Date">';
+                calendarContainer.innerHTML = '<input type="text" id="calendarInput" class="form-control modern-input" placeholder="Select Date" style="border-radius: 15px; border: 2px solid #e2e8f0; padding: 15px;">';
 
                 // Destroy existing Flatpickr instance before re-rendering
                 if (calendarInstance) {
@@ -484,9 +1050,8 @@
                     dateFormat: "Y-m-d",
                     minDate: "today",
 
-                    // ✅ Ensures Flatpickr uses local date interpretation (no UTC offset)
                     enable: availableDates.map(date => {
-                        const parts = date.split('-'); // e.g., "2025-12-07"
+                        const parts = date.split('-');
                         return {
                             from: new Date(parts[0], parts[1] - 1, parts[2]),
                             to: new Date(parts[0], parts[1] - 1, parts[2])
@@ -505,13 +1070,11 @@
                         const d = String(date.getDate()).padStart(2, '0');
                         const localDateStr = `${y}-${m}-${d}`;
 
-                        // ✅ Match local date string directly
                         if (availableDates.includes(localDateStr)) {
                             dayElem.classList.add('available');
                         }
                     }
                 });
-
             }
 
             // Load available time slots for selected date
@@ -527,7 +1090,7 @@
                 timeSlotButtons.innerHTML = '';
 
                 if (times.length === 0) {
-                    timeSlotButtons.innerHTML = '<p>No available time slots for this date.</p>';
+                    timeSlotButtons.innerHTML = '<p style="color: #64748b;">No available time slots for this date.</p>';
                     return;
                 }
 
@@ -544,136 +1107,189 @@
                 });
             }
 
-           // Submit form
-document.getElementById('register_form').addEventListener('submit', function (e) {
-    e.preventDefault();
+            // Submit form
+            document.getElementById('register_form').addEventListener('submit', function (e) {
+                e.preventDefault();
 
-    const formData = new FormData(this);
-    const type = document.getElementById('typeSelect').value;
+                const formData = new FormData(this);
+                const type = document.getElementById('typeSelect').value;
+                const submitButton = this.querySelector('.btn-submit');
 
-    // 🟢 Clean up other fields depending on type
-    if (type === 'Hangout') {
-        const hangoutId = document.getElementById('hangoutSelect').value;
-        formData.set('type', 'Hangout');
-        formData.set('hangout_id', hangoutId);
-        formData.delete('class_schedule_id');
-    } else if (type === 'Classes') {
-        const classScheduleId = document.getElementById('selectedClassSchedule').value;
-        formData.set('type', 'Classes');
-        formData.set('class_schedule_id', classScheduleId);
-        formData.delete('hangout_id');
-    }
-
-    // 🔒 Basic validation before sending
-    if (!formData.get('type')) {
-        alert('Please select a registration type.');
-        return;
-    }
-  if (type === 'Hangout') {
-    const hangoutId = document.getElementById('hangoutSelect').value;
-    if (!hangoutId) {
-        Swal.fire({
-            title: 'Date & Time Required',
-            text: 'Please choose a Coffee-Connect date and time before submitting.',
-            icon: 'warning',
-            confirmButtonText: 'OK',
-        });
-        return;
-    }
-}
-     if (type === 'Classes') {
-        const classScheduleId = document.getElementById('selectedClassSchedule').value;
-        if (!classScheduleId) {
-            Swal.fire({
-                title: 'Schedule Required',
-                text: 'Please select a class date and time slot.',
-                icon: 'warning',
-                confirmButtonText: 'OK',
-            });
-            return;
-        }
-    }
-
-    fetch('/register-user', {
-        method: 'POST',
-        body: formData,
-    })
-        .then(res => res.json())
-        .then(data => {
-            Swal.fire({
-                title: '🎉 Registration Successful!',
-                text: 'You have successfully registered.',
-                icon: 'success',
-                confirmButtonText: 'OK',
-                confirmButtonColor: '#3085d6',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // ✅ Refresh page after clicking OK
-                    window.location.reload();
+                // Clean up other fields depending on type
+                if (type === 'Hangout') {
+                    const hangoutId = document.getElementById('hangoutSelect').value;
+                    formData.set('type', 'Hangout');
+                    formData.set('hangout_id', hangoutId);
+                    formData.delete('class_schedule_id');
+                } else if (type === 'Classes') {
+                    const classScheduleId = document.getElementById('selectedClassSchedule').value;
+                    formData.set('type', 'Classes');
+                    formData.set('class_schedule_id', classScheduleId);
+                    formData.delete('hangout_id');
                 }
+
+                // Basic validation before sending
+                if (!formData.get('type')) {
+                    Swal.fire({
+                        title: 'Please Select Learning Type',
+                        text: 'Choose between Events & Hangouts or Structured Classes.',
+                        icon: 'warning',
+                        confirmButtonText: 'OK',
+                    });
+                    return;
+                }
+
+                if (type === 'Hangout') {
+                    const hangoutId = document.getElementById('hangoutSelect').value;
+                    if (!hangoutId) {
+                        Swal.fire({
+                            title: 'Event Selection Required',
+                            text: 'Please choose an event before submitting.',
+                            icon: 'warning',
+                            confirmButtonText: 'OK',
+                        });
+                        return;
+                    }
+                }
+
+                if (type === 'Classes') {
+                    const classScheduleId = document.getElementById('selectedClassSchedule').value;
+                    if (!classScheduleId) {
+                        Swal.fire({
+                            title: 'Schedule Required',
+                            text: 'Please select a class date and time slot.',
+                            icon: 'warning',
+                            confirmButtonText: 'OK',
+                        });
+                        return;
+                    }
+                }
+
+                // Show loading state
+                const originalButtonText = submitButton.innerHTML;
+                submitButton.disabled = true;
+                submitButton.innerHTML = `
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></div>
+                        Registering...
+                    </div>
+                `;
+
+                // Show loading SweetAlert
+                Swal.fire({
+                    title: 'Processing Registration',
+                    html: '<div class="text-center"><div class="spinner-border text-primary" role="status"><span class="sr-only">Loading...</span></div><p class="mt-3">Please wait while we register you...</p></div>',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    allowEnterKey: false,
+                    showConfirmButton: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                fetch('/register-user', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    }
+                })
+                .then(async response => {
+                    console.log('Response status:', response.status);
+                    console.log('Response headers:', response.headers);
+
+                    const data = await response.json();
+                    console.log('Response data:', data);
+
+                    // Close loading alert and restore button
+                    Swal.close();
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalButtonText;
+
+                    if (response.ok && data.success) {
+                        Swal.fire({
+                            title: '🎉 Registration Successful!',
+                            text: data.message || 'You have successfully registered.',
+                            icon: 'success',
+                            confirmButtonText: 'Awesome!',
+                            confirmButtonColor: '#10b981',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.reload();
+                            }
+                        });
+
+                        this.reset();
+                        hangoutSection.style.display = 'none';
+                        classBookingSection.style.display = 'none';
+                        timeSlots.style.display = 'none';
+                    } else {
+                        // More detailed error logging
+                        console.error('Registration failed:', data);
+                        Swal.fire({
+                            title: 'Registration Failed',
+                            text: data.message || 'Something went wrong. Please try again.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                })
+                .catch(err => {
+                    console.error('Network Error:', err);
+
+                    // Close loading alert and restore button
+                    Swal.close();
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalButtonText;
+
+                    Swal.fire({
+                        title: 'Network Error',
+                        text: 'Unable to connect to server. Please check your internet connection.',
+                        icon: 'error',
+                        confirmButtonText: 'Close'
+                    });
+                });
             });
 
-            this.reset();
-            hangoutSection.style.display = 'none';
-            classBookingSection.style.display = 'none';
-            timeSlots.style.display = 'none';
-        })
-        .catch(err => {
-            console.error('Error:', err);
-            Swal.fire({
-                title: 'Oops...',
-                text: 'Something went wrong. Please try again later.',
-                icon: 'error',
-                confirmButtonText: 'Close'
-            });
-        });
-});
+            // Handle event registration buttons
+            document.querySelectorAll('.register-event-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const eventTitle = this.dataset.eventTitle;
+                    const eventDate = this.dataset.eventDate;
+                    const eventTime = this.dataset.eventTime;
 
+                    // Scroll to registration form
+                    document.querySelector('.register').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+
+                    // Pre-select Hangout type and show relevant section
+                    const typeSelect = document.getElementById('typeSelect');
+                    typeSelect.value = 'Hangout';
+                    typeSelect.dispatchEvent(new Event('change'));
+
+                    // Show info about the event
+                    setTimeout(() => {
+                        Swal.fire({
+                            title: `Register for ${eventTitle}`,
+                            html: `
+                                <div class="text-start">
+                                    <p><strong>📅 Date:</strong> ${eventDate}</p>
+                                    <p><strong>🕐 Time:</strong> ${eventTime}</p>
+                                    <p class="mt-3">Please complete the registration form below to join this event.</p>
+                                </div>
+                            `,
+                            icon: 'info',
+                            confirmButtonText: 'Got it!',
+                            confirmButtonColor: '#3085d6'
+                        });
+                    }, 500);
+                });
+            });
         });
     </script>
 
-    <!-- Events -->
-
-    <div class="events">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h2 class="section_title text-center">Upcoming Events</h2>
-                </div>
-            </div>
-            <div class="row events_row">
-                @foreach($events as $event)
-                    @php
-                        $day = \Carbon\Carbon::parse($event->event_date)->format('d');
-                        $month = \Carbon\Carbon::parse($event->event_date)->format('M');
-                        $year = \Carbon\Carbon::parse($event->date)->format('Y');
-                    @endphp
-
-                    <div class="col-lg-4 event_col">
-                        <div class="event">
-                            <div class="event_image">
-                                <img src="{{ asset('storage/' . $event->image) }}" alt="{{ $event->title }}">
-                            </div>
-
-                            <div class="event_body">
-                                <div class="event_title"><a href="#">{{ $event->title }}</a></div>
-
-                                <div class="event_date">
-                                    <div class="event_day">{{ $day }}</div>
-                                    <div class="event_month">{{ strtolower($month) }}</div>
-                                    <div class="event_year">{{ $year }}</div>
-                                </div>
-
-                                <div class="event_tag">{{ $event->tag ?? '—' }}</div>
-                            </div>
-                        </div>
-
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
     <!-- Footer -->
     @include('layouts.footer')
-
 </div>

@@ -1686,6 +1686,117 @@ section
     margin-top: 10px !important;
     text-align: center !important;
 }
+
+/* Enhanced Event Cards */
+.event {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.event:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.event_image {
+    position: relative;
+    overflow: hidden;
+}
+
+.event_status_badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.event_status_badge.full {
+    background: rgba(220, 53, 69, 0.9);
+    color: white;
+}
+
+.event_status_badge.available {
+    background: rgba(40, 167, 69, 0.9);
+    color: white;
+}
+
+.event_info_list ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.event_info_list li {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #666;
+}
+
+.event_info_list li span:first-child {
+    width: 20px;
+    color: #007bff;
+    margin-right: 8px;
+}
+
+.event_capacity_progress {
+    margin: 15px 0;
+}
+
+.event_capacity_progress .progress {
+    border-radius: 10px;
+    background-color: #f8f9fa;
+}
+
+.event_capacity_progress .progress-bar {
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.event_tags .badge {
+    font-size: 11px;
+    padding: 4px 8px;
+}
+
+.event_footer {
+    padding: 15px;
+    background: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+}
+
+.register-event-btn {
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.register-event-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+.no-events {
+    background: #f8f9fa;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .event_info_list li {
+        font-size: 12px;
+    }
+
+    .event_status_badge {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
 }
 
 /*********************************
