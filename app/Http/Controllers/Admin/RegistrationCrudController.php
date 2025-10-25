@@ -30,6 +30,7 @@ class RegistrationCrudController extends CrudController
         CRUD::setEntityNameStrings('registration', 'registrations');
 
         $this->crud->denyAccess('create');
+        $this->crud->denyAccess('update'); // Disable edit functionality
 
         // Remove show/preview button
         $this->crud->removeButton('show');
@@ -43,7 +44,30 @@ class RegistrationCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        $this->crud->query->with(['hangout', 'classSchedule']);
+        $this->crud->query->with(['hangout', 'classSchedule', 'eventRegistration']);
+
+        // Enable search functionality including event titles
+        $this->crud->addClause('where', function($query) {
+            if (request()->has('search') && request('search')['value']) {
+                $searchTerm = request('search')['value'];
+                $query->where(function($q) use ($searchTerm) {
+                    $q->where('first_name', 'like', '%'.$searchTerm.'%')
+                      ->orWhere('last_name', 'like', '%'.$searchTerm.'%')
+                      ->orWhere('email', 'like', '%'.$searchTerm.'%')
+                      ->orWhere('type', 'like', '%'.$searchTerm.'%')
+                      ->orWhere('city', 'like', '%'.$searchTerm.'%')
+                      ->orWhere('phone', 'like', '%'.$searchTerm.'%')
+                      // Search in event titles for hangout registrations
+                      ->orWhereHas('eventRegistration', function($eventQuery) use ($searchTerm) {
+                          $eventQuery->where('title', 'like', '%'.$searchTerm.'%');
+                      })
+                      // Search in class levels for class registrations
+                      ->orWhereHas('classSchedule', function($classQuery) use ($searchTerm) {
+                          $classQuery->where('level', 'like', '%'.$searchTerm.'%');
+                      });
+                });
+            }
+        });
 
         // Modern styling with custom CSS
         $this->crud->addClause('orderBy', 'created_at', 'desc');
@@ -77,7 +101,19 @@ class RegistrationCrudController extends CrudController
                         <div style='font-size: 11px; color: #6b7280; margin-bottom: 2px;'>📅 {$date}</div>
                         <div style='font-size: 11px; color: #6b7280;'>⏰ {$time}</div>
                     </div>";
+                } elseif ($entry->type === 'Hangout' && $entry->eventRegistration) {
+                    // For event registrations (hangout_id stores event_id)
+                    $event = $entry->eventRegistration;
+                    $date = \Carbon\Carbon::parse($event->event_date)->format('M d, Y');
+                    $time = $event->event_time ? \Carbon\Carbon::parse($event->event_time)->format('H:i') : 'TBA';
+                    $details = "
+                    <div style='background: {$config['bg']}; border-left: 3px solid {$config['color']}; border-radius: 6px; padding: 8px 10px; margin-top: 8px;'>
+                        <div style='font-weight: 600; color: #1f2937; font-size: 12px; margin-bottom: 4px;'>🎯 {$event->title}</div>
+                        <div style='font-size: 11px; color: #6b7280; margin-bottom: 2px;'>📅 {$date}</div>
+                        <div style='font-size: 11px; color: #6b7280;'>⏰ {$time}</div>
+                    </div>";
                 } elseif ($entry->hangout) {
+                    // For old hangout system
                     $date = \Carbon\Carbon::parse($entry->hangout->date)->format('M d, Y');
                     $time = \Carbon\Carbon::parse($entry->hangout->time)->format('H:i');
                     $details = "

@@ -18,6 +18,12 @@ class Registration extends Model
         return $this->belongsTo(Hangout::class);
     }
 
+    // Add relationship to get the event for hangout registrations
+    public function eventRegistration()
+    {
+        return $this->belongsTo(\App\Models\Event::class, 'hangout_id');
+    }
+
     public function classSchedule()
     {
         return $this->belongsTo(ClassSchedule::class);

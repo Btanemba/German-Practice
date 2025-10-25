@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
+use Illuminate\Support\Facades\Log;
 
 class Event extends Model
 {
@@ -25,26 +26,17 @@ class Event extends Model
         'event_time' => 'string',
     ];
 
-    // Count registrations based on event title
+    // Count registrations for this specific event
     public function getRegistrationCount()
     {
-        $title = trim(strtolower($this->title));
+        // Count registrations where hangout_id matches this event's ID
+        $count = \App\Models\Registration::where('type', 'Hangout')
+            ->where('hangout_id', $this->id)
+            ->count();
 
-        // Add debug logging
-        \Log::info("Checking registrations for event: '{$title}'");
+        Log::info("Event ID {$this->id} ('{$this->title}') has {$count} registrations");
 
-        if ($title === 'coffee-connect' || $title === 'hangout') {
-            $count = \App\Models\Registration::where('type', 'Hangout')->count();
-            \Log::info("Found {$count} Hangout registrations");
-            return $count;
-        } elseif ($title === 'classes') {
-            $count = \App\Models\Registration::where('type', 'Classes')->count();
-            \Log::info("Found {$count} Classes registrations");
-            return $count;
-        }
-
-        \Log::info("No matching title, returning 0");
-        return 0;
+        return $count;
     }
 
     public function getRemainingSpots()
@@ -55,7 +47,7 @@ class Event extends Model
     public function isFull()
     {
         $isFull = $this->getRegistrationCount() >= $this->capacity;
-        \Log::info("Event '{$this->title}' - Capacity: {$this->capacity}, Registered: {$this->getRegistrationCount()}, Is Full: " . ($isFull ? 'YES' : 'NO'));
+        Log::info("Event '{$this->title}' - Capacity: {$this->capacity}, Registered: {$this->getRegistrationCount()}, Is Full: " . ($isFull ? 'YES' : 'NO'));
         return $isFull;
     }
 
