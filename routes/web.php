@@ -3,14 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SubscriptionController;
 use App\Models\Event;
+use App\Models\PracticeMaterial;
 use Illuminate\Http\Request;
 use App\Models\{Hangout, ClassSchedule, Registration};
 use App\Http\Controllers\ClassController;
 
-// Homepage with Events
+// Homepage with Events and Practice Materials
 Route::get('/', function () {
     $events = Event::orderBy('event_date', 'asc')->get();
-    return view('home', compact('events'));
+    $practiceMaterials = PracticeMaterial::ordered()->get();
+    return view('home', compact('events', 'practiceMaterials'));
 });
 
 // Newsletter Subscribe/Unsubscribe

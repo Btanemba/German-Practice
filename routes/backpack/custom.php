@@ -26,6 +26,7 @@ Route::post('newsletter/send', [NewsletterController::class, 'send'])->name('adm
     Route::crud('hangout', 'HangoutCrudController');
     Route::crud('class-schedule', 'ClassScheduleCrudController');
     Route::crud('registration', 'RegistrationCrudController');
+    Route::crud('practice-material', 'PracticeMaterialCrudController');
 }); // this should be the absolute last line of this file
 
 /**

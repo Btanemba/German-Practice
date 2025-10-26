@@ -65,7 +65,7 @@ return [
     // Menu logo. You can replace this with an <img> tag if you have a logo.
     //'project_logo' => '<b>Back</b>pack',
 
-    'project_logo' => '<img src="'.env('APP_URL').'/images/blog_4.jpg" alt="Lingua" style="height:32px;">',
+    'project_logo' => '<img src="'.env('APP_URL').'/images/logo2.jpg" alt="Lingua" style="height:60px;">',
 
 
     // Show / hide breadcrumbs on admin panel pages.

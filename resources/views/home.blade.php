@@ -201,7 +201,7 @@
                         font-weight: 700;
                         color: #1e293b;
                         margin-bottom: 1rem;
-                    ">Practice Sessions</h2>
+                    ">Latest Practice Materials</h2>
                     <p class="section-subtitle" style="
                         font-size: 1.1rem;
                         color: #64748b;
@@ -211,125 +211,111 @@
                 </div>
             </div>
             <div class="row g-4">
-                <!-- Vocabulary Card -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="practice-card h-100" style="
-                        background: white;
-                        border-radius: 20px;
-                        padding: 30px;
-                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-                        transition: all 0.3s ease;
-                        border: none;
-                        position: relative;
-                        overflow: hidden;
-                    ">
-                        <div class="card-icon mb-4" style="
-                            width: 70px;
-                            height: 70px;
-                            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
-                            border-radius: 20px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            color: white;
-                            font-size: 1.8rem;
-                        ">📚</div>
-                        <h4 style="font-weight: 600; color: #1e293b; margin-bottom: 15px;">Vocabulary</h4>
-                        <p style="color: #64748b; line-height: 1.6; margin-bottom: 20px;">
-                            Expand your German vocabulary with words, phrases, and interactive exercises that help you speak with confidence.
-                        </p>
-                        <div class="badge-container mb-3">
-                            <span style="
-                                background: linear-gradient(45deg, #10b981, #059669);
-                                color: white;
-                                padding: 8px 16px;
-                                border-radius: 20px;
-                                font-size: 0.875rem;
-                                font-weight: 600;
-                            ">Free</span>
-                        </div>
-                    </div>
-                </div>
+                @forelse($practiceMaterials as $index => $material)
+                    @php
+                        // Define gradient colors for variety
+                        $gradients = [
+                            'linear-gradient(45deg, #3b82f6, #1d4ed8)', // Blue
+                            'linear-gradient(45deg, #8b5cf6, #7c3aed)', // Purple
+                            'linear-gradient(45deg, #f59e0b, #d97706)', // Orange
+                            'linear-gradient(45deg, #ef4444, #dc2626)', // Red
+                            'linear-gradient(45deg, #10b981, #059669)', // Green
+                            'linear-gradient(45deg, #ec4899, #db2777)', // Pink
+                        ];
+                        $gradientColor = $gradients[$index % count($gradients)];
+                    @endphp
 
-                <!-- Grammar Card -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="practice-card h-100" style="
-                        background: white;
-                        border-radius: 20px;
-                        padding: 30px;
-                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-                        transition: all 0.3s ease;
-                        border: none;
-                        position: relative;
-                        overflow: hidden;
-                    ">
-                        <div class="card-icon mb-4" style="
-                            width: 70px;
-                            height: 70px;
-                            background: linear-gradient(45deg, #8b5cf6, #7c3aed);
+                    <div class="col-lg-4 col-md-6">
+                        <div class="practice-card h-100" style="
+                            background: white;
                             border-radius: 20px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            color: white;
-                            font-size: 1.8rem;
-                        ">⚡</div>
-                        <h4 style="font-weight: 600; color: #1e293b; margin-bottom: 15px;">Grammar</h4>
-                        <p style="color: #64748b; line-height: 1.6; margin-bottom: 20px;">
-                            Learn how to use verbs, nouns, and cases correctly in everyday situations.
-                        </p>
-                        <div class="badge-container mb-3">
-                            <span style="
-                                background: linear-gradient(45deg, #10b981, #059669);
-                                color: white;
-                                padding: 8px 16px;
-                                border-radius: 20px;
-                                font-size: 0.875rem;
-                                font-weight: 600;
-                            ">Free</span>
-                        </div>
-                    </div>
-                </div>
+                            padding: 30px;
+                            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                            transition: all 0.3s ease;
+                            border: none;
+                            position: relative;
+                            overflow: hidden;
+                        ">
+                            @if($material->image)
+                                <div class="card-image mb-4" style="
+                                    width: 100%;
+                                    height: 150px;
+                                    border-radius: 15px;
+                                    overflow: hidden;
+                                    margin-bottom: 20px;
+                                ">
+                                    <img src="{{ $material->image_url }}" alt="{{ $material->title }}" style="
+                                        width: 100%;
+                                        height: 100%;
+                                        object-fit: cover;
+                                    ">
+                                </div>
+                            @else
+                                <div class="card-icon mb-4" style="
+                                    width: 70px;
+                                    height: 70px;
+                                    background: {{ $gradientColor }};
+                                    border-radius: 20px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    color: white;
+                                    font-size: 1.8rem;
+                                ">📚</div>
+                            @endif
 
-                <!-- Conversation Card -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="practice-card h-100" style="
-                        background: white;
-                        border-radius: 20px;
-                        padding: 30px;
-                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-                        transition: all 0.3s ease;
-                        border: none;
-                        position: relative;
-                        overflow: hidden;
-                    ">
-                        <div class="card-icon mb-4" style="
-                            width: 70px;
-                            height: 70px;
-                            background: linear-gradient(45deg, #f59e0b, #d97706);
-                            border-radius: 20px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            color: white;
-                            font-size: 1.8rem;
-                        ">💬</div>
-                        <h4 style="font-weight: 600; color: #1e293b; margin-bottom: 15px;">Conversation</h4>
-                        <p style="color: #64748b; line-height: 1.6; margin-bottom: 20px;">
-                            Enhance your German fluency by practicing real conversations. Learn how to express yourself confidently in daily situations and social settings.
-                        </p>
-                        <div class="badge-container mb-3">
-                            <span style="
-                                background: linear-gradient(45deg, #10b981, #059669);
-                                color: white;
-                                padding: 8px 16px;
-                                border-radius: 20px;
-                                font-size: 0.875rem;
-                                font-weight: 600;
-                            ">Free</span>
+                            <h4 style="font-weight: 600; color: #1e293b; margin-bottom: 15px;">{{ $material->title }}</h4>
+
+                            @if($material->description)
+                                <p style="color: #64748b; line-height: 1.6; margin-bottom: 20px;">
+                                    {{ Str::limit($material->description, 120) }}
+                                </p>
+                            @endif
+
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="badge-container">
+                                    <span style="
+                                        background: {{ $material->cost == 0 ? 'linear-gradient(45deg, #10b981, #059669)' : 'linear-gradient(45deg, #3b82f6, #1d4ed8)' }};
+                                        color: white;
+                                        padding: 8px 16px;
+                                        border-radius: 20px;
+                                        font-size: 0.875rem;
+                                        font-weight: 600;
+                                    ">{{ $material->formatted_cost }}</span>
+                                </div>
+
+                                @if($material->link)
+                                    <a href="{{ $material->link }}" target="_blank" class="btn-practice-link" style="
+                                        background: {{ $gradientColor }};
+                                        color: white;
+                                        padding: 8px 16px;
+                                        border-radius: 20px;
+                                        text-decoration: none;
+                                        font-size: 0.875rem;
+                                        font-weight: 600;
+                                        transition: all 0.3s ease;
+                                    ">
+                                        Get Material
+                                    </a>
+                                @endif
+                            </div>
                         </div>
                     </div>
-                </div>
+                @empty
+                    <!-- Fallback content when no practice materials exist -->
+                    <div class="col-12 text-center">
+                        <div style="
+                            background: rgba(59, 130, 246, 0.05);
+                            border-radius: 20px;
+                            padding: 60px 40px;
+                            border: 2px dashed rgba(59, 130, 246, 0.2);
+                        ">
+                            <div style="font-size: 3rem; margin-bottom: 20px;">📚</div>
+                            <h4 style="color: #1e293b; margin-bottom: 15px;">No Practice Materials Available</h4>
+                            <p style="color: #64748b;">Check back soon for exciting new learning materials!</p>
+                        </div>
+                    </div>
+                @endforelse
             </div>
         </div>
     </section>
@@ -803,6 +789,11 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
+        .btn-practice-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
         .event-card:hover {
             transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.1);
@@ -958,6 +949,35 @@
             let selectedDate = null;
             let calendarInstance = null;
 
+            // Function to get fresh CSRF token
+            function getCsrfToken() {
+                return document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ||
+                       document.querySelector('input[name="_token"]')?.value ||
+                       '{{ csrf_token() }}';
+            }
+
+            // Function to refresh CSRF token (useful for long sessions)
+            function refreshCsrfToken() {
+                fetch('/refresh-csrf', {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.csrf_token) {
+                        document.querySelector('meta[name="csrf-token"]').setAttribute('content', data.csrf_token);
+                        const tokenInput = document.querySelector('input[name="_token"]');
+                        if (tokenInput) {
+                            tokenInput.value = data.csrf_token;
+                        }
+                    }
+                })
+                .catch(err => console.warn('Could not refresh CSRF token:', err));
+            }
+
             // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
@@ -981,7 +1001,12 @@
 
                 if (type === 'Hangout') {
                     // Load events with proper formatting
-                    fetch('/get-events')
+                    fetch('/get-events', {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'X-CSRF-TOKEN': getCsrfToken()
+                        }
+                    })
                         .then(res => res.json())
                         .then(data => {
                             const hangoutSelect = document.getElementById('hangoutSelect');
@@ -1011,7 +1036,12 @@
 
             // Load levels dynamically
             function loadLevels() {
-                fetch('/get-class-levels')
+                fetch('/get-class-levels', {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRF-TOKEN': getCsrfToken()
+                    }
+                })
                     .then(res => res.json())
                     .then(levels => {
                         levelSelect.innerHTML = '<option value="">Select Level (A1–B2)</option>';
@@ -1028,7 +1058,12 @@
 
                 timeSlots.style.display = 'none';
 
-                fetch(`/get-class-dates/${selectedLevel}`)
+                fetch(`/get-class-dates/${selectedLevel}`, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRF-TOKEN': getCsrfToken()
+                    }
+                })
                     .then(res => res.json())
                     .then(dates => {
                         availableDates = dates;
@@ -1079,7 +1114,12 @@
 
             // Load available time slots for selected date
             function loadTimeSlots(level, date) {
-                fetch(`/get-class-times/${level}/${date}`)
+                fetch(`/get-class-times/${level}/${date}`, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRF-TOKEN': getCsrfToken()
+                    }
+                })
                     .then(res => res.json())
                     .then(times => showTimeSlots(times));
             }
@@ -1193,7 +1233,8 @@
                     body: formData,
                     headers: {
                         'X-Requested-With': 'XMLHttpRequest',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || document.querySelector('input[name="_token"]')?.value
+                        'X-CSRF-TOKEN': getCsrfToken(),
+                        'Accept': 'application/json'
                     }
                 })
                 .then(async response => {
@@ -1226,14 +1267,29 @@
                         classBookingSection.style.display = 'none';
                         timeSlots.style.display = 'none';
                     } else {
-                        // More detailed error logging
-                        console.error('Registration failed:', data);
-                        Swal.fire({
-                            title: 'Registration Failed',
-                            text: data.message || 'Something went wrong. Please try again.',
-                            icon: 'error',
-                            confirmButtonText: 'OK'
-                        });
+                        // Check for CSRF token mismatch
+                        if (response.status === 419 || (data.message && data.message.includes('CSRF'))) {
+                            Swal.fire({
+                                title: 'Session Expired',
+                                text: 'Your session has expired. Please refresh the page and try again.',
+                                icon: 'warning',
+                                confirmButtonText: 'Refresh Page',
+                                confirmButtonColor: '#3085d6',
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.reload();
+                                }
+                            });
+                        } else {
+                            // More detailed error logging
+                            console.error('Registration failed:', data);
+                            Swal.fire({
+                                title: 'Registration Failed',
+                                text: data.message || 'Something went wrong. Please try again.',
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
                     }
                 })
                 .catch(err => {

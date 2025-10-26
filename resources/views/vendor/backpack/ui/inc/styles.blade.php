@@ -1,3 +1,10 @@
+{{-- Favicon for Backpack Admin --}}
+<link rel="icon" type="image/x-icon" href="{{ asset('images/logo2.jpg') }}">
+<link rel="shortcut icon" href="{{ asset('images/logo2.jpg') }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/logo2.jpg') }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/logo2.jpg') }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/logo2.jpg') }}">
+
 @basset('https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.compat.css')
 @basset('https://cdn.jsdelivr.net/npm/noty@3.2.0-beta-deprecated/lib/noty.css')
 

@@ -7,6 +7,13 @@
 <meta name="description" content="Sprachraum">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="{{ asset('images/logo2.jpg') }}">
+<link rel="shortcut icon" href="{{ asset('images/logo2.jpg') }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/logo2.jpg') }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/logo2.jpg') }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/logo2.jpg') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('styles/bootstrap4/bootstrap.min.css') }}">
 <link href="{{ asset('plugins/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="{{ asset('plugins/OwlCarousel2-2.2.1/owl.carousel.css') }}">
