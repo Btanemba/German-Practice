@@ -2473,3 +2473,20 @@ section
 }
 
 
+    .event-card {
+        text-align: left !important;
+    }
+
+    .event-card * {
+        text-align: left !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .event-card p {
+        display: block;
+        width: 100%;
+    }
+
+
+

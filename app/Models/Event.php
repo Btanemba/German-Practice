@@ -18,6 +18,7 @@ class Event extends Model
         'tag',
         'image',
         'capacity',
+        'location',
         'event_time'
     ];
 

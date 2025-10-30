@@ -39,6 +39,10 @@ class EventCrudController extends CrudController
                 $isFull = $entry->isFull();
                 $capacityPercent = $entry->getCapacityPercentage();
 
+                // Map URL (opens Google Maps in a new tab)
+                $mapQuery = urlencode($entry->location ?? '');
+                $mapUrl = $mapQuery ? "https://www.google.com/maps/search/?api=1&query={$mapQuery}" : null;
+
                 // Status badge colors
                 $statusBadge = $isFull ?
                     '<span class="badge badge-danger">🚫 FULL</span>' :
@@ -114,6 +118,7 @@ class EventCrudController extends CrudController
                                     <span class='badge badge-light ms-1' style='font-size: 11px; color: #6b7280;'>
                                         {$remainingSpots} spots left
                                     </span>
+                                    " . ($mapUrl ? "<a href='{$mapUrl}' target='_blank' class='ms-2 text-decoration-none' style='font-size:12px; color:#3b82f6;'><i class='la la-map-marker'></i> " . e($entry->location) . "</a>" : "") . "
                                 </div>
                             </div>
                         </div>
@@ -252,6 +257,21 @@ class EventCrudController extends CrudController
             ],
             'hint' => 'Recommended size: 1200x600px. Max size: 2MB. Formats: JPG, PNG, GIF'
         ]);
+        
+         // Location field (Google Maps link opens from list/show)
+        CRUD::addField([
+            'name' => 'location',
+            'label' => '📍 Location (address or place)',
+            'type' => 'text',
+            'attributes' => [
+                'placeholder' => 'e.g. 1600 Amphitheatre Pkwy, Mountain View, CA',
+                'class' => 'form-control form-control-lg'
+            ],
+            'wrapper' => [
+                'class' => 'form-group col-md-12'
+            ],
+            'hint' => 'Enter an address or place. Click the location in the list or show view to open Google Maps.'
+        ]);
 
         CRUD::addField([
             'name' => 'description',
@@ -263,6 +283,8 @@ class EventCrudController extends CrudController
                 'class' => 'form-control'
             ],
         ]);
+
+       
     }
 
     protected function setupUpdateOperation()
@@ -288,12 +310,16 @@ class EventCrudController extends CrudController
                 $registrationCount = $entry->getRegistrationCount();
                 $remainingSpots = $entry->getRemainingSpots();
 
+                $mapQuery = urlencode($entry->location ?? '');
+                $mapUrl = $mapQuery ? "https://www.google.com/maps/search/?api=1&query={$mapQuery}" : null;
+
                 return "
                 <div class='row'>
                     <div class='col-md-6'>
                         <strong>📅 Date:</strong> {$date->format('l, F j, Y')}<br>
                         <strong>🕐 Time:</strong> {$time}<br>
                         <strong>🏷️ Type:</strong> " . ucfirst($entry->tag ?? 'Event') . "
+                        " . ($mapUrl ? "<div class='mt-2'><strong>📍 Location:</strong> <a href='{$mapUrl}' target='_blank'>" . e($entry->location) . "</a></div>" : "") . "
                     </div>
                     <div class='col-md-6'>
                         <strong>👥 Capacity:</strong> {$entry->capacity} people<br>

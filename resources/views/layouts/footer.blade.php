@@ -11,7 +11,7 @@
                 <div class="col-lg-4 col-md-6 footer_col mb-4">
                     <div class="newsletter_container text-start">
                         <div class="footer_logo mb-3">
-                            <a href="#" class="text-decoration-none fs-3 fw-bold text-primary">LGWT</a>
+                            <a href="#" class="text-decoration-none fs-3 fw-bold text-primary">Sprachraum</a>
                         </div>
                         <div class="footer_title mb-2 fw-semibold">Subscribe to our Newsletter</div>
 
@@ -32,7 +32,8 @@
                         <ul class="footer_list">
                             <li><a href="#">Team</a></li>
                             <li><a href="#">Jobs</a></li>
-                            <li><a href="#">Contact us</a></li>
+                           
+                            <li><a href="javascript:void(0);" class="contactUsBtn">{{ __('messages.contact') }}</a></li>
                         </ul>
                     </div>
                 </div>

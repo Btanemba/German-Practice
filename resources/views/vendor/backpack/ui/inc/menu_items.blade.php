@@ -30,6 +30,20 @@
     </a>
 </li>
 
+{{-- Chat Messages --}}
+<li class="nav-item">
+    <a class="nav-link nav-chat" href="{{ backpack_url('chat-message') }}">
+        <i class="la la-comments nav-icon"></i>
+        <span>💬 Chats</span>
+        @php
+            $unreadCount = \App\Models\ChatMessage::where('sender_type', 'user')->where('is_read', false)->count();
+        @endphp
+        @if($unreadCount > 0)
+            <span class="badge badge-danger ms-2">{{ $unreadCount }}</span>
+        @endif
+    </a>
+</li>
+
 {{-- Activities Dropdown --}}
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle nav-activities" href="#" id="activitiesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -89,6 +103,12 @@
     /* Clients - Green gradient */
     .nav-clients:hover {
         background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        color: white !important;
+    }
+
+    /* Chat Messages - Teal gradient */
+    .nav-chat:hover {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white !important;
     }
 

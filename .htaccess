@@ -1,0 +1,10 @@
+# Redirect all traffic to HTTPS and the public folder
+RewriteEngine On
+
+# Redirect to HTTPS
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirect all requests to the public directory
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ public/$1 [L]

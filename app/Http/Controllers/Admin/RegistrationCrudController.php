@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\RegistrationRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use Prologue\Alerts\Facades\Alert;
 
 /**
  * Class RegistrationCrudController
@@ -207,6 +210,14 @@ class RegistrationCrudController extends CrudController
         // Modern Email Button
         CRUD::addButtonFromView('line', 'send_email', 'send_email_button', 'beginning');
 
+        // Add Bulk Email Buttons at the top
+        CRUD::addButtonFromView('top', 'bulk_email_event', 'bulk_email_event', 'beginning');
+        CRUD::addButtonFromView('top', 'bulk_email_class', 'bulk_email_class', 'beginning');
+
+        // Add Export Buttons at the top
+        CRUD::addButtonFromView('top', 'export_event_registrations', 'export_event_registrations', 'beginning');
+        CRUD::addButtonFromView('top', 'export_class_registrations', 'export_class_registrations', 'beginning');
+
         // Add custom CSS for modern look
         $this->crud->enableBulkActions();
     }
@@ -253,6 +264,7 @@ class RegistrationCrudController extends CrudController
     // Process email sending
     public function processEmail($id, \Illuminate\Http\Request $request)
     {
+
         $registration = \App\Models\Registration::findOrFail($id);
 
         $request->validate([
@@ -261,17 +273,290 @@ class RegistrationCrudController extends CrudController
         ]);
 
         try {
-            \Mail::to($registration->email)->send(new \App\Mail\ClientEmail(
+            Mail::to($registration->email)->send(new \App\Mail\ClientEmail(
                 $registration,
                 $request->subject,
                 $request->message
             ));
 
-            \Alert::success('Email sent successfully to ' . $registration->email)->flash();
+            Alert::success('Email sent successfully to ' . $registration->email)->flash();
         } catch (\Exception $e) {
-            \Alert::error('Failed to send email: ' . $e->getMessage())->flash();
+            Alert::error('Failed to send email: ' . $e->getMessage())->flash();
         }
 
         return redirect(url($this->crud->route));
+    }
+
+    // Show form to select event and compose email
+    public function bulkEmailEventForm()
+    {
+        $events = \App\Models\Event::orderBy('event_date', 'desc')->get();
+        $hangouts = \App\Models\Hangout::orderBy('date', 'desc')->get();
+
+        return view('admin.bulk_email_event', [
+            'events' => $events,
+            'hangouts' => $hangouts,
+            'crud' => $this->crud
+        ]);
+    }
+
+    // Show form to select class level and compose email
+    public function bulkEmailClassForm()
+    {
+        $classLevels = \App\Models\ClassSchedule::select('level')
+            ->distinct()
+            ->orderBy('level')
+            ->pluck('level');
+
+        return view('admin.bulk_email_class', [
+            'classLevels' => $classLevels,
+            'crud' => $this->crud
+        ]);
+    }
+
+  public function processBulkEmailEvent(\Illuminate\Http\Request $request)
+    {
+        $request->validate([
+            'event_id' => 'required|integer|exists:events,id',
+            'subject'  => 'required|string|max:255',
+            'message'  => 'required|string',
+        ]);
+
+        try {
+            $event = \App\Models\Event::find($request->event_id);
+
+            // Select registrations linked to this Event via the relation (no type filter)
+            $registrations = \App\Models\Registration::whereHas('eventRegistration', function ($q) use ($event) {
+                    $q->where('id', $event->id);
+                })
+                // fallback if event_id is stored in hangout_id column
+                ->orWhere('hangout_id', $event->id)
+                ->get();
+
+            if ($registrations->isEmpty()) {
+                Alert::warning('No registrations found for event: ' . $event->title)->flash();
+                return back()->withInput();
+            }
+
+            $sent = 0; $failed = [];
+            foreach ($registrations as $registration) {
+                try {
+                    $body = strtr($request->message, [
+                        '{first_name}' => $registration->first_name ?? '',
+                        '{last_name}'  => $registration->last_name ?? '',
+                        '{email}'      => $registration->email ?? '',
+                    ]);
+                    Mail::to($registration->email)->send(
+                        new \App\Mail\ClientEmail($registration, $request->subject, $body)
+                    );
+                    $sent++;
+                } catch (\Throwable $e) {
+                    $failed[] = $registration->email;
+                }
+            }
+
+            if ($sent) Alert::success("Sent {$sent} email(s) to {$event->title} registrants.")->flash();
+            if ($failed) Alert::warning('Failed: ' . implode(', ', $failed))->flash();
+
+        } catch (\Throwable $e) {
+            Alert::error('Failed to send emails: ' . $e->getMessage())->flash();
+            return back()->withInput();
+        }
+
+        return redirect(backpack_url('registration'));
+    }
+
+    // Optional: make class selection independent of type
+    public function processBulkEmailClass(\Illuminate\Http\Request $request)
+    {
+        $request->validate([
+            'class_level' => 'required|string',
+            'subject'     => 'required|string|max:255',
+            'message'     => 'required|string',
+        ]);
+
+        try {
+            $registrations = \App\Models\Registration::whereHas('classSchedule', function ($q) use ($request) {
+                    $q->where('level', $request->class_level);
+                })->get();
+
+            if ($registrations->isEmpty()) {
+                Alert::warning('No registrations found for Level ' . $request->class_level)->flash();
+                return back()->withInput();
+            }
+
+            $sent = 0; $failed = [];
+            foreach ($registrations as $registration) {
+                try {
+                    $body = strtr($request->message, [
+                        '{first_name}' => $registration->first_name ?? '',
+                        '{last_name}'  => $registration->last_name ?? '',
+                        '{email}'      => $registration->email ?? '',
+                    ]);
+                    Mail::to($registration->email)->send(
+                        new \App\Mail\ClientEmail($registration, $request->subject, $body)
+                    );
+                    $sent++;
+                } catch (\Throwable $e) {
+                    $failed[] = $registration->email;
+                }
+            }
+
+            if ($sent) Alert::success("Sent {$sent} email(s) to Level {$request->class_level} registrants.")->flash();
+            if ($failed) Alert::warning('Failed: ' . implode(', ', $failed))->flash();
+
+        } catch (\Throwable $e) {
+            Alert::error('Failed to send emails: ' . $e->getMessage())->flash();
+            return back()->withInput();
+        }
+
+        return redirect(backpack_url('registration'));
+    }
+
+    // Show form to select event for export
+    public function exportEventRegistrationsForm()
+    {
+        $events = \App\Models\Event::orderBy('event_date', 'desc')->get();
+        $hangouts = \App\Models\Hangout::orderBy('date', 'desc')->get();
+
+        return view('admin.export_event_registrations', [
+            'events' => $events,
+            'hangouts' => $hangouts,
+            'crud' => $this->crud
+        ]);
+    }
+
+    // Show form to select class level for export
+    public function exportClassRegistrationsForm()
+    {
+        $classLevels = \App\Models\ClassSchedule::select('level')
+            ->distinct()
+            ->orderBy('level')
+            ->pluck('level');
+
+        return view('admin.export_class_registrations', [
+            'classLevels' => $classLevels,
+            'crud' => $this->crud
+        ]);
+    }
+
+    // Export event registrations to CSV
+    public function exportEventRegistrations(\Illuminate\Http\Request $request)
+    {
+        $request->validate([
+            'event_id' => 'required|integer|exists:events,id',
+        ]);
+
+        $event = \App\Models\Event::find($request->event_id);
+
+        // Get registrations for this event
+        $registrations = \App\Models\Registration::whereHas('eventRegistration', function ($q) use ($event) {
+                $q->where('id', $event->id);
+            })
+            ->orWhere('hangout_id', $event->id)
+            ->get();
+
+        if ($registrations->isEmpty()) {
+            return back()->with('error', 'No registrations found for this event.');
+        }
+
+        $filename = 'event_' . Str::slug($event->title) . '_registrations_' . date('Y-m-d') . '.csv';
+
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
+        ];
+
+        $callback = function() use ($registrations, $event) {
+            $file = fopen('php://output', 'w');
+
+            // Add BOM for proper UTF-8 encoding in Excel
+            fwrite($file, "\xEF\xBB\xBF");
+
+            // CSV Headers
+            fputcsv($file, [
+                'First Name',
+                'Last Name',
+                'Email'
+            ]);
+
+            foreach ($registrations as $registration) {
+                fputcsv($file, [
+                    $registration->first_name,
+                    $registration->last_name,
+                    $registration->email
+                ]);
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    // Export class registrations to CSV
+    public function exportClassRegistrations(\Illuminate\Http\Request $request)
+    {
+        $request->validate([
+            'class_level' => 'required|string',
+        ]);
+
+        $registrations = \App\Models\Registration::whereHas('classSchedule', function ($q) use ($request) {
+                $q->where('level', $request->class_level);
+            })->with('classSchedule')->get();
+
+        if ($registrations->isEmpty()) {
+            return back()->with('error', 'No registrations found for this class level.');
+        }
+
+        $filename = 'class_level_' . Str::slug($request->class_level) . '_registrations_' . date('Y-m-d') . '.csv';
+
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
+        ];
+
+        $callback = function() use ($registrations, $request) {
+            $file = fopen('php://output', 'w');
+
+            // Add BOM for proper UTF-8 encoding in Excel
+            fwrite($file, "\xEF\xBB\xBF");
+
+            // CSV Headers
+            fputcsv($file, [
+                'First Name',
+                'Last Name',
+                'Email',
+                'Phone',
+                'City',
+                'Class Level',
+                'Class Date',
+                'Start Time',
+                'End Time',
+                'Registration Date',
+                'Registration Time'
+            ]);
+
+            foreach ($registrations as $registration) {
+                $classSchedule = $registration->classSchedule;
+                fputcsv($file, [
+                    $registration->first_name,
+                    $registration->last_name,
+                    $registration->email,
+                    $registration->phone ?? '',
+                    $registration->city ?? '',
+                    $classSchedule ? $classSchedule->level : '',
+                    $classSchedule ? \Carbon\Carbon::parse($classSchedule->date)->format('Y-m-d') : '',
+                    $classSchedule ? $classSchedule->start_time : '',
+                    $classSchedule ? $classSchedule->end_time : '',
+                    $registration->created_at->format('Y-m-d'),
+                    $registration->created_at->format('H:i:s')
+                ]);
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
     }
 }
