@@ -308,6 +308,42 @@
                         max-width: 600px;
                         margin: 0 auto;
                     ">{{ __('messages.practice_materials_subtitle') }}</p>
+                    
+                    <!-- Christmas Sale Banner -->
+                    <div style="
+                        background: linear-gradient(135deg, #dc2626, #b91c1c);
+                        color: white;
+                        padding: 20px 40px;
+                        border-radius: 15px;
+                        margin: 30px auto;
+                        max-width: 600px;
+                        box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+                        border: 3px solid #fef2f2;
+                        position: relative;
+                        overflow: hidden;
+                    ">
+                        <div style="
+                            position: absolute;
+                            top: -20px;
+                            right: -20px;
+                            font-size: 100px;
+                            opacity: 0.1;
+                        ">🎄</div>
+                        <div style="text-align: center; position: relative; z-index: 1;">
+                            <div style="font-size: 2rem; margin-bottom: 10px;">🎅 🎄 ⛄</div>
+                            <h3 style="font-weight: 700; margin-bottom: 10px; font-size: 1.8rem;">Christmas Special Offer!</h3>
+                            <p style="font-size: 1.3rem; font-weight: 600; margin-bottom: 5px;">
+                                <span style="
+                                    background: white;
+                                    color: #dc2626;
+                                    padding: 5px 15px;
+                                    border-radius: 25px;
+                                    font-size: 1.5rem;
+                                ">30% OFF</span>
+                            </p>
+                            <p style="font-size: 0.95rem; opacity: 0.9; margin-top: 10px;">All Practice Materials - Limited Time Only!</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row g-4">
@@ -323,6 +359,10 @@
                             'linear-gradient(45deg, #ec4899, #db2777)', // Pink
                         ];
                         $gradientColor = $gradients[$index % count($gradients)];
+                        
+                        // Calculate Christmas sale price (30% off)
+                        $originalPrice = $material->cost;
+                        $discountedPrice = $originalPrice > 0 ? $originalPrice * 0.7 : 0;
                     @endphp
 
                     <div class="col-lg-4 col-md-6">
@@ -336,6 +376,26 @@
                             position: relative;
                             overflow: hidden;
                         ">
+                            <!-- Christmas Sale Badge -->
+                            @if($originalPrice > 0)
+                                <div style="
+                                    position: absolute;
+                                    top: 15px;
+                                    right: 15px;
+                                    background: linear-gradient(135deg, #dc2626, #b91c1c);
+                                    color: white;
+                                    padding: 8px 15px;
+                                    border-radius: 10px;
+                                    font-weight: 700;
+                                    font-size: 0.9rem;
+                                    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+                                    z-index: 10;
+                                    border: 2px solid white;
+                                ">
+                                    🎄 -30%
+                                </div>
+                            @endif
+                            
                             @if($material->image)
                                 <div class="card-image mb-4" style="
                                     width: 100%;
@@ -374,14 +434,34 @@
 
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div class="badge-container">
-                                    <span style="
-                                        background: {{ $material->cost == 0 ? 'linear-gradient(45deg, #10b981, #059669)' : 'linear-gradient(45deg, #3b82f6, #1d4ed8)' }};
-                                        color: white;
-                                        padding: 8px 16px;
-                                        border-radius: 20px;
-                                        font-size: 0.875rem;
-                                        font-weight: 600;
-                                    ">{{ $material->formatted_cost }}</span>
+                                    @if($originalPrice > 0)
+                                        <!-- Show original price strikethrough and discounted price -->
+                                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                                            <span style="
+                                                color: #94a3b8;
+                                                font-size: 0.8rem;
+                                                text-decoration: line-through;
+                                                font-weight: 500;
+                                            ">€{{ number_format($originalPrice, 2) }}</span>
+                                            <span style="
+                                                background: linear-gradient(45deg, #dc2626, #b91c1c);
+                                                color: white;
+                                                padding: 8px 16px;
+                                                border-radius: 20px;
+                                                font-size: 1rem;
+                                                font-weight: 700;
+                                            ">€{{ number_format($discountedPrice, 2) }}</span>
+                                        </div>
+                                    @else
+                                        <span style="
+                                            background: linear-gradient(45deg, #10b981, #059669);
+                                            color: white;
+                                            padding: 8px 16px;
+                                            border-radius: 20px;
+                                            font-size: 0.875rem;
+                                            font-weight: 600;
+                                        ">{{ $material->formatted_cost }}</span>
+                                    @endif
                                 </div>
 
                                 @if($material->link)
