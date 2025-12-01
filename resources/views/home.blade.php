@@ -513,129 +513,217 @@
                     ">{{ __('messages.registration_subtitle') }}</p>
                 </div>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-8 col-xl-6">
+
+            <div class="row g-4">
+                <!-- Events Registration Form -->
+                <div class="col-lg-6">
                     <div class="registration-form" style="
                         background: white;
                         border-radius: 25px;
                         padding: 40px;
                         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
                         border: 1px solid rgba(226, 232, 240, 0.8);
+                        height: 100%;
                     ">
                         <div class="form-header text-center mb-4">
-                            <h3 style="color: #1e293b; font-weight: 600; margin-bottom: 10px;">{{ __('messages.start_learning_today') }}</h3>
-                            <p style="color: #64748b;">{{ __('messages.registration_description') }}</p>
+                            <div style="font-size: 3rem; margin-bottom: 15px;">🎉</div>
+                            <h3 style="color: #1e293b; font-weight: 600; margin-bottom: 10px;">{{ __('messages.events_hangouts') }}</h3>
+                            <p style="color: #64748b; font-size: 0.95rem;">Join our social events and practice German in a relaxed environment</p>
                         </div>
 
-                        <form id="register_form" method="POST" action="/register-user">
+                        <form id="event_register_form" method="POST" action="/register-user">
                             @csrf
+                            <input type="hidden" name="type" value="Hangout">
+                            
                             <div class="row g-3">
-                                <div class="col-md-6">
+                                <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="text" name="first_name" class="form-control modern-input" id="firstName" placeholder="{{ __('messages.first_name') }}" required style="
+                                        <input type="text" name="first_name" class="form-control modern-input" placeholder="{{ __('messages.first_name') }}" required style="
                                             border-radius: 15px;
                                             border: 2px solid #e2e8f0;
                                             padding: 20px 15px;
                                             font-size: 1rem;
                                             transition: all 0.3s ease;
                                         ">
-                                        <label for="firstName" style="color: #64748b;">{{ __('messages.first_name') }}</label>
+                                        <label style="color: #64748b;">{{ __('messages.first_name') }}</label>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="text" name="last_name" class="form-control modern-input" id="lastName" placeholder="{{ __('messages.last_name') }}" required style="
+                                        <input type="text" name="last_name" class="form-control modern-input" placeholder="{{ __('messages.last_name') }}" required style="
                                             border-radius: 15px;
                                             border: 2px solid #e2e8f0;
                                             padding: 20px 15px;
                                             font-size: 1rem;
                                             transition: all 0.3s ease;
                                         ">
-                                        <label for="lastName" style="color: #64748b;">{{ __('messages.last_name') }}</label>
+                                        <label style="color: #64748b;">{{ __('messages.last_name') }}</label>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="email" name="email" class="form-control modern-input" id="email" placeholder="{{ __('messages.email_address') }}" required style="
+                                        <input type="email" name="email" class="form-control modern-input" placeholder="{{ __('messages.email_address') }}" required style="
                                             border-radius: 15px;
                                             border: 2px solid #e2e8f0;
                                             padding: 20px 15px;
                                             font-size: 1rem;
                                             transition: all 0.3s ease;
                                         ">
-                                        <label for="email" style="color: #64748b;">{{ __('messages.email_address') }}</label>
+                                        <label style="color: #64748b;">{{ __('messages.email_address') }}</label>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="tel" name="phone" class="form-control modern-input" id="phone" placeholder="{{ __('messages.phone_number') }}" style="
+                                        <input type="tel" name="phone" class="form-control modern-input" placeholder="{{ __('messages.phone_number') }}" style="
                                             border-radius: 15px;
                                             border: 2px solid #e2e8f0;
                                             padding: 20px 15px;
                                             font-size: 1rem;
                                             transition: all 0.3s ease;
                                         ">
-                                        <label for="phone" style="color: #64748b;">{{ __('messages.phone_number') }}</label>
+                                        <label style="color: #64748b;">{{ __('messages.phone_number') }}</label>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="text" name="city" class="form-control modern-input" id="city" placeholder="{{ __('messages.city') }}" style="
+                                        <input type="text" name="city" class="form-control modern-input" placeholder="{{ __('messages.city') }}" style="
                                             border-radius: 15px;
                                             border: 2px solid #e2e8f0;
                                             padding: 20px 15px;
                                             font-size: 1rem;
                                             transition: all 0.3s ease;
                                         ">
-                                        <label for="city" style="color: #64748b;">{{ __('messages.city') }}</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <select id="typeSelect" name="type" class="form-select modern-input" required style="
-                                            border-radius: 15px;
-                                            border: 2px solid #e2e8f0;
-                                            padding: 20px 15px;
-                                            font-size: 1rem;
-                                            transition: all 0.3s ease;
-                                        ">
-                                            <option value="">{{ __('messages.choose_option') }}</option>
-                                            <option value="Hangout">{{ __('messages.events_hangouts') }}</option>
-                                            <option value="Classes">{{ __('messages.structured_classes') }}</option>
-                                        </select>
-                                        <label for="typeSelect" style="color: #64748b;">{{ __('messages.learning_type') }}</label>
+                                        <label style="color: #64748b;">{{ __('messages.city') }}</label>
                                     </div>
                                 </div>
 
-                                <!-- Hangout Section -->
-                                <div id="hangoutSection" class="col-12" style="display:none;">
-                                    <div class="modern-select-container mt-3">
-                                        <label style="color: #374151; font-weight: 500; margin-bottom: 10px; display: block;">
-                                            {{ __('messages.select_event') }}
-                                        </label>
-                                        <select name="hangout_id" id="hangoutSelect" class="form-select modern-input" style="
+                                <!-- Event Selection -->
+                                <div class="col-12">
+                                    <label style="color: #374151; font-weight: 500; margin-bottom: 10px; display: block; font-size: 0.95rem;">
+                                        {{ __('messages.select_event') }}
+                                    </label>
+                                    <select name="hangout_id" id="eventHangoutSelect" class="form-select modern-input" required style="
+                                        border-radius: 15px;
+                                        border: 2px solid #e2e8f0;
+                                        padding: 15px;
+                                        font-size: 1rem;
+                                        width: 100%;
+                                    ">
+                                        <option value="">{{ __('messages.loading_events') }}</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-12 text-center mt-4">
+                                    <button type="submit" class="btn-submit" style="
+                                        background: linear-gradient(45deg, #f59e0b, #d97706);
+                                        border: none;
+                                        color: white;
+                                        padding: 18px 40px;
+                                        border-radius: 50px;
+                                        font-size: 1.1rem;
+                                        font-weight: 600;
+                                        transition: all 0.3s ease;
+                                        box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+                                        width: 100%;
+                                    ">
+                                        🎉 {{ __('messages.register_for_event') }}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Classes Registration Form -->
+                <div class="col-lg-6">
+                    <div class="registration-form" style="
+                        background: white;
+                        border-radius: 25px;
+                        padding: 40px;
+                        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+                        border: 1px solid rgba(226, 232, 240, 0.8);
+                        height: 100%;
+                    ">
+                        <div class="form-header text-center mb-4">
+                            <div style="font-size: 3rem; margin-bottom: 15px;">📚</div>
+                            <h3 style="color: #1e293b; font-weight: 600; margin-bottom: 10px;">{{ __('messages.structured_classes') }}</h3>
+                            <p style="color: #64748b; font-size: 0.95rem;">Book structured classes with professional instructors</p>
+                        </div>
+
+                        <form id="class_register_form" method="POST" action="/register-user">
+                            @csrf
+                            <input type="hidden" name="type" value="Classes">
+                            
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="text" name="first_name" class="form-control modern-input" placeholder="{{ __('messages.first_name') }}" required style="
                                             border-radius: 15px;
                                             border: 2px solid #e2e8f0;
-                                            padding: 15px;
+                                            padding: 20px 15px;
                                             font-size: 1rem;
+                                            transition: all 0.3s ease;
                                         ">
-                                            <option value="">{{ __('messages.loading_events') }}</option>
-                                        </select>
+                                        <label style="color: #64748b;">{{ __('messages.first_name') }}</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="text" name="last_name" class="form-control modern-input" placeholder="{{ __('messages.last_name') }}" required style="
+                                            border-radius: 15px;
+                                            border: 2px solid #e2e8f0;
+                                            padding: 20px 15px;
+                                            font-size: 1rem;
+                                            transition: all 0.3s ease;
+                                        ">
+                                        <label style="color: #64748b;">{{ __('messages.last_name') }}</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="email" name="email" class="form-control modern-input" placeholder="{{ __('messages.email_address') }}" required style="
+                                            border-radius: 15px;
+                                            border: 2px solid #e2e8f0;
+                                            padding: 20px 15px;
+                                            font-size: 1rem;
+                                            transition: all 0.3s ease;
+                                        ">
+                                        <label style="color: #64748b;">{{ __('messages.email_address') }}</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="tel" name="phone" class="form-control modern-input" placeholder="{{ __('messages.phone_number') }}" style="
+                                            border-radius: 15px;
+                                            border: 2px solid #e2e8f0;
+                                            padding: 20px 15px;
+                                            font-size: 1rem;
+                                            transition: all 0.3s ease;
+                                        ">
+                                        <label style="color: #64748b;">{{ __('messages.phone_number') }}</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="text" name="city" class="form-control modern-input" placeholder="{{ __('messages.city') }}" style="
+                                            border-radius: 15px;
+                                            border: 2px solid #e2e8f0;
+                                            padding: 20px 15px;
+                                            font-size: 1rem;
+                                            transition: all 0.3s ease;
+                                        ">
+                                        <label style="color: #64748b;">{{ __('messages.city') }}</label>
                                     </div>
                                 </div>
 
                                 <!-- Class Booking Section -->
-                                <div id="classBookingSection" class="col-12" style="display:none;">
-                                    <div class="class-booking-container mt-3 p-4" style="
+                                <div class="col-12">
+                                    <div class="class-booking-container mt-2 p-3" style="
                                         background: #f8fafc;
                                         border-radius: 20px;
                                         border: 2px solid #e2e8f0;
                                     ">
-                                        <h5 class="text-center mb-4" style="color: #374151; font-weight: 600;">
-                                            {{ __('messages.select_class_level') }}
-                                        </h5>
-
-                                        <div class="mb-4">
+                                        <div class="mb-3">
                                             <label for="classLevelSelect" style="color: #374151; font-weight: 500; margin-bottom: 10px; display: block;">
                                                 {{ __('messages.choose_level') }}
                                             </label>
@@ -655,7 +743,7 @@
                                         </div>
 
                                         <div id="timeSlots" style="display:none;">
-                                            <h6 style="color: #374151; font-weight: 500; margin-bottom: 15px;">{{ __('messages.available_time_slots') }}</h6>
+                                            <h6 style="color: #374151; font-weight: 500; margin-bottom: 15px; font-size: 0.9rem;">{{ __('messages.available_time_slots') }}</h6>
                                             <div id="timeSlotButtons" class="d-flex flex-wrap gap-2"></div>
                                         </div>
 
@@ -674,9 +762,9 @@
                                         font-weight: 600;
                                         transition: all 0.3s ease;
                                         box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
-                                        min-width: 200px;
+                                        width: 100%;
                                     ">
-                                        {{ __('messages.register_now') }}
+                                        📚 {{ __('messages.register_for_class') }}
                                     </button>
                                 </div>
                             </div>
@@ -871,6 +959,207 @@
             </div>
         </div>
     </section>
+
+    <!-- Modern Classes Section -->
+    <section id="classes" class="classes-section py-5" style="background: linear-gradient(135deg, #f0f9ff, #e0f2fe);">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 style="
+                        font-size: clamp(2rem, 4vw, 3rem);
+                        font-weight: 700;
+                        color: #1e293b;
+                        margin-bottom: 1rem;
+                    ">{{ __('messages.upcoming_classes') ?? 'Upcoming Classes' }}</h2>
+                    <p style="
+                        font-size: 1.1rem;
+                        color: #64748b;
+                        max-width: 600px;
+                        margin: 0 auto;
+                    ">{{ __('messages.classes_subtitle') ?? 'Book your spot in our structured German classes' }}</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                @forelse($classSchedules as $class)
+                    @php
+                        // Level-based color schemes
+                        $levelColors = [
+                            'A1' => ['bg' => 'rgba(34, 197, 94, 0.05)', 'border' => 'rgba(34, 197, 94, 0.2)', 'badge' => '#10b981', 'icon' => '🌱'],
+                            'A2' => ['bg' => 'rgba(59, 130, 246, 0.05)', 'border' => 'rgba(59, 130, 246, 0.2)', 'badge' => '#3b82f6', 'icon' => '📘'],
+                            'B1' => ['bg' => 'rgba(245, 158, 11, 0.05)', 'border' => 'rgba(245, 158, 11, 0.2)', 'badge' => '#f59e0b', 'icon' => '📙'],
+                            'B2' => ['bg' => 'rgba(239, 68, 68, 0.05)', 'border' => 'rgba(239, 68, 68, 0.2)', 'badge' => '#ef4444', 'icon' => '📕'],
+                            'C1' => ['bg' => 'rgba(168, 85, 247, 0.05)', 'border' => 'rgba(168, 85, 247, 0.2)', 'badge' => '#a855f7', 'icon' => '📗'],
+                            'C2' => ['bg' => 'rgba(236, 72, 153, 0.05)', 'border' => 'rgba(236, 72, 153, 0.2)', 'badge' => '#ec4899', 'icon' => '📓'],
+                        ];
+                        $colorScheme = $levelColors[$class->level] ?? ['bg' => 'rgba(100, 116, 139, 0.05)', 'border' => 'rgba(100, 116, 139, 0.2)', 'badge' => '#64748b', 'icon' => '📚'];
+                        $classDate = \Carbon\Carbon::parse($class->date);
+                        $startTime = \Carbon\Carbon::parse($class->start_time)->format('H:i');
+                        $endTime = \Carbon\Carbon::parse($class->end_time)->format('H:i');
+                    @endphp
+
+                    <div class="col-lg-4 col-md-6">
+                        <a href="{{ url('/#register') }}" class="text-decoration-none">
+                            <div class="class-card h-100" style="
+                                background: white;
+                                border-radius: 20px;
+                                padding: 0;
+                                border: 2px solid {{ $colorScheme['border'] }};
+                                transition: all 0.3s ease;
+                                position: relative;
+                                overflow: hidden;
+                                cursor: pointer;
+                                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+                            ">
+                                <!-- Class Image (if available) -->
+                                @if($class->image)
+                                    <div style="
+                                        width: 100%;
+                                        height: 180px;
+                                        background: url('{{ asset('storage/' . $class->image) }}') center/cover;
+                                        border-radius: 18px 18px 0 0;
+                                    "></div>
+                                @else
+                                    <div style="
+                                        width: 100%;
+                                        height: 180px;
+                                        background: linear-gradient(135deg, {{ $colorScheme['badge'] }}22, {{ $colorScheme['badge'] }}44);
+                                        border-radius: 18px 18px 0 0;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        font-size: 4rem;
+                                    ">{{ $colorScheme['icon'] }}</div>
+                                @endif
+
+                                <!-- Level Badge -->
+                                <div style="
+                                    position: absolute;
+                                    top: 15px;
+                                    right: 15px;
+                                    background: {{ $colorScheme['badge'] }};
+                                    color: white;
+                                    padding: 8px 16px;
+                                    border-radius: 50px;
+                                    font-weight: 700;
+                                    font-size: 0.9rem;
+                                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+                                ">
+                                    {{ $class->level }}
+                                </div>
+
+                                <!-- Content Padding -->
+                                <div style="padding: 25px;">
+                                    <!-- Topic and Title -->
+                                    <div class="mb-4">
+                                        @if($class->topic)
+                                            <h4 style="color: #1e293b; font-weight: 600; margin-bottom: 8px; font-size: 1.3rem;">
+                                                {{ $class->topic }}
+                                            </h4>
+                                            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 10px;">
+                                                {{ __('messages.level') }} {{ $class->level }}
+                                            </p>
+                                        @else
+                                            <h4 style="color: #1e293b; font-weight: 600; margin-bottom: 10px; font-size: 1.5rem;">
+                                                {{ __('messages.level') }} {{ $class->level }}
+                                            </h4>
+                                        @endif
+                                        
+                                        <!-- Cost Info -->
+                                        <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 15px;">
+                                            @if($class->cost && $class->cost > 0)
+                                                <span style="
+                                                    background: {{ $colorScheme['bg'] }};
+                                                    color: {{ $colorScheme['badge'] }};
+                                                    padding: 6px 12px;
+                                                    border-radius: 10px;
+                                                    font-weight: 700;
+                                                    font-size: 0.95rem;
+                                                ">💰 €{{ number_format($class->cost, 2) }}</span>
+                                            @else
+                                                <span style="
+                                                    background: #dcfce7;
+                                                    color: #166534;
+                                                    padding: 6px 12px;
+                                                    border-radius: 10px;
+                                                    font-weight: 700;
+                                                    font-size: 0.95rem;
+                                                ">✨ {{ __('messages.free') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                <!-- Class Session Info -->
+                                <div class="class-sessions" style="
+                                    background: {{ $colorScheme['bg'] }};
+                                    border-radius: 15px;
+                                    padding: 20px;
+                                    margin-bottom: 15px;
+                                    transition: all 0.3s ease;
+                                ">
+                                    <div class="class-session-item">
+                                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                                            <div style="
+                                                background: {{ $colorScheme['badge'] }};
+                                                color: white;
+                                                padding: 8px 12px;
+                                                border-radius: 10px;
+                                                font-weight: 600;
+                                                font-size: 0.85rem;
+                                                min-width: 80px;
+                                                text-align: center;
+                                            ">
+                                                {{ $classDate->format('M d') }}
+                                            </div>
+                                            <div style="flex: 1;">
+                                                <div style="color: #1e293b; font-weight: 600; font-size: 0.95rem;">
+                                                    {{ $classDate->format('l') }}
+                                                </div>
+                                                <div style="color: #64748b; font-size: 0.85rem;">
+                                                    🕐 {{ $startTime }} - {{ $endTime }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Register Button -->
+                                <div class="text-center mt-3">
+                                    <div style="
+                                        background: {{ $colorScheme['badge'] }};
+                                        color: white;
+                                        padding: 12px 24px;
+                                        border-radius: 50px;
+                                        font-weight: 600;
+                                        font-size: 1rem;
+                                        display: inline-block;
+                                        transition: all 0.3s ease;
+                                    ">
+                                        📚 Register for Class
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                @empty
+                    <div class="col-12 text-center">
+                        <div style="
+                            background: white;
+                            border-radius: 20px;
+                            padding: 60px 40px;
+                            border: 2px solid #e2e8f0;
+                            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+                        ">
+                            <div style="font-size: 3rem; margin-bottom: 20px;">📚</div>
+                            <h4 style="color: #1e293b; margin-bottom: 15px;">{{ __('messages.no_upcoming_classes') ?? 'No Upcoming Classes' }}</h4>
+                            <p style="color: #64748b;">{{ __('messages.check_back_classes') ?? 'Check back soon for new class schedules' }}</p>
+                        </div>
+                    </div>
+                @endforelse
+            </div>
+        </div>
+    </section>
    
       <!-- Contact Modal (place before footer include) -->
    <div id="contactModal" class="contact-modal" style="display:none; position:fixed; inset:0; z-index:1050; align-items:center; justify-content:center; background:rgba(0,0,0,0.5);">
@@ -965,6 +1254,35 @@
 
     <!-- Modern CSS -->
     <style>
+        /* Registration form container styles */
+        .registration-form {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .registration-form .row {
+            margin: 0;
+        }
+
+        .registration-form .col-12 {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .registration-form label,
+        .registration-form select,
+        .registration-form input,
+        .registration-form button {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .form-select,
+        .form-control {
+            width: 100% !important;
+            box-sizing: border-box;
+        }
+
         /* Modern animations */
         @keyframes fadeInUp {
             from {
@@ -1022,6 +1340,15 @@
         .event-card:hover {
             transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.1);
+        }
+
+        .class-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .class-card:hover .class-sessions {
+            transform: scale(1.02);
         }
 
         .btn-hero-primary:hover {
@@ -1087,6 +1414,18 @@
         .event-card { padding: 18px; }
         .event-content { padding-left: 8px; padding-right: 8px; }
     }
+
+        /* Two-form layout responsive styles */
+        .registration-form {
+            min-height: 600px;
+        }
+
+        @media (max-width: 991px) {
+            .registration-form {
+                margin-bottom: 30px;
+                min-height: auto;
+            }
+        }
 
         /* Responsive improvements */
         @media (max-width: 768px) {
@@ -1535,13 +1874,12 @@
         };
 
         document.addEventListener('DOMContentLoaded', function () {
-            const typeSelect = document.getElementById('typeSelect');
-            const hangoutSection = document.getElementById('hangoutSection');
-            const classBookingSection = document.getElementById('classBookingSection');
+            // Elements for both forms
             const levelSelect = document.getElementById('classLevelSelect');
             const timeSlots = document.getElementById('timeSlots');
             const timeSlotButtons = document.getElementById('timeSlotButtons');
             const selectedClassSchedule = document.getElementById('selectedClassSchedule');
+            const eventHangoutSelect = document.getElementById('eventHangoutSelect');
 
             let selectedLevel = null;
             let availableDates = [];
@@ -1591,47 +1929,33 @@
                 });
             });
 
-            // Handle type selection
-            typeSelect.addEventListener('change', function () {
-                const type = this.value;
-                hangoutSection.style.display = 'none';
-                classBookingSection.style.display = 'none';
-                timeSlots.style.display = 'none';
-
-                if (type === 'Hangout') {
-                    // Load events with proper formatting
-                    fetch('/get-events', {
-                        headers: {
-                            'X-Requested-With': 'XMLHttpRequest',
-                            'X-CSRF-TOKEN': getCsrfToken()
-                        }
-                    })
-                        .then(res => res.json())
-                        .then(data => {
-                            const hangoutSelect = document.getElementById('hangoutSelect');
-                            hangoutSelect.innerHTML = `<option value="">${translations.selectEvent}</option>`;
-
-                            if (data.length === 0) {
-                                hangoutSelect.innerHTML = `<option value="" disabled>${translations.noEventsAvailable}</option>`;
-                            } else {
-                                data.forEach(event => {
-                                    const displayText = `${event.title} - ${event.date} ${translations.time} ${event.time} (${event.remaining_spots} ${translations.spotsLeft})`;
-                                    hangoutSelect.innerHTML += `<option value="${event.id}">${displayText}</option>`;
-                                });
-                            }
-                            hangoutSection.style.display = 'block';
-                        })
-                        .catch(err => {
-                            console.error('Error loading events:', err);
-                            const hangoutSelect = document.getElementById('hangoutSelect');
-                            hangoutSelect.innerHTML = `<option value="" disabled>${translations.errorLoadingEvents}</option>`;
-                            hangoutSection.style.display = 'block';
-                        });
-                } else if (type === 'Classes') {
-                    loadLevels();
-                    classBookingSection.style.display = 'block';
+            // Load events for the event registration form
+            fetch('/get-events', {
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRF-TOKEN': getCsrfToken()
                 }
-            });
+            })
+                .then(res => res.json())
+                .then(data => {
+                    eventHangoutSelect.innerHTML = `<option value="">${translations.selectEvent}</option>`;
+
+                    if (data.length === 0) {
+                        eventHangoutSelect.innerHTML = `<option value="" disabled>${translations.noEventsAvailable}</option>`;
+                    } else {
+                        data.forEach(event => {
+                            const displayText = `${event.title} - ${event.date} ${translations.time} ${event.time} (${event.remaining_spots} ${translations.spotsLeft})`;
+                            eventHangoutSelect.innerHTML += `<option value="${event.id}">${displayText}</option>`;
+                        });
+                    }
+                })
+                .catch(err => {
+                    console.error('Error loading events:', err);
+                    eventHangoutSelect.innerHTML = `<option value="" disabled>${translations.errorLoadingEvents}</option>`;
+                });
+
+            // Load levels for class registration form
+            loadLevels();
 
             // Load levels dynamically
             function loadLevels() {
@@ -1746,86 +2070,37 @@
                 });
             }
 
-            // Submit form
-            document.getElementById('register_form').addEventListener('submit', function (e) {
+            // Submit event registration form
+            document.getElementById('event_register_form').addEventListener('submit', function (e) {
                 e.preventDefault();
 
                 const formData = new FormData(this);
-                const type = document.getElementById('typeSelect').value;
                 const submitButton = this.querySelector('.btn-submit');
+                const hangoutId = eventHangoutSelect.value;
 
-                // Clean up other fields depending on type
-                if (type === 'Hangout') {
-                    const hangoutId = document.getElementById('hangoutSelect').value;
-                    formData.set('type', 'Hangout');
-                    formData.set('hangout_id', hangoutId);
-                    formData.delete('class_schedule_id');
-                } else if (type === 'Classes') {
-                    const classScheduleId = document.getElementById('selectedClassSchedule').value;
-                    formData.set('type', 'Classes');
-                    formData.set('class_schedule_id', classScheduleId);
-                    formData.delete('hangout_id');
-                }
-
-                // Basic validation before sending
-                if (!formData.get('type')) {
+                // Validation
+                if (!hangoutId) {
                     Swal.fire({
-                        title: translations.selectLearningType,
-                        text: translations.chooseBetweenTypes,
+                        title: translations.eventSelectionRequired,
+                        text: translations.chooseEventBeforeSubmit,
                         icon: 'warning',
                         confirmButtonText: translations.ok,
+                        confirmButtonColor: '#f59e0b'
                     });
                     return;
                 }
 
-                if (type === 'Hangout') {
-                    const hangoutId = document.getElementById('hangoutSelect').value;
-                    if (!hangoutId) {
-                        Swal.fire({
-                            title: translations.eventSelectionRequired,
-                            text: translations.chooseEventBeforeSubmit,
-                            icon: 'warning',
-                            confirmButtonText: translations.ok,
-                        });
-                        return;
-                    }
-                }
-
-                if (type === 'Classes') {
-                    const classScheduleId = document.getElementById('selectedClassSchedule').value;
-                    if (!classScheduleId) {
-                        Swal.fire({
-                            title: translations.scheduleRequired,
-                            text: translations.selectClassDateTime,
-                            icon: 'warning',
-                            confirmButtonText: translations.ok,
-                        });
-                        return;
-                    }
-                }
-
-                // Show loading state
-                const originalButtonText = submitButton.innerHTML;
+                // Show loading
                 submitButton.disabled = true;
-                submitButton.innerHTML = `
-                    <div class="d-flex align-items-center justify-content-center">
-                        <div class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></div>
-                        Registering...
-                    </div>
-                `;
+                const originalText = submitButton.innerHTML;
+                submitButton.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>${translations.processingRegistration}`;
 
-                // Show loading SweetAlert
                 Swal.fire({
                     title: translations.processingRegistration,
-                    html: `<div class="text-center"><div class="spinner-border text-primary" role="status"><span class="sr-only">${translations.loading}...</span></div><p class="mt-3">${translations.pleaseWaitRegister}</p></div>`,
+                    text: translations.pleaseWaitRegister,
                     allowOutsideClick: false,
-                    allowEscapeKey: false,
-                    allowEnterKey: false,
                     showConfirmButton: false,
-                    didOpen: () => {
-                        Swal.showLoading();
-
-                    }
+                    willOpen: () => Swal.showLoading()
                 });
 
                 fetch('/register-user', {
@@ -1837,109 +2112,176 @@
                         'Accept': 'application/json'
                     }
                 })
-                .then(async response => {
-                    console.log('Response status:', response.status);
-                    console.log('Response headers:', response.headers);
-
-                    const data = await response.json();
-                    console.log('Response data:', data);
-
-                    // Close loading alert and restore button
-                    Swal.close();
+                .then(response => {
+                    if (response.status === 419) {
+                        throw new Error('session_expired');
+                    }
+                    return response.json();
+                })
+                .then(data => {
                     submitButton.disabled = false;
-                    submitButton.innerHTML = originalButtonText;
+                    submitButton.innerHTML = originalText;
 
-                    if (response.ok && data.success) {
+                    if (data.success) {
                         Swal.fire({
                             title: translations.registrationSuccessful,
-                            text: data.message || translations.successfullyRegistered,
+                            text: translations.successfullyRegistered,
                             icon: 'success',
                             confirmButtonText: translations.awesome,
-                            confirmButtonColor: '#10b981',
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                window.location.reload();
-                            }
+                            confirmButtonColor: '#10b981'
+                        }).then(() => {
+                            this.reset();
+                            eventHangoutSelect.selectedIndex = 0;
                         });
-
-                        this.reset();
-                        hangoutSection.style.display = 'none';
-                        classBookingSection.style.display = 'none';
-                        timeSlots.style.display = 'none';
                     } else {
-                        // Check for CSRF token mismatch
-                        if (response.status === 419 || (data.message && data.message.includes('CSRF'))) {
-                            Swal.fire({
-                                title: translations.sessionExpired,
-                                text: translations.sessionExpiredRefresh,
-                                icon: 'warning',
-                                confirmButtonText: translations.refreshPage,
-                                confirmButtonColor: '#3085d6',
-                            }).then(() => {
-                                // Optionally, you can force a page reload
-                                location.reload();
-                            });
-                        } else {
-                            Swal.fire({
-                                title: translations.registrationFailed,
-                                text: data.message || translations.somethingWentWrong,
-                                icon: 'error',
-                                confirmButtonText: translations.close,
-                                confirmButtonColor: '#ef4444',
-                            });
-                        }
+                        throw new Error(data.message || translations.somethingWentWrong);
                     }
                 })
-                .catch(err => {
-                    // Close loading alert
-                    Swal.close();
+                .catch(error => {
                     submitButton.disabled = false;
-                    submitButton.innerHTML = originalButtonText;
+                    submitButton.innerHTML = originalText;
 
-                    Swal.fire({
-                        title: translations.networkError,
-                        text: translations.checkInternetConnection,
-                        icon: 'error',
-                        confirmButtonText: translations.close,
-                        confirmButtonColor: '#ef4444',
-                    });
-                    console.error('Registration error:', err);
+                    if (error.message === 'session_expired') {
+                        Swal.fire({
+                            title: translations.sessionExpired,
+                            text: translations.sessionExpiredRefresh,
+                            icon: 'error',
+                            confirmButtonText: translations.refreshPage,
+                            confirmButtonColor: '#ef4444'
+                        }).then(() => location.reload());
+                    } else if (error.message === 'Failed to fetch') {
+                        Swal.fire({
+                            title: translations.networkError,
+                            text: translations.checkInternetConnection,
+                            icon: 'error',
+                            confirmButtonText: translations.close,
+                            confirmButtonColor: '#ef4444'
+                        });
+                    } else {
+                        Swal.fire({
+                            title: translations.registrationFailed,
+                            text: error.message || translations.somethingWentWrong,
+                            icon: 'error',
+                            confirmButtonText: translations.close,
+                            confirmButtonColor: '#ef4444'
+                        });
+                    }
                 });
             });
 
-            // Handle event registration buttons
+            // Submit class registration form
+            document.getElementById('class_register_form').addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(this);
+                const submitButton = this.querySelector('.btn-submit');
+                const classScheduleId = selectedClassSchedule.value;
+
+                // Validation
+                if (!classScheduleId) {
+                    Swal.fire({
+                        title: translations.scheduleRequired,
+                        text: translations.selectClassDateTime,
+                        icon: 'warning',
+                        confirmButtonText: translations.ok,
+                        confirmButtonColor: '#3b82f6'
+                    });
+                    return;
+                }
+
+                // Show loading
+                submitButton.disabled = true;
+                const originalText = submitButton.innerHTML;
+                submitButton.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span>${translations.processingRegistration}`;
+
+                Swal.fire({
+                    title: translations.processingRegistration,
+                    text: translations.pleaseWaitRegister,
+                    allowOutsideClick: false,
+                    showConfirmButton: false,
+                    willOpen: () => Swal.showLoading()
+                });
+
+                fetch('/register-user', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRF-TOKEN': getCsrfToken(),
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.status === 419) {
+                        throw new Error('session_expired');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalText;
+
+                    if (data.success) {
+                        Swal.fire({
+                            title: translations.registrationSuccessful,
+                            text: translations.successfullyRegistered,
+                            icon: 'success',
+                            confirmButtonText: translations.awesome,
+                            confirmButtonColor: '#10b981'
+                        }).then(() => {
+                            this.reset();
+                            levelSelect.selectedIndex = 0;
+                            timeSlots.style.display = 'none';
+                            selectedClassSchedule.value = '';
+                            if (calendarInstance) {
+                                calendarInstance.destroy();
+                                calendarInstance = null;
+                            }
+                        });
+                    } else {
+                        throw new Error(data.message || translations.somethingWentWrong);
+                    }
+                })
+                .catch(error => {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalText;
+
+                    if (error.message === 'session_expired') {
+                        Swal.fire({
+                            title: translations.sessionExpired,
+                            text: translations.sessionExpiredRefresh,
+                            icon: 'error',
+                            confirmButtonText: translations.refreshPage,
+                            confirmButtonColor: '#ef4444'
+                        }).then(() => location.reload());
+                    } else if (error.message === 'Failed to fetch') {
+                        Swal.fire({
+                            title: translations.networkError,
+                            text: translations.checkInternetConnection,
+                            icon: 'error',
+                            confirmButtonText: translations.close,
+                            confirmButtonColor: '#ef4444'
+                        });
+                    } else {
+                        Swal.fire({
+                            title: translations.registrationFailed,
+                            text: error.message || translations.somethingWentWrong,
+                            icon: 'error',
+                            confirmButtonText: translations.close,
+                            confirmButtonColor: '#ef4444'
+                        });
+                    }
+                });
+            });
+
+            // Handle event registration buttons (scroll to event form)
             document.querySelectorAll('.register-event-btn').forEach(button => {
                 button.addEventListener('click', function() {
-                    const eventTitle = this.dataset.eventTitle;
-                    const eventDate = this.dataset.eventDate;
-                    const eventTime = this.dataset.eventTime;
-
-                    // Scroll to registration form
-                    document.querySelector('.register').scrollIntoView({
-                        behavior: 'smooth'
+                    // Scroll to registration section
+                    document.getElementById('register').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
                     });
-
-                    // Pre-select Hangout type and show relevant section
-                    const typeSelect = document.getElementById('typeSelect');
-                    typeSelect.value = 'Hangout';
-                    typeSelect.dispatchEvent(new Event('change'));
-
-                    // Show info about the event
-                    setTimeout(() => {
-                        Swal.fire({
-                            title: `Register for ${eventTitle}`,
-                            html: `
-                                <div class="text-start">
-                                    <p><strong>📅 Date:</strong> ${eventDate}</p>
-                                    <p><strong>🕐 Time:</strong> ${eventTime}</p>
-                                    <p class="mt-3">Please complete the registration form below to join this event.</p>
-                                </div>
-                            `,
-                            icon: 'info',
-                            confirmButtonText: 'Got it!',
-                            confirmButtonColor: '#3085d6'
-                        });
-                    }, 500);
                 });
             });
         });

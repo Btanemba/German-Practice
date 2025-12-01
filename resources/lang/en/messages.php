@@ -52,7 +52,7 @@ return [
     'loading_events' => 'Loading events...',
     'select_class_level' => '📚 Select Your Class Level and Schedule',
     'choose_level' => 'Choose Your Level',
-    'select_level' => 'Select Level (A1–B2)',
+    'select_level' => 'Select Level (A1–C2)',
     'available' => 'Available',
     'unavailable' => 'Unavailable',
     'available_time_slots' => 'Available Time Slots',
@@ -98,6 +98,18 @@ return [
     'loading' => 'Loading...',
     'time' => 'Time',
     'tba' => 'TBA',
+
+    // Classes Section
+    'upcoming_classes' => 'Upcoming Classes',
+    'classes_subtitle' => 'Book your spot in our structured German classes',
+    'no_upcoming_classes' => 'No Upcoming Classes',
+    'check_back_classes' => 'Check back soon for new class schedules',
+    'register_for_event' => 'Register for Event',
+    'register_for_class' => 'Register for Class',
+    'level' => 'Level',
+    'session' => 'session',
+    'sessions' => 'sessions',
+    'free' => 'FREE',
 
     // Chat Widget
     'admin_chat' => 'Admin Support',

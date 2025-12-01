@@ -14,7 +14,15 @@ use App\Http\Controllers\ContactController;
 Route::get('/', function () {
     $events = Event::orderBy('event_date', 'asc')->get();
     $practiceMaterials = PracticeMaterial::ordered()->get();
-    return view('home', compact('events', 'practiceMaterials'));
+    
+    // Get upcoming class schedules - no grouping, show each class individually
+    $classSchedules = ClassSchedule::whereDate('date', '>=', \Carbon\Carbon::today())
+        ->orderBy('level', 'asc')
+        ->orderBy('date', 'asc')
+        ->orderBy('start_time', 'asc')
+        ->get();
+    
+    return view('home', compact('events', 'practiceMaterials', 'classSchedules'));
 });
 
 // Newsletter Subscribe/Unsubscribe

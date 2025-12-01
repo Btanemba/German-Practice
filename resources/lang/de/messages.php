@@ -99,6 +99,18 @@ return [
     'time' => 'Zeit',
     'tba' => 'Wird bekannt gegeben',
     
+    // Classes Section
+    'upcoming_classes' => 'Kommende Kurse',
+    'classes_subtitle' => 'Sichere dir deinen Platz in unseren strukturierten Deutschkursen',
+    'no_upcoming_classes' => 'Keine kommenden Kurse',
+    'check_back_classes' => 'Schau bald wieder für neue Kurspläne vorbei',
+    'register_for_event' => 'Für Veranstaltung anmelden',
+    'register_for_class' => 'Für Kurs anmelden',
+    'level' => 'Niveau',
+    'session' => 'Sitzung',
+    'sessions' => 'Sitzungen',
+    'free' => 'KOSTENLOS',
+    
     // Chat Widget
     'admin_chat' => 'Admin Support',
     'online' => 'Online',

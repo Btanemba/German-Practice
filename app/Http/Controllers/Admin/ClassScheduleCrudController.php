@@ -206,6 +206,47 @@ class ClassScheduleCrudController extends CrudController
         ]);
 
         CRUD::addField([
+            'name' => 'topic',
+            'label' => '📚 Class Topic',
+            'type' => 'text',
+            'attributes' => [
+                'placeholder' => 'e.g., Introduction to German Grammar, Conversational Practice...',
+                'class' => 'form-control',
+            ],
+            'wrapper' => [
+                'class' => 'form-group col-md-6'
+            ],
+        ]);
+
+        CRUD::addField([
+            'name' => 'image',
+            'label' => '🖼️ Class Image (Optional)',
+            'type' => 'upload',
+            'upload' => true,
+            'disk' => 'public',
+            'wrapper' => [
+                'class' => 'form-group col-md-6'
+            ],
+            'hint' => 'Upload an image for this class (optional)',
+        ]);
+
+        CRUD::addField([
+            'name' => 'cost',
+            'label' => '💰 Class Cost (€)',
+            'type' => 'number',
+            'attributes' => [
+                'step' => '0.01',
+                'min' => '0',
+                'placeholder' => '0.00',
+                'class' => 'form-control',
+            ],
+            'wrapper' => [
+                'class' => 'form-group col-md-6'
+            ],
+            'hint' => 'Leave empty or set to 0 for free classes',
+        ]);
+
+        CRUD::addField([
             'name' => 'date',
             'label' => '📅 Class Date',
             'type' => 'date',
