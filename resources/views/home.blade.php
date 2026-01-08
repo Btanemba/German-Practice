@@ -1,6 +1,5 @@
 @include('layouts.nav')
-
-<div class="super_container">
+ <div class="super_container">
     <!-- Header -->
     <header class="header">
         <!-- Top Bar -->
@@ -158,7 +157,7 @@
                                     <li class="active"><a href="">{{ __('messages.home') }}</a></li>
                                     <li><a href="#events">{{ __('messages.events') }}</a></li>
                                     <li><a href="javascript:void(0);" class="contactUsBtn">{{ __('messages.contact') }}</a></li>
-                                   
+
                                 </ul>
                             </nav>
                             <div class="header_content_right ml-auto text-right">
@@ -308,7 +307,7 @@
                         max-width: 600px;
                         margin: 0 auto;
                     ">{{ __('messages.practice_materials_subtitle') }}</p>
-                    
+
                     <!-- Christmas Sale Banner -->
                     <!--<div style="-->
                     <!--    background: linear-gradient(135deg, #dc2626, #b91c1c);-->
@@ -359,7 +358,7 @@
                             'linear-gradient(45deg, #ec4899, #db2777)', // Pink
                         ];
                         $gradientColor = $gradients[$index % count($gradients)];
-                        
+
                         // Calculate Christmas sale price (30% off)
                         $originalPrice = $material->cost;
                         // $discountedPrice = $originalPrice > 0 ? $originalPrice * 0.7 : 0;
@@ -395,7 +394,7 @@
                             <!--        🎄 -30%-->
                             <!--    </div>-->
                             <!--@endif-->
-                            
+
                             @if($material->image)
                                 <div class="card-image mb-4" style="
                                     width: 100%;
@@ -440,7 +439,7 @@
                                             <span style="
                                                 color: #94a3b8;
                                                 font-size: 0.8rem;
-                                               
+
                                                 font-weight: 500;
                                             ">€{{ number_format($originalPrice, 2) }}</span>
                                            {{--
@@ -530,7 +529,7 @@
                                 {{ __('messages.instructor_description') }}
                             </p>
                             <div class="social-links">
-                             
+
                                 <a href="https://www.linkedin.com/in/tamara-terbul-411b5493/" target="_blank" style="
                                     display: inline-flex;
                                     align-items: center;
@@ -616,7 +615,7 @@
                         <form id="event_register_form" method="POST" action="/register-user">
                             @csrf
                             <input type="hidden" name="type" value="Hangout">
-                            
+
                             <div class="row g-3">
                                 <div class="col-12">
                                     <div class="form-floating">
@@ -735,7 +734,7 @@
                         <form id="class_register_form" method="POST" action="/register-user">
                             @csrf
                             <input type="hidden" name="type" value="Classes">
-                            
+
                             <div class="row g-3">
                                 <div class="col-12">
                                     <div class="form-floating">
@@ -1145,7 +1144,7 @@
                                                 {{ __('messages.level') }} {{ $class->level }}
                                             </h4>
                                         @endif
-                                        
+
                                         <!-- Cost Info -->
                                         <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 15px;">
                                             @if($class->cost && $class->cost > 0)
@@ -1242,7 +1241,7 @@
             </div>
         </div>
     </section>
-   
+
       <!-- Contact Modal (place before footer include) -->
    <div id="contactModal" class="contact-modal" style="display:none; position:fixed; inset:0; z-index:1050; align-items:center; justify-content:center; background:rgba(0,0,0,0.5);">
         <div style="background:white; border-radius:12px; width:90%; max-width:600px; padding:24px; position:relative;">

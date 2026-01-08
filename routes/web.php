@@ -9,19 +9,20 @@ use Illuminate\Http\Request;
 use App\Models\{Hangout, ClassSchedule, Registration};
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\QrCodeController;
 
 // Homepage with Events and Practice Materials
 Route::get('/', function () {
     $events = Event::orderBy('event_date', 'asc')->get();
     $practiceMaterials = PracticeMaterial::ordered()->get();
-    
+
     // Get upcoming class schedules - no grouping, show each class individually
     $classSchedules = ClassSchedule::whereDate('date', '>=', \Carbon\Carbon::today())
         ->orderBy('level', 'asc')
         ->orderBy('date', 'asc')
         ->orderBy('start_time', 'asc')
         ->get();
-    
+
     return view('home', compact('events', 'practiceMaterials', 'classSchedules'));
 });
 
@@ -62,3 +63,4 @@ Route::group([
     Route::get('registration/{id}/send-email', [\App\Http\Controllers\Admin\RegistrationCrudController::class, 'sendEmail']);
     Route::post('registration/{id}/process-email', [\App\Http\Controllers\Admin\RegistrationCrudController::class, 'processEmail']);
 });
+Route::get('/qr-code-image', [QrCodeController::class, 'generate'])->name('qr.download');
