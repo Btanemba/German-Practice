@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Endroid\QrCode\Builder\Builder;
+use Endroid\QrCode\Writer\SvgWriter;
 
 class QrCodeController extends Controller
 {
-    /**
-     * Generate and save a QR code image that links to the homepage.
-     */
     public function generate()
     {
-        $path = public_path('qr-code.png');
-        QrCode::format('png')
+        $result = Builder::create()
+            ->writer(new SvgWriter())
+            ->data(url('/'))
             ->size(500)
-            ->generate(url('/'), $path);
+            ->build();
+
+        $path = public_path('qr-code.svg');
+        file_put_contents($path, $result->getString());
+
         return response()->download($path);
     }
 }
