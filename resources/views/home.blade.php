@@ -627,8 +627,7 @@
                             <div style="font-size: 3rem; margin-bottom: 10px;">🎉</div>
                             <h3 style="color: #1e293b; font-weight: 600; margin-bottom: 8px; margin-top: 0;">
                                 {{ __('messages.events_hangouts') }}</h3>
-                            <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 10px; margin-top: 5px;">Join
-                                our social events and practice German in a relaxed environment</p>
+                            <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 10px; margin-top: 5px;">{{ __('messages.events_description') }}</p>
                             <div style="font-size: 1.2rem; color: #3b82f6; margin-top: 8px; transition: transform 0.3s ease;"
                                 id="eventsToggleIcon">▼</div>
                         </div>
@@ -772,8 +771,7 @@
                             <div style="font-size: 3rem; margin-bottom: 10px;">📚</div>
                             <h3 style="color: #1e293b; font-weight: 600; margin-bottom: 8px; margin-top: 0;">
                                 {{ __('messages.structured_classes') }}</h3>
-                            <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 10px; margin-top: 5px;">Book
-                                structured classes with professional instructors</p>
+                            <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 10px; margin-top: 5px;">{{ __('messages.classes_description') }}</p>
                             <div style="font-size: 1.2rem; color: #3b82f6; margin-top: 8px; transition: transform 0.3s ease;"
                                 id="classesToggleIcon">▼</div>
                         </div>

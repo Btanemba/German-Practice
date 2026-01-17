@@ -47,7 +47,9 @@ return [
     'learning_type' => 'Lernart',
     'choose_option' => 'Option wählen',
     'events_hangouts' => '🎯 Veranstaltungen & Hangouts',
+    'events_description' => 'Triff dich zu unseren sozialen Veranstaltungen und übe Deutsch in entspannter Atmosphäre',
     'structured_classes' => '📚 Strukturierte Kurse',
+    'classes_description' => 'Buche strukturierte Kurse mit professionellen Instruktoren',
     'select_event' => '🎯 Wähle deine Veranstaltung',
     'loading_events' => 'Veranstaltungen werden geladen...',
     'select_class_level' => '📚 Wähle dein Kursniveau und deinen Zeitplan',
@@ -98,7 +100,7 @@ return [
     'loading' => 'Wird geladen...',
     'time' => 'Zeit',
     'tba' => 'Wird bekannt gegeben',
-    
+
     // Classes Section
     'upcoming_classes' => 'Kommende Kurse',
     'classes_subtitle' => 'Sichere dir deinen Platz in unseren strukturierten Deutschkursen',
@@ -110,7 +112,7 @@ return [
     'session' => 'Sitzung',
     'sessions' => 'Sitzungen',
     'free' => 'KOSTENLOS',
-    
+
     // Chat Widget
     'admin_chat' => 'Admin Support',
     'online' => 'Online',
