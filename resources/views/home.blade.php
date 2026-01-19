@@ -1332,12 +1332,12 @@
                         color: white;
                         margin-bottom: 1rem;
                     ">{{ __('messages.user_reviews') }}</h2>
-                    <p style="
+                    {{-- <p style="
                         font-size: 1.1rem;
                         color: #94a3b8;
                         max-width: 600px;
                         margin: 0 auto;
-                    ">{{ __('messages.registration_subtitle') }}</p>
+                    ">{{ __('messages.registration_subtitle') }}</p> --}}
                 </div>
             </div>
 
