@@ -44,6 +44,14 @@
     </a>
 </li>
 
+{{-- Reviews --}}
+<li class="nav-item">
+    <a class="nav-link nav-reviews" href="{{ backpack_url('review') }}">
+        <i class="la la-star nav-icon"></i>
+        <span>⭐ Reviews</span>
+    </a>
+</li>
+
 {{-- Activities Dropdown --}}
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle nav-activities" href="#" id="activitiesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -109,6 +117,12 @@
     /* Chat Messages - Teal gradient */
     .nav-chat:hover {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white !important;
+    }
+
+    /* Reviews - Yellow gradient */
+    .nav-reviews:hover {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
         color: white !important;
     }
 

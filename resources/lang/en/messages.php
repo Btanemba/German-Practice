@@ -123,4 +123,12 @@ return [
     'start_chat' => 'Start Chat',
     'please_fill_name_email' => 'Please fill in your name and email',
     'admin_response' => 'Thank you for your message! I\'ll get back to you shortly. In the meantime, feel free to browse our events and classes.',
+
+    // Reviews Section
+    'user_reviews' => 'User Reviews',
+    'write_review' => 'Write a Review',
+    'review_text' => 'Your Review',
+    'submit_review' => 'Submit Review',
+    'review_submitted' => 'Thank you! Your review was submitted.',
+    'no_reviews' => 'No reviews yet. Be the first to share your experience!',
 ];

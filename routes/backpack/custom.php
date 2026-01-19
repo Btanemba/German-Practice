@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ClassScheduleCrudController;
 use App\Http\Controllers\Admin\RegistrationCrudController;
 use App\Http\Controllers\Admin\PracticeMaterialCrudController;
 use App\Http\Controllers\Admin\ChatMessageCrudController;
+use App\Http\Controllers\Admin\ReviewCrudController;
 
 Route::group([
     'prefix' => config('backpack.base.route_prefix', 'admin'),
@@ -24,7 +25,8 @@ Route::group([
     Route::crud('class-schedule', ClassScheduleCrudController::class);
     Route::crud('registration', RegistrationCrudController::class);
     Route::crud('practice-material', PracticeMaterialCrudController::class);
-    
+    Route::crud('review', ReviewCrudController::class);
+
      Route::crud('chat-message', ChatMessageCrudController::class);
 
     // Newsletter routes
@@ -41,7 +43,7 @@ Route::post('registration/bulk-email-class', [RegistrationCrudController::class,
     Route::post('registration/export-event', [\App\Http\Controllers\Admin\RegistrationCrudController::class, 'exportEventRegistrations']);
     Route::get('registration/export-class-form', [\App\Http\Controllers\Admin\RegistrationCrudController::class, 'exportClassRegistrationsForm']);
     Route::post('registration/export-class', [\App\Http\Controllers\Admin\RegistrationCrudController::class, 'exportClassRegistrations']);
-    
+
    // Chat message specific routes
     Route::get('chat-message/{id}/mark-read', [ChatMessageCrudController::class, 'markAsRead']);
     Route::get('chat-message/{id}/conversation', [ChatMessageCrudController::class, 'viewConversation']);

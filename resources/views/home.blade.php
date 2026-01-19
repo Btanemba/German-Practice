@@ -1321,6 +1321,141 @@
         </div>
     </section>
 
+    <!-- Modern Reviews Section -->
+    <section id="reviews" class="reviews-section py-5" style="background: linear-gradient(135deg, #1e293b, #334155);">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 style="
+                        font-size: clamp(2rem, 4vw, 3rem);
+                        font-weight: 700;
+                        color: white;
+                        margin-bottom: 1rem;
+                    ">{{ __('messages.user_reviews') }}</h2>
+                    <p style="
+                        font-size: 1.1rem;
+                        color: #94a3b8;
+                        max-width: 600px;
+                        margin: 0 auto;
+                    ">{{ __('messages.registration_subtitle') }}</p>
+                </div>
+            </div>
+
+            <div class="row g-3">
+                <!-- Write Review Form -->
+                <div class="col-lg-5">
+                    <div class="registration-form" style="
+                        background: rgba(255, 255, 255, 0.1);
+                        backdrop-filter: blur(20px);
+                        border-radius: 25px;
+                        padding: 30px;
+                        border: 1px solid rgba(255, 255, 255, 0.2);
+                        transition: all 0.3s ease;
+                    ">
+                        <h3 style="color: white; font-weight: 600; margin-bottom: 20px; text-align: center;">
+                            ⭐ {{ __('messages.write_review') }}
+                        </h3>
+
+                        <form id="review_form" method="POST" action="{{ route('review.store') }}" style="display: flex; flex-direction: column; gap: 15px;">
+                            @csrf
+
+                            <div>
+                                <input type="text" name="first_name" placeholder="{{ __('messages.first_name') }}" required
+                                    style="
+                                    width: 100%;
+                                    padding: 12px 15px;
+                                    border-radius: 12px;
+                                    border: 1px solid rgba(255, 255, 255, 0.2);
+                                    background: rgba(255, 255, 255, 0.05);
+                                    color: white;
+                                    font-size: 1rem;
+                                    transition: all 0.3s ease;
+                                " onfocus="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.borderColor='rgba(255, 255, 255, 0.4)'"
+                                onfocus="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.borderColor='rgba(255, 255, 255, 0.4)'"
+                                onblur="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'">
+                                <style>
+                                    input::placeholder { color: rgba(255, 255, 255, 0.5); }
+                                </style>
+                            </div>
+
+                            <div>
+                                <input type="text" name="last_name" placeholder="{{ __('messages.last_name') }}" required
+                                    style="
+                                    width: 100%;
+                                    padding: 12px 15px;
+                                    border-radius: 12px;
+                                    border: 1px solid rgba(255, 255, 255, 0.2);
+                                    background: rgba(255, 255, 255, 0.05);
+                                    color: white;
+                                    font-size: 1rem;
+                                    transition: all 0.3s ease;
+                                " onfocus="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.borderColor='rgba(255, 255, 255, 0.4)'"
+                                onblur="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'">
+                            </div>
+
+                            <div>
+                                <input type="email" name="email" placeholder="{{ __('messages.email_address') }}" required
+                                    style="
+                                    width: 100%;
+                                    padding: 12px 15px;
+                                    border-radius: 12px;
+                                    border: 1px solid rgba(255, 255, 255, 0.2);
+                                    background: rgba(255, 255, 255, 0.05);
+                                    color: white;
+                                    font-size: 1rem;
+                                    transition: all 0.3s ease;
+                                " onfocus="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.borderColor='rgba(255, 255, 255, 0.4)'"
+                                onblur="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'">
+                            </div>
+
+                            <div>
+                                <textarea name="review_text" placeholder="{{ __('messages.review_text') }}" required rows="5"
+                                    style="
+                                    width: 100%;
+                                    padding: 12px 15px;
+                                    border-radius: 12px;
+                                    border: 1px solid rgba(255, 255, 255, 0.2);
+                                    background: rgba(255, 255, 255, 0.05);
+                                    color: white;
+                                    font-size: 1rem;
+                                    transition: all 0.3s ease;
+                                    font-family: inherit;
+                                    resize: vertical;
+                                " onfocus="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.borderColor='rgba(255, 255, 255, 0.4)'"
+                                onblur="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.2)'"></textarea>
+                            </div>
+
+                            <button type="submit" style="
+                                background: linear-gradient(45deg, #10b981, #059669);
+                                color: white;
+                                padding: 14px 28px;
+                                border-radius: 12px;
+                                border: none;
+                                font-weight: 600;
+                                font-size: 1rem;
+                                cursor: pointer;
+                                transition: all 0.3s ease;
+                                box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+                            " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(16, 185, 129, 0.4)'"
+                            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(16, 185, 129, 0.3)'">
+                                {{ __('messages.submit_review') }}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Reviews Display -->
+                <div class="col-lg-7">
+                    <div id="reviews_container" style="display: flex; flex-direction: column; gap: 20px;">
+                        <div style="text-align: center; padding: 40px 20px; color: #94a3b8;">
+                            <p>{{ __('messages.no_reviews') }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Modal (place before footer include) -->
     <div id="contactModal" class="contact-modal"
         style="display:none; position:fixed; inset:0; z-index:1050; align-items:center; justify-content:center; background:rgba(0,0,0,0.5);">
@@ -1409,6 +1544,109 @@
                         console.error(err);
                     });
             });
+
+            // Load and display approved reviews
+            loadReviews();
+        });
+
+        function loadReviews() {
+            fetch('/get-approved-reviews')
+                .then(res => res.json())
+                .then(reviews => {
+                    const container = document.getElementById('reviews_container');
+
+                    if (reviews.length === 0) {
+                        container.innerHTML = `
+                            <div style="text-align: center; padding: 40px 20px; color: #94a3b8;">
+                                <p>{{ __('messages.no_reviews') }}</p>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    container.innerHTML = reviews.map(review => `
+                        <div style="
+                            background: rgba(255, 255, 255, 0.1);
+                            backdrop-filter: blur(20px);
+                            border-radius: 15px;
+                            padding: 20px;
+                            border: 1px solid rgba(255, 255, 255, 0.2);
+                            transition: all 0.3s ease;
+                        " onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(16, 185, 129, 0.2)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                                <span style="font-size: 1.5rem;">⭐</span>
+                                <h5 style="color: #10b981; font-weight: 600; margin: 0;">
+                                    ${review.first_name} ${review.last_name}
+                                </h5>
+                            </div>
+                            <p style="color: rgba(255, 255, 255, 0.9); line-height: 1.6; margin: 0 0 12px 0;">
+                                "${review.review_text}"
+                            </p>
+                            <p style="color: #94a3b8; font-size: 0.85rem; margin: 0;">
+                                ${new Date(review.created_at).toLocaleDateString()}
+                            </p>
+                        </div>
+                    `).join('');
+                })
+                .catch(err => console.error('Error loading reviews:', err));
+        }
+
+        // Handle review form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const reviewForm = document.getElementById('review_form');
+            if (reviewForm) {
+                reviewForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    const btn = this.querySelector('button[type="submit"]');
+                    btn.disabled = true;
+                    const originalText = btn.textContent;
+                    btn.textContent = 'Sending...';
+
+                    const formData = new FormData(this);
+
+                    fetch('{{ route("review.store") }}', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '{{ csrf_token() }}',
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        btn.disabled = false;
+                        btn.textContent = originalText;
+
+                        if (data.success) {
+                            Swal.fire({
+                                title: 'Success',
+                                text: data.message,
+                                icon: 'success'
+                            });
+                            reviewForm.reset();
+                        } else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: data.message || 'Unable to submit review',
+                                icon: 'error'
+                            });
+                        }
+                    })
+                    .catch(err => {
+                        btn.disabled = false;
+                        btn.textContent = originalText;
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Unable to submit review. Please try again.',
+                            icon: 'error'
+                        });
+                        console.error(err);
+                    });
+                });
+            }
         });
     </script>
 

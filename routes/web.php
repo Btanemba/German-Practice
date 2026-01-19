@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\ReviewController;
 use App\Models\Event;
 use App\Models\PracticeMaterial;
 use Illuminate\Http\Request;
@@ -48,6 +49,10 @@ Route::post('/register-user', [App\Http\Controllers\ClassController::class, 'reg
 Route::get('/get-events', [App\Http\Controllers\ClassController::class, 'getEvents']);
 
 Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
+
+// Review routes
+Route::post('/submit-review', [ReviewController::class, 'store'])->name('review.store');
+Route::get('/get-approved-reviews', [ReviewController::class, 'getApprovedReviews'])->name('review.approved');
 
 // Language switching routes
 Route::get('/language/{locale}', [LanguageController::class, 'switch'])->name('language.switch');

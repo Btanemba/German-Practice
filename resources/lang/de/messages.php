@@ -123,4 +123,12 @@ return [
     'start_chat' => 'Chat starten',
     'please_fill_name_email' => 'Bitte geben Sie Ihren Namen und Ihre E-Mail ein',
     'admin_response' => 'Vielen Dank für Ihre Nachricht! Ich melde mich in Kürze bei Ihnen. In der Zwischenzeit können Sie gerne unsere Veranstaltungen und Kurse durchstöbern.',
+
+    // Reviews Section
+    'user_reviews' => 'Kundenbewertungen',
+    'write_review' => 'Schreib eine Bewertung',
+    'review_text' => 'Deine Bewertung',
+    'submit_review' => 'Bewertung einreichen',
+    'review_submitted' => 'Vielen Dank! Ihre Bewertung wurde übermittelt.',
+    'no_reviews' => 'Noch keine Bewertungen. Sei der Erste, der deine Erfahrung teilt!',
 ];
