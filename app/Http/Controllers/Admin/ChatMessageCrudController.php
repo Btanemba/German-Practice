@@ -17,7 +17,7 @@ use Prologue\Alerts\Facades\Alert;
 class ChatMessageCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    //use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
 
     /**
@@ -34,6 +34,9 @@ class ChatMessageCrudController extends CrudController
         // Disable create and edit operations - these are incoming messages only
         $this->crud->denyAccess('create');
         $this->crud->denyAccess('update');
+
+        // Explicitly allow delete
+        $this->crud->allowAccess('delete');
     }
 
     /**
@@ -84,8 +87,8 @@ class ChatMessageCrudController extends CrudController
             'type' => 'closure',
             'function' => function ($entry) {
                 $preview = Str::limit($entry->message ?? '', 120);
-                $page = $entry->page ? '<small class="text-muted">&nbsp;•&nbsp;'.e($entry->page).'</small>' : '';
-                return "<div style='line-height:1.2'><div style='font-weight:600;color:#111'>".e($entry->name)."</div><div style='color:#6b7280;font-size:0.95rem'>".e($preview)." {$page}</div></div>";
+                $page = $entry->page ? '<small class="text-muted">&nbsp;•&nbsp;' . e($entry->page) . '</small>' : '';
+                return "<div style='line-height:1.2'><div style='font-weight:600;color:#111'>" . e($entry->name) . "</div><div style='color:#6b7280;font-size:0.95rem'>" . e($preview) . " {$page}</div></div>";
             },
             'escaped' => false,
         ]);
@@ -103,7 +106,7 @@ class ChatMessageCrudController extends CrudController
             'function' => function ($entry) {
                 $human = $entry->created_at ? $entry->created_at->diffForHumans() : '';
                 $full = $entry->created_at ? $entry->created_at->format('M d, Y H:i') : '';
-                return "<small title='".e($full)."" .">".e($human)."</small>";
+                return "<small title='" . e($full) . "" . ">" . e($human) . "</small>";
             },
             'escaped' => false,
         ]);
@@ -132,7 +135,9 @@ class ChatMessageCrudController extends CrudController
         CRUD::addButtonFromView('line', 'chat_reply', 'chat_reply_button', 'beginning');
         CRUD::addButtonFromView('line', 'view_conversation', 'view_conversation_button', 'beginning');
         CRUD::addButtonFromView('line', 'mark_read', 'mark_read_button', 'beginning');
-    }    /**
+    }
+
+    /**
      * Define what happens when the Show operation is loaded.
      *
      * @see https://backpackforlaravel.com/docs/crud-operation-show
@@ -234,10 +239,30 @@ class ChatMessageCrudController extends CrudController
 
             Alert::success('Reply sent successfully! The user will see it in their chat widget.')->flash();
             return redirect(url($this->crud->route));
-
         } catch (\Exception $e) {
             Alert::error('Failed to send reply: ' . $e->getMessage())->flash();
             return back()->withInput();
         }
+    }
+
+    /**
+     * Override the delete operation to delete the entire conversation
+     * (all messages with the same session_id, including admin replies)
+     */
+    public function destroy($id)
+    {
+        $this->crud->hasAccessOrFail('delete');
+        $this->crud->setOperation('delete');
+
+        $message = \App\Models\ChatMessage::find($id);
+
+        if (! $message) {
+            return false;
+        }
+
+        // Delete entire conversation
+        \App\Models\ChatMessage::where('session_id', $message->session_id)->delete();
+
+        return true; 
     }
 }

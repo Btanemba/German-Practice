@@ -44,6 +44,7 @@
                     <div class="form-group mb-2">
                         <input type="text"
                                id="userName"
+                               name="userName"
                                class="form-control"
                                placeholder="{{ __('messages.your_name') ?? 'Your Name' }}"
                                required>
@@ -51,6 +52,7 @@
                     <div class="form-group mb-2">
                         <input type="email"
                                id="userEmail"
+                               name="userEmail"
                                class="form-control"
                                placeholder="{{ __('messages.your_email') ?? 'Your Email' }}"
                                required>
@@ -277,6 +279,10 @@
     display: flex;
     gap: 10px;
     align-items: center;
+}
+
+.chat-input-wrapper.hidden {
+    display: none;
 }
 
 .chat-input-wrapper input {
@@ -537,10 +543,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatClose = document.getElementById('chatClose');
     const chatForm = document.getElementById('chatForm');
     const chatInput = document.getElementById('chatInput');
+    const chatInputWrapper = document.querySelector('.chat-input-wrapper');
     const chatMessages = document.getElementById('chatMessages');
     const startChatBtn = document.getElementById('startChatBtn');
     const contactInfoForm = document.getElementById('contactInfoForm');
     const chatNotification = document.getElementById('chatNotification');
+
+    // Exit early if essential elements don't exist
+    if (!chatToggle || !chatWindow || !chatInput || !chatMessages || !contactInfoForm) {
+        console.error('Chat widget: Required DOM elements not found');
+        return;
+    }
 
     let chatStarted = false;
     let userName = '';
@@ -551,49 +564,104 @@ document.addEventListener('DOMContentLoaded', function() {
     let lastUserActivity = Date.now();
     let chatTimeoutInterval = null;
     const CHAT_TIMEOUT_MINUTES = 5;
-    const CHAT_TIMEOUT_MS = CHAT_TIMEOUT_MINUTES * 60 * 1000; // 10 minutes in milliseconds
+    const CHAT_TIMEOUT_MS = CHAT_TIMEOUT_MINUTES * 60 * 1000; // 5 minutes in milliseconds
+    const SESSION_EXPIRY_HOURS = 24; // Clear sessions older than 24 hours
+    const SESSION_EXPIRY_MS = SESSION_EXPIRY_HOURS * 60 * 60 * 1000;
 
-    // Toggle chat window
-    chatToggle.addEventListener('click', function(e) {
-        console.log('Chat toggle clicked!');
-        e.preventDefault();
-        e.stopPropagation();
-
-        const isVisible = chatWindow.style.display === 'block';
-        console.log('Chat window currently visible:', isVisible);
-
-        chatWindow.style.display = isVisible ? 'none' : 'block';
-
-        if (!isVisible) {
-            console.log('Opening chat window');
-            setTimeout(() => chatWindow.classList.add('show'), 10);
-            chatNotification.style.display = 'none';
-
-            // Reset timeout when user opens chat
-            if (chatStarted) {
-                resetChatTimeout();
+    function updateFormVisibility() {
+        if (!chatInput || !contactInfoForm) return;
+        
+        if (chatStarted) {
+            contactInfoForm.style.display = 'none';
+            if (chatInputWrapper) {
+                chatInputWrapper.classList.remove('hidden');
+                chatInputWrapper.style.display = 'flex';
+            }
+            chatInput.style.display = 'block';
+            // Try to focus on input if form is visible
+            try {
+                if (chatInput && chatInput.offsetParent !== null) { // Check if visible
+                    chatInput.focus();
+                }
+            } catch (e) {
+                console.log('Could not focus on input:', e);
             }
         } else {
-            console.log('Closing chat window');
-            chatWindow.classList.remove('show');
+            if (chatInputWrapper) {
+                chatInputWrapper.classList.add('hidden');
+                chatInputWrapper.style.display = 'none';
+            }
+            chatInput.style.display = 'none';
+            contactInfoForm.style.display = 'block';
+            
+            // Clear form fields when showing form
+            const nameInput = document.getElementById('userName');
+            const emailInput = document.getElementById('userEmail');
+            if (nameInput) nameInput.value = '';
+            if (emailInput) emailInput.value = '';
+            
+            // Try to focus on name field
+            try {
+                if (nameInput && nameInput.offsetParent !== null) {
+                    nameInput.focus();
+                }
+            } catch (e) {
+                console.log('Could not focus on name input:', e);
+            }
         }
-    });
+    }
+
+    // Toggle chat window
+    if (chatToggle) {
+        chatToggle.addEventListener('click', function(e) {
+            console.log('Chat toggle clicked!');
+            e.preventDefault();
+            e.stopPropagation();
+
+            const isVisible = chatWindow.style.display === 'block';
+            console.log('Chat window currently visible:', isVisible);
+
+            chatWindow.style.display = isVisible ? 'none' : 'block';
+
+            if (!isVisible) {
+                console.log('Opening chat window');
+                setTimeout(() => chatWindow.classList.add('show'), 10);
+                if (chatNotification) chatNotification.style.display = 'none';
+
+                // Reset timeout when user opens chat
+                if (chatStarted) {
+                    resetChatTimeout();
+                }
+            } else {
+                console.log('Closing chat window');
+                chatWindow.classList.remove('show');
+            }
+        });
+    }
 
     // Close chat
-    chatClose.addEventListener('click', function() {
-        chatWindow.classList.remove('show');
-        setTimeout(() => chatWindow.style.display = 'none', 300);
-    });
+    if (chatClose) {
+        chatClose.addEventListener('click', function() {
+            chatWindow.classList.remove('show');
+            setTimeout(() => chatWindow.style.display = 'none', 300);
+        });
+    }
 
     // Start chat
-    startChatBtn.addEventListener('click', function() {
-        const nameInput = document.getElementById('userName');
-        const emailInput = document.getElementById('userEmail');
+    if (startChatBtn) {
+        startChatBtn.addEventListener('click', function() {
+            const nameInput = document.getElementById('userName');
+            const emailInput = document.getElementById('userEmail');
 
-        if (!nameInput.value.trim() || !emailInput.value.trim()) {
-            alert('{{ __("messages.please_fill_name_email") ?? "Please fill in your name and email" }}');
-            return;
-        }
+            if (!nameInput || !emailInput) {
+                console.error('Form inputs not found');
+                return;
+            }
+
+            if (!nameInput.value.trim() || !emailInput.value.trim()) {
+                alert('{{ __("messages.please_fill_name_email") ?? "Please fill in your name and email" }}');
+                return;
+            }
 
         userName = nameInput.value.trim();
         userEmail = emailInput.value.trim();
@@ -602,9 +670,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Save user details for session persistence
         localStorage.setItem('chat_user_name', userName);
         localStorage.setItem('chat_user_email', userEmail);
+        localStorage.setItem('chat_session_timestamp', Date.now().toString());
 
-        contactInfoForm.style.display = 'none';
-        chatInput.style.display = 'block';
+        updateFormVisibility();
         chatInput.focus();
 
         // Initialize chat timeout
@@ -613,40 +681,43 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Add welcome message with user's name
         addMessage(`Hello ${userName}! I'm here to help you with any questions about our German classes and events. What would you like to know?`, 'admin');
-    });
+        });
+    }
 
     // Send message
-    chatForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+    if (chatForm) {
+        chatForm.addEventListener('submit', function(e) {
+            e.preventDefault();
 
-        if (!chatStarted) return;
+            if (!chatStarted) return;
 
-        const message = chatInput.value.trim();
-        if (!message) return;
+            const message = chatInput.value.trim();
+            if (!message) return;
 
-        // Reset chat timeout on user activity
-        resetChatTimeout();
+            // Reset chat timeout on user activity
+            resetChatTimeout();
 
-        // Add user message
-        addMessage(message, 'user');
-        chatInput.value = '';
+            // Add user message
+            addMessage(message, 'user');
+            chatInput.value = '';
 
-        // Show typing indicator
-        showTypingIndicator();
+            // Show typing indicator
+            showTypingIndicator();
 
-        // Send to admin (via email or database)
-        sendMessageToAdmin(message, userName, userEmail);
+            // Send to admin (via email or database)
+            sendMessageToAdmin(message, userName, userEmail);
 
-        // Start polling for new messages if not already started
-        if (!messagePollingInterval) {
-            startMessagePolling();
-        }
+            // Start polling for new messages if not already started
+            if (!messagePollingInterval) {
+                startMessagePolling();
+            }
 
-        // Start timeout monitoring
-        if (!chatTimeoutInterval) {
-            startChatTimeout();
-        }
-    });
+            // Start timeout monitoring
+            if (!chatTimeoutInterval) {
+                startChatTimeout();
+            }
+        });
+    }
 
     function addMessage(text, sender, customTime = null, messageId = null) {
         // Check if message already exists to prevent duplicates
@@ -674,7 +745,9 @@ document.addEventListener('DOMContentLoaded', function() {
         chatMessages.scrollTop = chatMessages.scrollHeight;
 
         console.log('Added message:', {text, sender, time, messageId});
-    }    function showTypingIndicator() {
+    }
+
+    function showTypingIndicator() {
         const typingDiv = document.createElement('div');
         typingDiv.className = 'message admin-message typing-message';
         typingDiv.innerHTML = `
@@ -719,19 +792,15 @@ document.addEventListener('DOMContentLoaded', function() {
         userName = '';
         userEmail = '';
 
-        // Clear localStorage
+        // Clear localStorage completely
         localStorage.removeItem('chat_session_id');
         localStorage.removeItem('chat_user_name');
         localStorage.removeItem('chat_user_email');
+        localStorage.removeItem('chat_session_timestamp');
 
-        // Show contact form again
+        // Show contact form again with cleared fields
         setTimeout(() => {
-            contactInfoForm.style.display = 'block';
-            chatInput.style.display = 'none';
-
-            // Clear previous contact info
-            document.getElementById('userName').value = '';
-            document.getElementById('userEmail').value = '';
+            updateFormVisibility();
         }, 2000);
     }
 
@@ -929,23 +998,67 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Resume existing conversation if session exists
     if (sessionId && localStorage.getItem('chat_user_name')) {
-        userName = localStorage.getItem('chat_user_name');
-        userEmail = localStorage.getItem('chat_user_email');
-        chatStarted = true;
-        contactInfoForm.style.display = 'none';
-        chatInput.style.display = 'block';
+        // Check if session timestamp exists and is not too old
+        const sessionTimestamp = parseInt(localStorage.getItem('chat_session_timestamp') || '0');
+        const isSessionExpired = (Date.now() - sessionTimestamp) > SESSION_EXPIRY_MS;
+        
+        if (isSessionExpired) {
+            // Clear expired session
+            console.log('Session expired (older than 24 hours), clearing it');
+            localStorage.removeItem('chat_session_id');
+            localStorage.removeItem('chat_user_name');
+            localStorage.removeItem('chat_user_email');
+            localStorage.removeItem('chat_session_timestamp');
+            sessionId = '';
+            chatStarted = false;
+            updateFormVisibility();
+        } else {
+            // Session is still valid, resume it
+            userName = localStorage.getItem('chat_user_name');
+            userEmail = localStorage.getItem('chat_user_email');
+            
+            // Validate we have both name and email
+            if (userName && userEmail) {
+                chatStarted = true;
+                updateFormVisibility();
 
-        // Initialize timeout for resumed session
-        resetChatTimeout();
-        startChatTimeout();
+                // Initialize timeout for resumed session
+                resetChatTimeout();
+                startChatTimeout();
 
-        // Load previous messages
-        loadChatHistory();
-        startMessagePolling();
+                // Load previous messages - wrapped in try-catch to handle errors gracefully
+                try {
+                    loadChatHistory();
+                } catch (e) {
+                    console.log('Could not load chat history:', e);
+                }
+
+                // Start polling after a brief delay
+                setTimeout(() => {
+                    startMessagePolling();
+                }, 500);
+            } else {
+                // Invalid session data - reset everything
+                localStorage.removeItem('chat_session_id');
+                localStorage.removeItem('chat_user_name');
+                localStorage.removeItem('chat_user_email');
+                localStorage.removeItem('chat_session_timestamp');
+                sessionId = '';
+                chatStarted = false;
+                updateFormVisibility();
+            }
+        }
+    } else {
+        // No session - ensure form is visible on initial load
+        chatStarted = false;
+        updateFormVisibility();
     }
 
     function loadChatHistory() {
-        if (!sessionId) return;
+        if (!sessionId) {
+            console.log('No session ID, skipping chat history load');
+            return;
+        }
 
         console.log('Loading chat history for session:', sessionId);
 
@@ -955,21 +1068,28 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        fetch(`/chat/get-messages?session_id=${sessionId}`, {
+        fetch(`/chat/get-messages?session_id=${encodeURIComponent(sessionId)}`, {
             method: 'GET',
             headers: {
                 'X-CSRF-TOKEN': csrfToken,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-            }
+            },
+            timeout: 5000
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                console.warn(`Chat history response status: ${response.status}`);
+                return null;
             }
             return response.json();
         })
         .then(data => {
+            if (!data) {
+                console.log('No chat history data');
+                return;
+            }
+            
             console.log('Chat history response:', data);
             if (data.success && data.messages && Array.isArray(data.messages)) {
                 // Clear existing messages except the initial welcome message
@@ -978,30 +1098,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Add historical messages in order
                 data.messages.forEach(msg => {
-                    addMessage(msg.message, msg.sender_type, msg.created_at, msg.id);
+                    if (msg.id && msg.message && msg.sender_type) {
+                        addMessage(msg.message, msg.sender_type, msg.created_at, msg.id);
+                    }
                 });
 
                 console.log(`Loaded ${data.messages.length} historical messages`);
             }
         })
         .catch(error => {
-            console.error('Error loading chat history:', error);
+            console.warn('Warning loading chat history (non-critical):', error);
+            // Don't throw error - this is non-critical for UX
         });
     }
 
     // Add typing detection for user activity
-    chatInput.addEventListener('input', function() {
-        if (chatStarted) {
-            resetChatTimeout();
-        }
-    });
+    if (chatInput) {
+        chatInput.addEventListener('input', function() {
+            if (chatStarted) {
+                resetChatTimeout();
+            }
+        });
+    }
 
     // Add click detection for user activity
-    chatWindow.addEventListener('click', function() {
-        if (chatStarted) {
-            resetChatTimeout();
-        }
-    });
+    if (chatWindow) {
+        chatWindow.addEventListener('click', function() {
+            if (chatStarted) {
+                resetChatTimeout();
+            }
+        });
+    }
 
     // Show notification periodically
     setTimeout(() => {
