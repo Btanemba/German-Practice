@@ -30,7 +30,7 @@
                     <div>
                         <div class="footer_title">About Us</div>
                         <ul class="footer_list">
-                            <li><a href="#">Team</a></li>
+                            <li><a href="{{ route('team') }}">Team</a></li>
                             <li><a href="#">Jobs</a></li>
                            
                             <li><a href="javascript:void(0);" class="contactUsBtn">{{ __('messages.contact') }}</a></li>

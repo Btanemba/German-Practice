@@ -11,6 +11,7 @@ use App\Models\{Hangout, ClassSchedule, Registration};
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\QrCodeController;
+use App\Http\Controllers\TeamController;
 
 // Homepage with Events and Practice Materials
 Route::get('/', function () {
@@ -40,6 +41,9 @@ Route::get('/get-hangouts', function () {
 Route::post('/chat/send-message', [App\Http\Controllers\ChatController::class, 'sendMessage'])->name('chat.send');
 Route::get('/chat/get-messages', [App\Http\Controllers\ChatController::class, 'getMessages'])->name('chat.get');
 Route::post('/chat/admin-reply', [App\Http\Controllers\ChatController::class, 'sendAdminReply'])->name('chat.admin-reply');
+
+// Team page
+Route::get('/team', [TeamController::class, 'index'])->name('team');
 
 Route::get('/get-class-levels', [ClassController::class, 'levels']);
 Route::get('/get-class-dates/{level}', [ClassController::class, 'dates']);

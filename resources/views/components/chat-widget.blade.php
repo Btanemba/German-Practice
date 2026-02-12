@@ -720,6 +720,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function addMessage(text, sender, customTime = null, messageId = null) {
+        // Remove waiting message if admin replies or user sends a new message
+        if (sender === 'admin' || sender === 'user') {
+            removeWaitingMessage();
+        }
+            // Remove the waiting message if it exists
+            function removeWaitingMessage() {
+                const waitingMsg = chatMessages.querySelector('.waiting-message');
+                if (waitingMsg) waitingMsg.remove();
+            }
         // Check if message already exists to prevent duplicates
         if (messageId && chatMessages.querySelector(`[data-message-id="${messageId}"]`)) {
             console.log('Message already exists, skipping:', messageId);
@@ -881,7 +890,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Add confirmation message
                 setTimeout(() => {
-                    addMessage('Message sent! An admin will respond shortly.', 'admin');
+                    // Only show waiting message if the last message is not from admin
+                    const lastMsg = chatMessages.querySelector('.message:last-child');
+                    if (!lastMsg || !lastMsg.classList.contains('admin-message')) {
+                        removeWaitingMessage();
+                        const waitingDiv = document.createElement('div');
+                        waitingDiv.className = 'message admin-message waiting-message';
+                        waitingDiv.innerHTML = `
+                            <div class="message-content">
+                                <p>Message sent! An admin will respond shortly.</p>
+                                <span class="message-time">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
+                            </div>
+                        `;
+                        chatMessages.appendChild(waitingDiv);
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }
                 }, 500);
             } else {
                 addMessage('Message could not be sent. Please try again.', 'admin');
