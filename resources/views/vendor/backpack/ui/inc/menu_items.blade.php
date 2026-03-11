@@ -182,3 +182,5 @@
     });
 </script>
 
+
+<x-backpack::menu-item title="Community members" icon="la la-question" :link="backpack_url('community-member')" />

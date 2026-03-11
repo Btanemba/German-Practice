@@ -213,6 +213,73 @@
         margin-top: 0;
     ">
         <div class="hero-particles"></div>
+
+        <!-- Animated CTA Pointer -->
+        <div style="
+            position: absolute;
+            bottom: 80px;
+            right: 5%;
+            z-index: 10;
+            animation: bounce-in 2s ease-out 0.5s both;
+        ">
+            <div style="
+                background: linear-gradient(135deg, rgba(16, 185, 129, 0.95), rgba(10, 179, 117, 0.95));
+                backdrop-filter: blur(20px);
+                border-radius: 20px;
+                padding: 16px 24px;
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4);
+                position: relative;
+                white-space: nowrap;
+            ">
+                <div style="
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    color: white;
+                    font-weight: 700;
+                    font-size: 1rem;
+                    animation: pulse-glow 2s ease-in-out infinite;
+                ">
+                    <span style="font-size: 1.3rem; animation: bounce-emoji 1.5s ease-in-out infinite;">👇</span>
+                    Join our Community
+                </div>
+
+                <!-- Connecting arrow line -->
+                <div style="
+                    position: absolute;
+                    bottom: -60px;
+                    right: 30px;
+                    width: 3px;
+                    height: 60px;
+                    background: linear-gradient(to bottom, rgba(16, 185, 129, 0.8), transparent);
+                    border-radius: 2px;
+                    animation: draw-line 1.5s ease-out 1s forwards;
+                "></div>
+
+                <!-- Animated arrow pointing down -->
+                <div style="
+                    position: absolute;
+                    bottom: -75px;
+                    right: 24px;
+                    color: #10b981;
+                    font-size: 1.5rem;
+                    animation: arrow-bounce 1.5s ease-in-out 1.5s infinite;
+                ">↓</div>
+            </div>
+
+            <!-- Radiant glow effect -->
+            <div style="
+                position: absolute;
+                inset: -8px;
+                background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 0.1));
+                border-radius: 25px;
+                z-index: -1;
+                animation: glow-pulse 2s ease-in-out infinite;
+                filter: blur(8px);
+            "></div>
+        </div>
+
         <div class="container">
             <div class="row align-items-center min-vh-100">
                 <div class="col-lg-6">
@@ -265,40 +332,299 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="hero-image text-center" style="animation: fadeInRight 1s ease-out 0.3s both;">
-                        <div class="floating-card" style="
-                            background: rgba(255, 255, 255, 0.1);
-                            backdrop-filter: blur(20px);
-                            border-radius: 20px;
-                            padding: 40px;
-                            border: 1px solid rgba(255, 255, 255, 0.2);
+
+                <!-- Right Image Column with Animations -->
+                <div class="col-lg-6 text-center">
+                    <div class="hero-image" style="position: relative; display: flex; justify-content: center; align-items: center; animation: fadeInRight 1s ease-out 0.3s both;">
+
+                        <!-- Animated background blobs -->
+                        <div style="
+                            position: absolute;
+                            width: 400px;
+                            height: 350px;
+                            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(16, 185, 129, 0.2));
+                            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+                            animation: morph 8s ease-in-out infinite;
+                            z-index: 0;
+                            filter: blur(40px);
+                        "></div>
+
+                        <!-- Main illustration container -->
+                        <div style="
+                            position: relative;
+                            z-index: 1;
+                            width: 100%;
+                            max-width: 450px;
                             animation: float 6s ease-in-out infinite;
                         ">
-                            <div class="stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                                <div class="stat-item text-center">
-                                    <div style="font-size: 2.5rem; font-weight: 700; color: #10b981;">50+</div>
-                                    <div style="color: rgba(255, 255, 255, 0.8);">{{ __('messages.students') }}</div>
-                                </div>
-                                <div class="stat-item text-center">
-                                    <div style="font-size: 2.5rem; font-weight: 700; color: #10b981;">500+</div>
-                                    <div style="color: rgba(255, 255, 255, 0.8);">{{ __('messages.classes') }}</div>
-                                </div>
-                                <div class="stat-item text-center">
-                                    <div style="font-size: 2.5rem; font-weight: 700; color: #10b981;">95%</div>
-                                    <div style="color: rgba(255, 255, 255, 0.8);">{{ __('messages.success_rate') }}
-                                    </div>
-                                </div>
-                                <div class="stat-item text-center">
-                                    <div style="font-size: 2.5rem; font-weight: 700; color: #10b981;">A1-C2</div>
-                                    <div style="color: rgba(255, 255, 255, 0.8);">{{ __('messages.all_levels') }}</div>
-                                </div>
+                            <!-- Outer border circle with glow -->
+                            <div style="
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                                width: 380px;
+                                height: 280px;
+                                border: 3px solid rgba(59, 130, 246, 0.6);
+                                border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+                                animation: rotate-shape 20s linear infinite, glow-border 3s ease-in-out infinite;
+                                box-shadow: 0 0 40px rgba(59, 130, 246, 0.3), inset 0 0 40px rgba(59, 130, 246, 0.1);
+                            "></div>
+
+                            <!-- Image placeholder with gradient -->
+                            <div style="
+                                position: relative;
+                                width: 100%;
+                                aspect-ratio: 4/3;
+                                background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(16, 185, 129, 0.15));
+                                border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+                                overflow: hidden;
+                                border: 2px solid rgba(255, 255, 255, 0.15);
+                                box-shadow: 0 25px 60px rgba(59, 130, 246, 0.2), inset 0 0 40px rgba(255, 255, 255, 0.1);
+                                animation: scale-shape 4s ease-in-out infinite;
+                            ">
+                                <!-- Image or content can go here -->
+                                <img src="images/index_background.jpg" alt="Learning" style="
+                                    width: 100%;
+                                    height: 100%;
+                                    object-fit: cover;
+                                    opacity: 0.7;
+                                ">
+
+                                <!-- Overlay gradient -->
+                                <div style="
+                                    position: absolute;
+                                    inset: 0;
+                                    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.2));
+                                "></div>
+                            </div>
+
+                            <!-- Floating accent circles -->
+                            <div style="
+                                position: absolute;
+                                top: -20px;
+                                right: -30px;
+                                width: 120px;
+                                height: 120px;
+                                background: linear-gradient(135deg, rgba(16, 185, 129, 0.4), rgba(16, 185, 129, 0.2));
+                                border-radius: 50%;
+                                animation: float-accent-1 6s ease-in-out infinite;
+                                backdrop-filter: blur(20px);
+                                border: 2px solid rgba(16, 185, 129, 0.3);
+                            "></div>
+
+                            <div style="
+                                position: absolute;
+                                bottom: -40px;
+                                left: -50px;
+                                width: 100px;
+                                height: 100px;
+                                background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(59, 130, 246, 0.1));
+                                border-radius: 50%;
+                                animation: float-accent-2 8s ease-in-out infinite;
+                                backdrop-filter: blur(20px);
+                                border: 2px solid rgba(59, 130, 246, 0.2);
+                            "></div>
+
+                            <!-- Learning icons -->
+                            <div style="
+                                position: absolute;
+                                top: 30px;
+                                right: 30px;
+                                display: flex;
+                                flex-direction: column;
+                                gap: 15px;
+                                animation: fadeInRight 1s ease-out 0.6s both;
+                            ">
+                                <div style="
+                                    background: rgba(255, 255, 255, 0.1);
+                                    backdrop-filter: blur(20px);
+                                    border-radius: 15px;
+                                    padding: 12px;
+                                    border: 1px solid rgba(255, 255, 255, 0.2);
+                                    font-size: 1.5rem;
+                                    animation: bounce-icon 2s ease-in-out infinite;
+                                ">🎓</div>
+                                <div style="
+                                    background: rgba(255, 255, 255, 0.1);
+                                    backdrop-filter: blur(20px);
+                                    border-radius: 15px;
+                                    padding: 12px;
+                                    border: 1px solid rgba(255, 255, 255, 0.2);
+                                    font-size: 1.5rem;
+                                    animation: bounce-icon 2s ease-in-out 0.3s infinite;
+                                ">💬</div>
+                                <div style="
+                                    background: rgba(255, 255, 255, 0.1);
+                                    backdrop-filter: blur(20px);
+                                    border-radius: 15px;
+                                    padding: 12px;
+                                    border: 1px solid rgba(255, 255, 255, 0.2);
+                                    font-size: 1.5rem;
+                                    animation: bounce-icon 2s ease-in-out 0.6s infinite;
+                                ">🎯</div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
+
+        <!-- Animation Styles -->
+        <style>
+            @keyframes morph {
+                0%, 100% {
+                    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+                }
+                50% {
+                    border-radius: 30% 70% 40% 60% / 50% 40% 70% 30%;
+                }
+            }
+
+            @keyframes rotate-shape {
+                from {
+                    transform: translate(-50%, -50%) rotate(0deg);
+                }
+                to {
+                    transform: translate(-50%, -50%) rotate(360deg);
+                }
+            }
+
+            @keyframes scale-shape {
+                0%, 100% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.02);
+                }
+            }
+
+            @keyframes float {
+                0%, 100% {
+                    transform: translateY(0px);
+                }
+                50% {
+                    transform: translateY(-20px);
+                }
+            }
+
+            @keyframes float-accent-1 {
+                0%, 100% {
+                    transform: translateY(0px) translateX(0px);
+                }
+                50% {
+                    transform: translateY(-25px) translateX(15px);
+                }
+            }
+
+            @keyframes float-accent-2 {
+                0%, 100% {
+                    transform: translateY(0px) translateX(0px);
+                }
+                50% {
+                    transform: translateY(25px) translateX(-15px);
+                }
+            }
+
+            @keyframes bounce-icon {
+                0%, 100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-12px);
+                }
+            }
+
+            @keyframes glow-border {
+                0%, 100% {
+                    box-shadow: 0 0 40px rgba(59, 130, 246, 0.3), inset 0 0 40px rgba(59, 130, 246, 0.1);
+                }
+                50% {
+                    box-shadow: 0 0 60px rgba(59, 130, 246, 0.5), inset 0 0 60px rgba(59, 130, 246, 0.2);
+                }
+            }
+
+            @keyframes fadeInRight {
+                from {
+                    opacity: 0;
+                    transform: translateX(40px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            @keyframes bounce-in {
+                0% {
+                    opacity: 0;
+                    transform: translateY(30px) scale(0.8);
+                }
+                70% {
+                    transform: translateY(-5px) scale(1.05);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
+            }
+
+            @keyframes pulse-glow {
+                0%, 100% {
+                    filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0));
+                }
+                50% {
+                    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.6));
+                }
+            }
+
+            @keyframes bounce-emoji {
+                0%, 100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-8px);
+                }
+            }
+
+            @keyframes arrow-bounce {
+                0% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                40% {
+                    opacity: 0.7;
+                    transform: translateY(8px);
+                }
+                70% {
+                    opacity: 0;
+                    transform: translateY(16px);
+                }
+                100% {
+                    opacity: 0;
+                    transform: translateY(16px);
+                }
+            }
+
+            @keyframes draw-line {
+                from {
+                    height: 0;
+                }
+                to {
+                    height: 60px;
+                }
+            }
+
+            @keyframes glow-pulse {
+                0%, 100% {
+                    box-shadow: 0 0 30px rgba(16, 185, 129, 0.5);
+                }
+                50% {
+                    box-shadow: 0 0 50px rgba(16, 185, 129, 0.8);
+                }
+            }
+        </style>
     </section>
 
     <!-- Modern Practice Sessions -->
@@ -513,9 +839,14 @@
     </section>
 
     <!-- Modern Instructor Section -->
-    <section class="instructor-section py-5" style="background: linear-gradient(135deg, #1e293b, #334155);">
-        <div class="container">
-            <div class="row align-items-center">
+    <section class="instructor-section py-5" style="background: linear-gradient(135deg, #1e293b, #334155); position: relative; overflow: hidden;">
+        <!-- Decorative background elements -->
+        <div style="position: absolute; top: -100px; right: -100px; width: 300px; height: 300px; background: rgba(16, 185, 129, 0.1); border-radius: 50%; filter: blur(40px);"></div>
+        <div style="position: absolute; bottom: -50px; left: -50px; width: 250px; height: 250px; background: rgba(59, 130, 246, 0.08); border-radius: 50%; filter: blur(40px);"></div>
+
+        <div class="container" style="position: relative; z-index: 1;">
+            <div class="row align-items-center g-5">
+                <!-- Left Content Column -->
                 <div class="col-lg-6 mb-4 mb-lg-0">
                     <div class="instructor-content text-white">
                         <h2 style="
@@ -526,65 +857,162 @@
                             -webkit-background-clip: text;
                             -webkit-text-fill-color: transparent;
                             background-clip: text;
+                            letter-spacing: -0.5px;
                         ">{{ __('messages.favourite_tutor') }}</h2>
+
+                        <!-- Main Instructor Card -->
                         <div class="instructor-card" style="
-                            background: rgba(255, 255, 255, 0.1);
-                            backdrop-filter: blur(20px);
-                            border-radius: 20px;
-                            padding: 30px;
-                            border: 1px solid rgba(255, 255, 255, 0.2);
-                        ">
-                            <h4 style="color: #10b981; font-weight: 600; margin-bottom: 10px;">Tamara Terbul</h4>
-                            <p style="color: #94a3b8; margin-bottom: 15px; font-weight: 500;">
+                            background: rgba(255, 255, 255, 0.08);
+                            backdrop-filter: blur(30px);
+                            border-radius: 25px;
+                            padding: 40px;
+                            border: 1px solid rgba(255, 255, 255, 0.15);
+                            transition: all 0.4s ease;
+                            margin-bottom: 30px;
+                        " onmouseover="this.style.background='rgba(255, 255, 255, 0.12)'; this.style.transform='translateY(-5px)'; this.style.boxShadow='0 25px 50px rgba(16, 185, 129, 0.2)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.08)'; this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                            <h3 style="color: #10b981; font-weight: 700; margin-bottom: 8px; font-size: 1.8rem;">Tamara Terbul</h3>
+                            <p style="color: #94a3b8; margin-bottom: 20px; font-weight: 500; font-size: 1rem;">
                                 {{ __('messages.german_expert') }}</p>
-                            <p style="color: rgba(255, 255, 255, 0.9); line-height: 1.6; margin-bottom: 20px;">
+                            <p style="color: rgba(255, 255, 255, 0.85); line-height: 1.8; margin-bottom: 25px; font-size: 0.95rem;">
                                 {{ __('messages.instructor_description') }}
                             </p>
-                            <div class="social-links">
 
+                            <!-- Social Links -->
+                            <div class="social-links" style="display: flex; gap: 12px; align-items: center;">
+                                <span style="color: #94a3b8; font-size: 0.85rem;">{{ __('messages.follow_us') }}:</span>
                                 <a href="https://www.linkedin.com/in/tamara-terbul-411b5493/" target="_blank" style="
                                     display: inline-flex;
                                     align-items: center;
                                     justify-content: center;
-                                    width: 40px;
-                                    height: 40px;
+                                    width: 45px;
+                                    height: 45px;
                                     background: rgba(255, 255, 255, 0.1);
-                                    border-radius: 10px;
-                                    color: white;
+                                    border-radius: 12px;
+                                    color: #10b981;
                                     text-decoration: none;
-                                    margin-right: 10px;
                                     transition: all 0.3s ease;
-                                "><i class="fab fa-linkedin"></i></a>
+                                    border: 1px solid rgba(16, 185, 129, 0.3);
+                                    font-size: 1.1rem;
+                                " onmouseover="this.style.background='rgba(16, 185, 129, 0.2)'; this.style.color='white'; this.style.transform='scale(1.1) translateY(-3px)';" onmouseout="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.color='#10b981'; this.style.transform='scale(1) translateY(0)';">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Stats Grid -->
+                        <div class="stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div class="stat-box" style="
+                                background: rgba(16, 185, 129, 0.1);
+                                backdrop-filter: blur(20px);
+                                border-radius: 18px;
+                                padding: 20px;
+                                border: 1px solid rgba(16, 185, 129, 0.2);
+                                text-center;
+                                transition: all 0.3s ease;
+                            " onmouseover="this.style.background='rgba(16, 185, 129, 0.15)'; this.style.transform='translateY(-3px)';" onmouseout="this.style.background='rgba(16, 185, 129, 0.1)'; this.style.transform='translateY(0)';">
+                                <div style="font-size: 2rem; font-weight: 700; color: #10b981; line-height: 1;">50+</div>
+                                <div style="color: rgba(255, 255, 255, 0.75); font-size: 0.85rem; margin-top: 8px;">{{ __('messages.students') }}</div>
+                            </div>
+                            <div class="stat-box" style="
+                                background: rgba(16, 185, 129, 0.1);
+                                backdrop-filter: blur(20px);
+                                border-radius: 18px;
+                                padding: 20px;
+                                border: 1px solid rgba(16, 185, 129, 0.2);
+                                text-center;
+                                transition: all 0.3s ease;
+                            " onmouseover="this.style.background='rgba(16, 185, 129, 0.15)'; this.style.transform='translateY(-3px)';" onmouseout="this.style.background='rgba(16, 185, 129, 0.1)'; this.style.transform='translateY(0)';">
+                                <div style="font-size: 2rem; font-weight: 700; color: #10b981; line-height: 1;">500+</div>
+                                <div style="color: rgba(255, 255, 255, 0.75); font-size: 0.85rem; margin-top: 8px;">{{ __('messages.classes') }}</div>
+                            </div>
+                            <div class="stat-box" style="
+                                background: rgba(59, 130, 246, 0.1);
+                                backdrop-filter: blur(20px);
+                                border-radius: 18px;
+                                padding: 20px;
+                                border: 1px solid rgba(59, 130, 246, 0.2);
+                                text-center;
+                                transition: all 0.3s ease;
+                            " onmouseover="this.style.background='rgba(59, 130, 246, 0.15)'; this.style.transform='translateY(-3px)';" onmouseout="this.style.background='rgba(59, 130, 246, 0.1)'; this.style.transform='translateY(0)';">
+                                <div style="font-size: 2rem; font-weight: 700; color: #3b82f6; line-height: 1;">95%</div>
+                                <div style="color: rgba(255, 255, 255, 0.75); font-size: 0.85rem; margin-top: 8px;">{{ __('messages.success_rate') }}</div>
+                            </div>
+                            <div class="stat-box" style="
+                                background: rgba(59, 130, 246, 0.1);
+                                backdrop-filter: blur(20px);
+                                border-radius: 18px;
+                                padding: 20px;
+                                border: 1px solid rgba(59, 130, 246, 0.2);
+                                text-center;
+                                transition: all 0.3s ease;
+                            " onmouseover="this.style.background='rgba(59, 130, 246, 0.15)'; this.style.transform='translateY(-3px)';" onmouseout="this.style.background='rgba(59, 130, 246, 0.1)'; this.style.transform='translateY(0)';">
+                                <div style="font-size: 2rem; font-weight: 700; color: #3b82f6; line-height: 1;">A1-C2</div>
+                                <div style="color: rgba(255, 255, 255, 0.75); font-size: 0.85rem; margin-top: 8px;">{{ __('messages.all_levels') }}</div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Right Image Column -->
                 <div class="col-lg-6 text-center">
-                    <div class="instructor-image" style="position: relative;">
-                        <img src="images/wifey.jpg" alt="Tamara Terbul" style="
-                            width: 300px;
-                            height: 300px;
-                            border-radius: 50%;
-                            object-fit: cover;
-                            border: 5px solid rgba(255, 255, 255, 0.2);
-                            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-                        ">
+                    <div class="instructor-image" style="position: relative; display: flex; justify-content: center; align-items: center;">
+                        <!-- Animated background circle -->
                         <div style="
                             position: absolute;
-                            top: -10px;
-                            right: 50px;
-                            background: linear-gradient(45deg, #10b981, #059669);
+                            width: 350px;
+                            height: 350px;
+                            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(59, 130, 246, 0.2));
+                            border-radius: 50%;
+                            animation: pulse 6s ease-in-out infinite;
+                            z-index: -1;
+                        "></div>
+
+                        <img src="images/wifey.jpg" alt="Tamara Terbul" style="
+                            width: 280px;
+                            height: 280px;
+                            border-radius: 50%;
+                            object-fit: cover;
+                            border: 6px solid rgba(255, 255, 255, 0.15);
+                            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 0 60px rgba(16, 185, 129, 0.1);
+                            transition: all 0.4s ease;
+                            animation: floatImage 6s ease-in-out infinite;
+                        " onmouseover="this.style.transform='scale(1.05) rotateZ(2deg)'; this.style.boxShadow='0 40px 80px rgba(16, 185, 129, 0.3), inset 0 0 60px rgba(16, 185, 129, 0.2)';" onmouseout="this.style.transform='scale(1) rotateZ(0deg)'; this.style.boxShadow='0 30px 60px rgba(0, 0, 0, 0.4), inset 0 0 60px rgba(16, 185, 129, 0.1)';">
+
+                        <!-- Experience Badge -->
+                        <div style="
+                            position: absolute;
+                            top: 20px;
+                            right: 40px;
+                            background: linear-gradient(135deg, #10b981, #059669);
                             color: white;
-                            padding: 10px 20px;
-                            border-radius: 20px;
-                            font-weight: 600;
-                            font-size: 0.875rem;
-                            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
-                        ">{{ __('messages.years_experience') }}</div>
+                            padding: 14px 24px;
+                            border-radius: 25px;
+                            font-weight: 700;
+                            font-size: 0.9rem;
+                            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+                            border: 2px solid rgba(255, 255, 255, 0.2);
+                            backdrop-filter: blur(10px);
+                            white-space: nowrap;
+                            transition: all 0.3s ease;
+                        " onmouseover="this.style.transform='scale(1.1) translateY(-5px)'; this.style.boxShadow='0 15px 40px rgba(16, 185, 129, 0.5)';" onmouseout="this.style.transform='scale(1) translateY(0)'; this.style.boxShadow='0 8px 25px rgba(16, 185, 129, 0.4)';">
+                            ⭐ {{ __('messages.years_experience') }}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- CSS Animations -->
+        <style>
+            @keyframes pulse {
+                0%, 100% { transform: scale(1); opacity: 0.5; }
+                50% { transform: scale(1.05); opacity: 0.7; }
+            }
+            @keyframes floatImage {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-15px); }
+            }
+        </style>
     </section>
 
     <!-- Modern Registration Section -->

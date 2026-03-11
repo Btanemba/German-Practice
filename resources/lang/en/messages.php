@@ -3,7 +3,7 @@
 return [
     // Header and Navigation
     'site_language' => 'site language:',
-    'follow_us' => 'follow us',
+    'follow_us' => 'follow ',
     'home' => 'Home',
     'events' => 'Events',
     'contact' => 'Contact',

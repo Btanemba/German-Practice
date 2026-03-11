@@ -49,7 +49,7 @@ Route::post('registration/bulk-email-class', [RegistrationCrudController::class,
     Route::get('chat-message/{id}/conversation', [ChatMessageCrudController::class, 'viewConversation']);
     Route::get('chat-message/{id}/reply', [ChatMessageCrudController::class, 'showReplyForm']);
     Route::post('chat-message/{id}/send-reply', [ChatMessageCrudController::class, 'sendReply']);
-
+    Route::crud('community-member', \App\Http\Controllers\Admin\CommunityMemberCrudController::class);
 }); // this should be the absolute last line of this file
 
 /**
