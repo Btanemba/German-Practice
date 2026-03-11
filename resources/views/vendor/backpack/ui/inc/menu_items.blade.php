@@ -183,4 +183,10 @@
 </script>
 
 
-<x-backpack::menu-item title="Community members" icon="la la-question" :link="backpack_url('community-member')" />
+{{-- Community Members --}}
+<li class="nav-item">
+    <a class="nav-link nav-community-members" href="{{ backpack_url('community-member') }}">
+        <i class="la la-users nav-icon"></i>
+        <span>🧑‍🤝‍🧑 Community Members</span>
+    </a>
+</li>

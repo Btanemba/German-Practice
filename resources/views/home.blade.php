@@ -627,6 +627,45 @@
         </style>
     </section>
 
+
+
+
+<!-- Community Offer Section -->
+<section class="community-info-section" style="background: linear-gradient(120deg, #232e3a 60%, #1e3c4c 100%); padding: 3.5rem 0 2.5rem 0;">
+    <div class="container" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2.5rem;">
+        <div class="community-info-card" style="background: rgba(255,255,255,0.10); border-radius: 2rem; padding: 2.8rem 2.2rem; max-width: 540px; color: #fff; box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);">
+            <h2 style="color: #1de9b6; font-weight: 800; font-size: 2.2rem; margin-bottom: 0.7rem; letter-spacing: 1px;">Why Join Our Community?</h2>
+            <h4 style="color: #b0bec5; margin-bottom: 1.7rem; font-weight: 600;">What We Offer</h4>
+            <ul style="margin-bottom: 2rem; font-size: 1.08rem; line-height: 1.7; padding-left: 1.2rem;">
+                <li style="margin-bottom: 0.4rem;">✔️ Weekly group practice sessions</li>
+                <li style="margin-bottom: 0.4rem;">✔️ Access to exclusive learning materials</li>
+                <li style="margin-bottom: 0.4rem;">✔️ Supportive peer network</li>
+                <li style="margin-bottom: 0.4rem;">✔️ Q&amp;A with experienced tutors</li>
+                <li>✔️ Fun cultural events and more!</li>
+            </ul>
+            <div style="margin-bottom: 1.7rem;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <span style="background: #1de9b6; color: #232e3a; padding: 0.5rem 1.2rem; border-radius: 1rem; font-weight: bold; font-size: 1.13rem; display: inline-block;">
+                        Monthly: <span style="color:#0e766e; font-weight:900;">€10</span>
+                    </span>
+                    <span style="background: #34d399; color: #232e3a; padding: 0.5rem 1.2rem; border-radius: 1rem; font-weight: bold; font-size: 1.13rem; display: inline-block;">
+                        3 Months: <span style="color:#0e766e; font-weight:900;">€25</span>
+                    </span>
+                    <span style="background: #06b6d4; color: #232e3a; padding: 0.5rem 1.2rem; border-radius: 1rem; font-weight: bold; font-size: 1.13rem; display: inline-block;">
+                        6 Months: <span style="color:#0e766e; font-weight:900;">€50</span>
+                    </span>
+                    <span style="background: #818cf8; color: #232e3a; padding: 0.5rem 1.2rem; border-radius: 1rem; font-weight: bold; font-size: 1.13rem; display: inline-block;">
+                        1 Year: <span style="color:#0e766e; font-weight:900;">€105</span>
+                    </span>
+                </div>
+            </div>
+            <a href="{{ route('community.register') }}" style="background: linear-gradient(90deg, #1de9b6 60%, #06b6d4 100%); color: #232e3a; padding: 0.8rem 2.3rem; border-radius: 2rem; font-weight: bold; text-decoration: none; font-size: 1.15rem; box-shadow: 0 4px 18px rgba(30,233,182,0.13); transition: background 0.2s, box-shadow 0.2s; letter-spacing: 0.5px;">
+                Join Now
+            </a>
+        </div>
+    </div>
+</section>
+
     <!-- Modern Practice Sessions -->
     <section class="practice-sessions py-5" style="background: linear-gradient(135deg, #f8fafc, #e2e8f0);">
         <div class="container">
@@ -837,6 +876,9 @@
             </div>
         </div>
     </section>
+
+
+
 
     <!-- Modern Instructor Section -->
     <section class="instructor-section py-5" style="background: linear-gradient(135deg, #1e293b, #334155); position: relative; overflow: hidden;">

@@ -54,14 +54,118 @@ class CommunityMemberCrudController extends CrudController
      * @return void
      */
     protected function setupCreateOperation()
+                          
     {
         CRUD::setValidation(CommunityMemberRequest::class);
-        CRUD::setFromDb(); // set fields from db columns.
 
-        /**
-         * Fields can be defined using the fluent syntax:
-         * - CRUD::field('price')->type('number');
-         */
+        CRUD::addField([
+            'name' => 'first_name',
+            'label' => 'First name',
+            'type' => 'text',
+            'wrapper' => [
+                'class' => 'form-group col-md-6'
+            ],
+        ]);
+        CRUD::addField([
+            'name' => 'last_name',
+            'label' => 'Last name',
+            'type' => 'text',
+            'wrapper' => [
+                'class' => 'form-group col-md-6'
+            ],
+        ]);
+
+       
+        CRUD::addField([
+            'name' => 'email',
+            'label' => 'Email',
+            'type' => 'email',
+            'wrapper' => [
+                'class' => 'form-group col-md-6'
+            ],
+        ]);
+        CRUD::addField([
+            'name' => 'phone_number',
+            'label' => 'Phone number',
+            'type' => 'text',
+            'wrapper' => [
+                'class' => 'form-group col-md-6'
+            ],
+        ]);
+
+       
+        CRUD::addField([
+            'name' => 'postal_code',
+            'label' => 'Postal code',
+            'type' => 'text',
+            'wrapper' => [
+                'class' => 'form-group col-md-2'
+            ],
+        ]);
+        CRUD::addField([
+            'name' => 'address',
+            'label' => 'Address',
+            'type' => 'text',
+            'wrapper' => [
+                'class' => 'form-group col-md-4'
+            ],
+        ]);
+        CRUD::addField([
+            'name' => 'house_number',
+            'label' => 'House number',
+            'type' => 'text',
+            'wrapper' => [
+                'class' => 'form-group col-md-2'
+            ],
+        ]);
+        CRUD::addField([
+            'name' => 'city',
+            'label' => 'City',
+            'type' => 'text',
+            'wrapper' => [
+                'class' => 'form-group col-md-2'
+            ],
+        ]);
+        CRUD::addField([
+            'name' => 'country',
+            'label' => 'Country',
+            'type' => 'text',
+            'wrapper' => [
+                'class' => 'form-group col-md-2'
+            ],
+        ]);
+          CRUD::addField([
+                'name' => 'gender',
+                'label' => 'Gender',
+                'type' => 'text',
+                'wrapper' => [
+                    'class' => 'form-group col-md-6'
+                ],
+            ]);
+            CRUD::addField([
+                'name' => 'date_of_birth',
+                'label' => 'Date of birth',
+                'type' => 'date',
+                'wrapper' => [
+                    'class' => 'form-group col-md-6'
+                ],
+            ]);
+            CRUD::addField([
+                    'name' => 'subscription_model',
+                    'label' => 'Subscription model',
+                    'type' => 'select_from_array',
+                    'options' => [
+                        '1_month' => 'Monthly',
+                        '3_month' => '3 Months',
+                        '6_month' => '6 Months',
+                        '1_year' => 'Yearly',
+                    ],
+                    'allows_null' => true,
+                    'default' => '1_month',
+                    'wrapper' => [
+                        'class' => 'form-group col-md-12'
+                    ],
+                ]);
     }
 
     /**

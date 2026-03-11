@@ -12,6 +12,7 @@ use App\Http\Controllers\ClassController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\CommunityMemberController;
 
 // Homepage with Events and Practice Materials
 Route::get('/', function () {
@@ -73,3 +74,9 @@ Route::group([
     Route::post('registration/{id}/process-email', [\App\Http\Controllers\Admin\RegistrationCrudController::class, 'processEmail']);
 });
 Route::get('/qr-code-image', [QrCodeController::class, 'generate'])->name('qr.download');
+
+Route::get('/community/register', function() {
+    return view('community.register');
+})->name('community.register');
+
+Route::post('/community/register', [CommunityMemberController::class, 'register'])->name('community.register.submit');
