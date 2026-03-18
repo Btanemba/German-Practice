@@ -5,6 +5,7 @@
     use App\Models\Event;
     use App\Models\Subscriber;
     use App\Models\Registration;
+    use App\Models\CommunityMember;
 
     // Count upcoming events
     $upcomingEventsCount = Event::whereDate('event_date', '>=', Carbon::today())->count();
@@ -22,6 +23,9 @@
 
     // Count total booked classes
     $totalBookedClasses = Registration::whereNotNull('class_schedule_id')->count();
+
+    // Count total community members
+    $totalCommunityMembers = CommunityMember::count();
 @endphp
 
 @section('content')
@@ -52,6 +56,7 @@
     .card-subscribers::before { background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%); }
     .card-hangouts::before { background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%); }
     .card-classes::before { background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%); }
+    .card-members::before { background: linear-gradient(90deg, #fa709a 0%, #fee140 100%); }
 
     .card-icon {
         width: 60px;
@@ -69,6 +74,7 @@
     .icon-subscribers { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
     .icon-hangouts { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
     .icon-classes { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+    .icon-members { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
 
     .stat-number {
         font-size: 2.5rem;
@@ -94,6 +100,12 @@
 
     .stat-number.classes {
         background: linear-gradient(45deg, #43e97b, #38f9d7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .stat-number.members {
+        background: linear-gradient(45deg, #fa709a, #fee140);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
@@ -182,6 +194,22 @@
                     <h1 class="stat-number classes">{{ $totalBookedClasses }}</h1>
                     <p class="text-muted mb-0">
                         <small>📚 Total Registrations</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        {{-- Community Members Card --}}
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="card dashboard-card card-members shadow-lg p-4">
+                <div class="card-body text-center">
+                    <div class="card-icon icon-members">
+                        👥
+                    </div>
+                    <h5 class="fw-bold mb-2 text-dark">Community Members</h5>
+                    <h1 class="stat-number members">{{ $totalCommunityMembers }}</h1>
+                    <p class="text-muted mb-0">
+                        <small>👫 Total Members</small>
                     </p>
                 </div>
             </div>
