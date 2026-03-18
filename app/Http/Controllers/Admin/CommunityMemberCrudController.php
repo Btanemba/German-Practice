@@ -14,14 +14,14 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 class CommunityMemberCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    //use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
-     * 
+     *
      * @return void
      */
     public function setup()
@@ -33,13 +33,73 @@ class CommunityMemberCrudController extends CrudController
 
     /**
      * Define what happens when the List operation is loaded.
-     * 
+     *
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
      * @return void
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        //CRUD::setFromDb(); // set columns from db columns.
+        CRUD::addColumn([
+            'name' => 'first_name',
+            'label' => 'First Name',
+            'type' => 'text',
+            'wrapper' => [
+                'style' => 'font-weight: 600; color: #1f2937; font-size: 16px;'
+
+            ],
+
+        ]);
+          CRUD::addColumn([
+            'name' => 'last_name',
+            'label' => 'Last Name',
+            'type' => 'text',
+            'wrapper' => [
+                'style' => 'font-weight: 600; color: #1f2937; font-size: 16px;'
+            ]
+        ]);
+         CRUD::addColumn([
+            'name' => 'email',
+            'label' => 'Email',
+            'type' => 'text',
+            'wrapper' => [
+                'style' => 'font-weight: 600; color: #1f2937; font-size: 16px;'
+            ]
+        ]);
+        CRUD::addColumn([
+            'name' => 'subscription_model',
+            'label' => 'Subscription Model',
+            'type' => 'closure',
+            'function' => function($entry) {
+                $labels = [
+                    '1_month' => 'Monthly',
+                    '3_months' => 'Quarterly',
+                    '6_months' => 'Semi-annually',
+                    '12_months' => 'Annually',
+                ];
+                return $labels[$entry->subscription_model] ?? $entry->subscription_model;
+            },
+            'wrapper' => [
+                'style' => 'font-weight: 600; color: #1f2937; font-size: 16px;'
+            ]
+        ]);
+
+         CRUD::addColumn([
+            'name' => 'subscription_begins',
+            'label' => 'Subscription Begins',
+            'type' => 'date',
+            'wrapper' => [
+                'style' => 'font-weight: 600; color: #1f2937; font-size: 16px;'
+            ]
+        ]);
+         CRUD::addColumn([
+            'name' => 'subscription_ends',
+            'label' => 'Subscription Ends',
+            'type' => 'date',
+            'wrapper' => [
+                'style' => 'font-weight: 600; color: #1f2937; font-size: 16px;'
+            ]
+        ]);
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -49,12 +109,12 @@ class CommunityMemberCrudController extends CrudController
 
     /**
      * Define what happens when the Create operation is loaded.
-     * 
+     *
      * @see https://backpackforlaravel.com/docs/crud-operation-create
      * @return void
      */
     protected function setupCreateOperation()
-                          
+
     {
         CRUD::setValidation(CommunityMemberRequest::class);
 
@@ -75,7 +135,7 @@ class CommunityMemberCrudController extends CrudController
             ],
         ]);
 
-       
+
         CRUD::addField([
             'name' => 'email',
             'label' => 'Email',
@@ -93,7 +153,7 @@ class CommunityMemberCrudController extends CrudController
             ],
         ]);
 
-       
+
         CRUD::addField([
             'name' => 'postal_code',
             'label' => 'Postal code',
@@ -128,7 +188,7 @@ class CommunityMemberCrudController extends CrudController
         ]);
         CRUD::addField([
             'name' => 'country',
-            'label' => 'Country',
+            'label' => 'Country of Origin',
             'type' => 'text',
             'wrapper' => [
                 'class' => 'form-group col-md-2'
@@ -166,16 +226,60 @@ class CommunityMemberCrudController extends CrudController
                         'class' => 'form-group col-md-12'
                     ],
                 ]);
+            CRUD::addField([
+                'name' => 'subscription_begins',
+                'label' => 'Subscription begins',
+                'type' => 'date',
+                'wrapper' => [
+                    'class' => 'form-group col-md-6'
+                ],
+            ]);
+            CRUD::addField([
+                'name' => 'subscription_ends',
+                'label' => 'Subscription end',
+                'type' => 'date',
+                'wrapper' => [
+                    'class' => 'form-group col-md-6'
+                ],
+            ]);
     }
 
     /**
      * Define what happens when the Update operation is loaded.
-     * 
+     *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
      * @return void
      */
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+
+        // Make fields read-only during update
+        $readOnlyFields = [
+            'first_name',
+            'last_name',
+            'email',
+            'phone_number',
+            'postal_code',
+            'address',
+            'house_number',
+            'city',
+            'country',
+            'gender',
+            'date_of_birth',
+            'subscription_model'
+        ];
+
+        foreach ($readOnlyFields as $field) {
+            CRUD::modifyField($field, [
+                'attributes' => [
+                    'readonly' => 'readonly',
+                    'disabled' => 'disabled'
+                ],
+                'wrapper' => [
+                    'style' => 'background-color: #cdced1;'
+                ]
+            ]);
+        }
     }
 }

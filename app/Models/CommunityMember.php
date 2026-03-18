@@ -29,6 +29,8 @@ class CommunityMember extends Model
         'gender',
         'date_of_birth',
         'subscription_model',
+        'subscription_begins',
+        'subscription_ends',
     ];
 
     /**
@@ -38,5 +40,7 @@ class CommunityMember extends Model
      */
     protected $casts = [
         'date_of_birth' => 'date',
+        'subscription_begins' => 'date',
+        'subscription_ends' => 'date',
     ];
 }
