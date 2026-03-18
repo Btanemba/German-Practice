@@ -39,10 +39,10 @@ Route::post('registration/bulk-email-event', [RegistrationCrudController::class,
 Route::get('registration/bulk-email-class', [RegistrationCrudController::class, 'bulkEmailClassForm']);
 Route::post('registration/bulk-email-class', [RegistrationCrudController::class, 'processBulkEmailClass']);
 
- Route::get('registration/export-event-form', [\App\Http\Controllers\Admin\RegistrationCrudController::class, 'exportEventRegistrationsForm']);
-    Route::post('registration/export-event', [\App\Http\Controllers\Admin\RegistrationCrudController::class, 'exportEventRegistrations']);
-    Route::get('registration/export-class-form', [\App\Http\Controllers\Admin\RegistrationCrudController::class, 'exportClassRegistrationsForm']);
-    Route::post('registration/export-class', [\App\Http\Controllers\Admin\RegistrationCrudController::class, 'exportClassRegistrations']);
+ Route::get('registration/export-event-form', [RegistrationCrudController::class, 'exportEventRegistrationsForm']);
+    Route::post('registration/export-event', [RegistrationCrudController::class, 'exportEventRegistrations']);
+    Route::get('registration/export-class-form', [RegistrationCrudController::class, 'exportClassRegistrationsForm']);
+    Route::post('registration/export-class', [RegistrationCrudController::class, 'exportClassRegistrations']);
 
    // Chat message specific routes
     Route::get('chat-message/{id}/mark-read', [ChatMessageCrudController::class, 'markAsRead']);

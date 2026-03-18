@@ -56,9 +56,9 @@ class CommunityMemberController extends Controller
             . "You selected the following subscription: {$subscriptionText}.\n\n"
             . "To complete your registration, please make payment for your selected subscription.\n\n"
             . "Payment Details:\n"
-            . "Bank Name: Example Bank\n"
-            . "Account Name: Sprachraum Community\n"
-            . "Account Number: 1234567890\n\n"
+            . "Bank Name: Sparkasse\n"
+            . "Account Name: Tamara Terbul \n"
+            . "Account Number: AT182050303302336593\n\n"
             . "You will receive further instructions and access to our community resources once your payment is confirmed.\n\n"
             . "If you have any questions, feel free to reply to this email.\n\n"
             . "Best regards,\nThe Sprachraum Team";

@@ -32,7 +32,7 @@
                         <ul class="footer_list">
                             <li><a href="{{ route('team') }}">Team</a></li>
                             <li><a href="#">Jobs</a></li>
-                           
+
                             <li><a href="javascript:void(0);" class="contactUsBtn">{{ __('messages.contact') }}</a></li>
                         </ul>
                     </div>
@@ -43,7 +43,7 @@
                     <div>
                         <div class="footer_title">Privacy & Terms</div>
                         <ul class="footer_list">
-                            <li><a href="#">Community Guidelines</a></li>
+                            <li><a href="{{ route('community-guidelines') }}">Community Guidelines</a></li>
                             <li><a href="#">Terms</a></li>
                             <li><a href="#">Privacy</a></li>
                         </ul>

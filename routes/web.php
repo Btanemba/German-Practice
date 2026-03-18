@@ -46,6 +46,11 @@ Route::post('/chat/admin-reply', [App\Http\Controllers\ChatController::class, 's
 // Team page
 Route::get('/team', [TeamController::class, 'index'])->name('team');
 
+// Community Guidelines page
+Route::get('/community-guidelines', function () {
+    return view('community-guidelines');
+})->name('community-guidelines');
+
 Route::get('/get-class-levels', [ClassController::class, 'levels']);
 Route::get('/get-class-dates/{level}', [ClassController::class, 'dates']);
 Route::get('/get-class-times/{level}/{date}', [ClassController::class, 'times']);

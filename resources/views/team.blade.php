@@ -81,7 +81,7 @@
                     <div class="team_card" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: all 0.3s ease; height: 100%;">
                         <div class="team_card" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: all 0.3s ease; height: 100%;">
                         <div class="team_image" style="height: 300px; overflow: hidden;">
-                            <img src="/images/Witcher.PNG" alt="Benedict Anemba" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                            <img src="/images/Ben.jpg" alt="Benedict Anemba" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
                         </div>
                         <div class="team_content" style="padding: 40px 30px; text-align: center;">
                             <h3 class="team_name" style="font-size: 24px; font-weight: bold; margin-bottom: 8px; color: #1f2937;">Benedict Anemba</h3>
@@ -99,14 +99,14 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <h2 class="section_title" style="font-size: 36px; font-weight: 800; margin-bottom: 30px; color: #111827;">About Our Team</h2>
-                    <p style="font-size: 17px; color: #4b5563; line-height: 1.8; margin-bottom: 25px;">At Sprachraum, our team is composed of experienced language educators, software developers, and language enthusiasts dedicated to making German language learning accessible and engaging for everyone.</p>
+                    <p style="font-size: 17px; color: #4b5563; line-height: 1.8; margin-bottom: 25px;">At Sprachraum, our team is composed of an experienced language educator, software developer, and language enthusiasts dedicated to making German language learning accessible and engaging for everyone.</p>
                     <p style="font-size: 17px; color: #4b5563; line-height: 1.8;">We believe in the power of language to connect people and cultures. Our mission is to provide high-quality German language education through innovative platforms and personalized learning experiences.</p>
                 </div>
                 <div class="col-lg-6">
                     <div style="background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); border-radius: 20px; padding: 50px; color: white; text-align: center; box-shadow: 0 20px 40px rgba(79, 70, 229, 0.2);">
                         <i class="fa fa-heart" style="font-size: 60px; margin-bottom: 25px;"></i>
                         <h3 style="font-size: 28px; font-weight: bold; margin-bottom: 20px;">Our Mission</h3>
-                        <p style="font-size: 17px; line-height: 1.6; opacity: 0.9;">To empower learners worldwide with accessible, high-quality German language education and foster a community of language enthusiasts.</p>
+                        <p style="font-size: 17px; line-height: 1.6; opacity: 0.9;">To create a place where you can improve your German step by step and stay motivated.</p>
                     </div>
                 </div>
             </div>

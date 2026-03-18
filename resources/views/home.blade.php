@@ -637,11 +637,13 @@
             <h2 style="color: #1de9b6; font-weight: 800; font-size: 2.2rem; margin-bottom: 0.7rem; letter-spacing: 1px;">Why Join Our Community?</h2>
             <h4 style="color: #b0bec5; margin-bottom: 1.7rem; font-weight: 600;">What We Offer</h4>
             <ul style="margin-bottom: 2rem; font-size: 1.08rem; line-height: 1.7; padding-left: 1.2rem;">
-                <li style="margin-bottom: 0.4rem;">✔️ Weekly group practice sessions</li>
-                <li style="margin-bottom: 0.4rem;">✔️ Access to exclusive learning materials</li>
+                <li style="margin-bottom: 0.4rem;">✔️ FREE Monthly German game meetups and events (trips, German movie nights etc) for  community building and in person practice</li>
+                <li style="margin-bottom: 0.4rem;">✔️ FREE Monthly 30 minute online conversation class based on a topic.</li>
+                <li style="margin-bottom: 0.4rem;">✔️ FREE Access to exclusive learning materials</li>
+                <li style="margin-bottom: 0.4rem;">✔️ FREE Weekly learning content (grammar, quizzes, listening practice, writing and speaking prompts and more)</li>
                 <li style="margin-bottom: 0.4rem;">✔️ Supportive peer network</li>
                 <li style="margin-bottom: 0.4rem;">✔️ Q&amp;A with experienced tutors</li>
-                <li>✔️ Fun cultural events and more!</li>
+
             </ul>
             <div style="margin-bottom: 1.7rem;">
                 <div style="display: flex; flex-direction: column; gap: 0.5rem;">
@@ -661,6 +663,7 @@
             </div>
             <a href="{{ route('community.register') }}" style="background: linear-gradient(90deg, #1de9b6 60%, #06b6d4 100%); color: #232e3a; padding: 0.8rem 2.3rem; border-radius: 2rem; font-weight: bold; text-decoration: none; font-size: 1.15rem; box-shadow: 0 4px 18px rgba(30,233,182,0.13); transition: background 0.2s, box-shadow 0.2s; letter-spacing: 0.5px;">
                 Join Now
+                
             </a>
         </div>
     </div>
