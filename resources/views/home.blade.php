@@ -1577,7 +1577,7 @@
 
     <!-- Modern Classes Section -->
     <section id="classes" class="classes-section py-5" style="background: linear-gradient(135deg, #f0f9ff, #e0f2fe);">
-        <div class="container">
+        <div class="container-fluid" style="max-width: 1400px;">
             <div class="row">
                 <div class="col-12 text-center mb-5">
                     <h2 style="
