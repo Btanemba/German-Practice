@@ -36,7 +36,6 @@ class ClassRegistrationConfirmation extends Notification
             ->line('')
             ->line('**📚 Class Details:**')
             ->line('**Level:** ' . ($this->classSchedule->level ?? 'German Language Class'))
-            ->line('**Schedule:** ' . ($this->classSchedule->schedule ?? 'Will be confirmed soon'))
             ->line('**Status:** Registration Confirmed ✅')
             ->line('')
             ->line('**💳 Payment Information:**')

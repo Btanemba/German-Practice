@@ -19,12 +19,8 @@ Route::get('/', function () {
     $events = Event::orderBy('event_date', 'asc')->get();
     $practiceMaterials = PracticeMaterial::ordered()->get();
 
-    // Get upcoming class schedules - no grouping, show each class individually
-    $classSchedules = ClassSchedule::whereDate('date', '>=', \Carbon\Carbon::today())
-        ->orderBy('level', 'asc')
-        ->orderBy('date', 'asc')
-        ->orderBy('start_time', 'asc')
-        ->get();
+    // Get class schedules
+    $classSchedules = ClassSchedule::orderBy('level', 'asc')->get();
 
     return view('home', compact('events', 'practiceMaterials', 'classSchedules'));
 });
@@ -52,8 +48,7 @@ Route::get('/community-guidelines', function () {
 })->name('community-guidelines');
 
 Route::get('/get-class-levels', [ClassController::class, 'levels']);
-Route::get('/get-class-dates/{level}', [ClassController::class, 'dates']);
-Route::get('/get-class-times/{level}/{date}', [ClassController::class, 'times']);
+Route::get('/get-classes/{level}', [ClassController::class, 'classes']);
 Route::post('/register-user', [App\Http\Controllers\ClassController::class, 'registerUser']);
 
 Route::get('/get-events', [App\Http\Controllers\ClassController::class, 'getEvents']);

@@ -663,7 +663,7 @@
             </div>
             <a href="{{ route('community.register') }}" style="background: linear-gradient(90deg, #1de9b6 60%, #06b6d4 100%); color: #232e3a; padding: 0.8rem 2.3rem; border-radius: 2rem; font-weight: bold; text-decoration: none; font-size: 1.15rem; box-shadow: 0 4px 18px rgba(30,233,182,0.13); transition: background 0.2s, box-shadow 0.2s; letter-spacing: 0.5px;">
                 Join Now
-                
+
             </a>
         </div>
     </div>
@@ -1279,19 +1279,11 @@
                                                 </select>
                                             </div>
 
-                                            <div id="calendar" class="mb-3"></div>
-                                            <div class="legend text-center mb-3">
-                                                <span
-                                                    class="badge bg-success me-2">{{ __('messages.available') }}</span>
-                                                <span
-                                                    class="badge bg-warning text-dark">{{ __('messages.unavailable') }}</span>
-                                            </div>
-
-                                            <div id="timeSlots" style="display:none;">
-                                                <h6
-                                                    style="color: #374151; font-weight: 500; margin-bottom: 15px; font-size: 0.9rem;">
-                                                    {{ __('messages.available_time_slots') }}</h6>
-                                                <div id="timeSlotButtons" class="d-flex flex-wrap gap-2"></div>
+                                            <div id="classOptions" class="mb-3" style="display:none;">
+                                                <label style="color: #374151; font-weight: 500; margin-bottom: 10px; display: block;">
+                                                    {{ __('messages.select_class') ?? 'Select Class' }}
+                                                </label>
+                                                <div id="classOptionButtons" class="d-flex flex-wrap gap-2"></div>
                                             </div>
 
                                             <input type="hidden" name="class_schedule_id" id="selectedClassSchedule">
@@ -1620,9 +1612,13 @@
                             'C2' => ['bg' => 'rgba(236, 72, 153, 0.05)', 'border' => 'rgba(236, 72, 153, 0.2)', 'badge' => '#ec4899', 'icon' => '📓'],
                         ];
                         $colorScheme = $levelColors[$class->level] ?? ['bg' => 'rgba(100, 116, 139, 0.05)', 'border' => 'rgba(100, 116, 139, 0.2)', 'badge' => '#64748b', 'icon' => '📚'];
-                        $classDate = \Carbon\Carbon::parse($class->date);
-                        $startTime = \Carbon\Carbon::parse($class->start_time)->format('H:i');
-                        $endTime = \Carbon\Carbon::parse($class->end_time)->format('H:i');
+
+                        $levelNames = [
+
+                            'P1' => 'Package 1', 'P2' => 'Package 2',
+                            'P3' => 'Package 3', 'P4' => 'Package 4',
+                        ];
+                        $levelName = $levelNames[$class->level] ?? $class->level;
                     @endphp
 
                     <div class="col-lg-4 col-md-6">
@@ -1672,7 +1668,7 @@
                                         font-size: 0.9rem;
                                         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
                                     ">
-                                    {{ $class->level }}
+                                    {{ $levelName }}
                                 </div>
 
                                 <!-- Content Padding -->
@@ -1685,12 +1681,12 @@
                                                 {{ $class->topic }}
                                             </h4>
                                             <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 10px;">
-                                                {{ __('messages.level') }} {{ $class->level }}
+                                                {{ $levelName }}
                                             </p>
                                         @else
                                             <h4
                                                 style="color: #1e293b; font-weight: 600; margin-bottom: 10px; font-size: 1.5rem;">
-                                                {{ __('messages.level') }} {{ $class->level }}
+                                                {{ $levelName }}
                                             </h4>
                                         @endif
 
@@ -1719,7 +1715,8 @@
                                         </div>
                                     </div>
 
-                                    <!-- Class Session Info -->
+                                    <!-- Class Info -->
+                                    @if($class->topic)
                                     <div class="class-sessions" style="
                                         background: {{ $colorScheme['bg'] }};
                                         border-radius: 15px;
@@ -1727,31 +1724,12 @@
                                         margin-bottom: 15px;
                                         transition: all 0.3s ease;
                                     ">
-                                        <div class="class-session-item">
-                                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
-                                                <div style="
-                                                    background: {{ $colorScheme['badge'] }};
-                                                    color: white;
-                                                    padding: 8px 12px;
-                                                    border-radius: 10px;
-                                                    font-weight: 600;
-                                                    font-size: 0.85rem;
-                                                    min-width: 80px;
-                                                    text-align: center;
-                                                ">
-                                                    {{ $classDate->format('M d') }}
-                                                </div>
-                                                <div style="flex: 1;">
-                                                    <div style="color: #1e293b; font-weight: 600; font-size: 0.95rem;">
-                                                        {{ $classDate->format('l') }}
-                                                    </div>
-                                                    <div style="color: #64748b; font-size: 0.85rem;">
-                                                        🕐 {{ $startTime }} - {{ $endTime }}
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div style="display: flex; align-items: center; gap: 8px;">
+                                            <span style="font-size: 1.2rem;">📚</span>
+                                            <span style="color: #1e293b; font-weight: 600; font-size: 0.95rem;">{{ $class->topic }}</span>
                                         </div>
                                     </div>
+                                    @endif
 
                                     <!-- Register Button -->
                                     <div class="text-center mt-3">
@@ -1765,7 +1743,7 @@
                                             display: inline-block;
                                             transition: all 0.3s ease;
                                         ">
-                                            📚 Register for Class
+                                            📚 Book Package
                                         </div>
                                     </div>
                                 </div>
@@ -2434,7 +2412,7 @@
             border-radius: 8px;
         }
 
-        #timeSlotButtons button {
+        #classOptionButtons button {
             border: 2px solid #3b82f6;
             background-color: white;
             color: #3b82f6;
@@ -2445,8 +2423,8 @@
             font-weight: 500;
         }
 
-        #timeSlotButtons button.selected,
-        #timeSlotButtons button:hover {
+        #classOptionButtons button.selected,
+        #classOptionButtons button:hover {
             background-color: #3b82f6;
             color: white;
             transform: translateY(-2px);
@@ -2809,15 +2787,12 @@
         document.addEventListener('DOMContentLoaded', function () {
             // Elements for both forms
             const levelSelect = document.getElementById('classLevelSelect');
-            const timeSlots = document.getElementById('timeSlots');
-            const timeSlotButtons = document.getElementById('timeSlotButtons');
+            const classOptions = document.getElementById('classOptions');
+            const classOptionButtons = document.getElementById('classOptionButtons');
             const selectedClassSchedule = document.getElementById('selectedClassSchedule');
             const eventHangoutSelect = document.getElementById('eventHangoutSelect');
 
             let selectedLevel = null;
-            let availableDates = [];
-            let selectedDate = null;
-            let calendarInstance = null;
 
             // Function to get fresh CSRF token
             function getCsrfToken() {
@@ -2907,101 +2882,43 @@
                     });
             }
 
-            // When level changes, load available class dates
+            // When level changes, load available classes
             levelSelect.addEventListener('change', function () {
                 selectedLevel = this.value;
-                if (!selectedLevel) return;
-
-                timeSlots.style.display = 'none';
-
-                fetch(`/get-class-dates/${selectedLevel}`, {
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest',
-                        'X-CSRF-TOKEN': getCsrfToken()
-                    }
-                })
-                    .then(res => res.json())
-                    .then(dates => {
-                        availableDates = dates;
-                        renderFlatpickrCalendar(availableDates);
-                    });
-            });
-
-            // Initialize Flatpickr dynamically
-            function renderFlatpickrCalendar(dates) {
-                const calendarContainer = document.getElementById('calendar');
-                calendarContainer.innerHTML = `<input type="text" id="calendarInput" class="form-control modern-input" placeholder="${translations.selectDate}" style="border-radius: 15px; border: 2px solid #e2e8f0; padding: 15px;">`;
-
-                // Destroy existing Flatpickr instance before re-rendering
-                if (calendarInstance) {
-                    calendarInstance.destroy();
-                }
-
-                calendarInstance = flatpickr("#calendarInput", {
-                    dateFormat: "Y-m-d",
-                    minDate: "today",
-
-                    enable: availableDates.map(date => {
-                        const parts = date.split('-');
-                        return {
-                            from: new Date(parts[0], parts[1] - 1, parts[2]),
-                            to: new Date(parts[0], parts[1] - 1, parts[2])
-                        };
-                    }),
-
-                    onChange: function (selectedDates, dateStr) {
-                        selectedDate = dateStr;
-                        loadTimeSlots(selectedLevel, selectedDate);
-                    },
-
-                    onDayCreate: function (dObj, dStr, fp, dayElem) {
-                        const date = dayElem.dateObj;
-                        const y = date.getFullYear();
-                        const m = String(date.getMonth() + 1).padStart(2, '0');
-                        const d = String(date.getDate()).padStart(2, '0');
-                        const localDateStr = `${y}-${m}-${d}`;
-
-                        if (availableDates.includes(localDateStr)) {
-                            dayElem.classList.add('available');
-                        }
-                    }
-                });
-            }
-
-            // Load available time slots for selected date
-            function loadTimeSlots(level, date) {
-                fetch(`/get-class-times/${level}/${date}`, {
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest',
-                        'X-CSRF-TOKEN': getCsrfToken()
-                    }
-                })
-                    .then(res => res.json())
-                    .then(times => showTimeSlots(times));
-            }
-
-            // Render time slots
-            function showTimeSlots(times) {
-                timeSlots.style.display = 'block';
-                timeSlotButtons.innerHTML = '';
-
-                if (times.length === 0) {
-                    timeSlotButtons.innerHTML = `<p style="color: #64748b;">${translations.noTimeSlots}</p>`;
+                if (!selectedLevel) {
+                    classOptions.style.display = 'none';
                     return;
                 }
 
-                times.forEach(t => {
-                    const btn = document.createElement('button');
-                    btn.type = 'button';
-                    btn.textContent = t.time;
-                    btn.onclick = () => {
-                        selectedClassSchedule.value = t.id;
-                        document.querySelectorAll('#timeSlotButtons button').forEach(b => b.classList.remove('selected'));
-                        btn.classList.add('selected');
-                    };
-                    timeSlotButtons.appendChild(btn);
-                });
-            }
+                fetch(`/get-classes/${selectedLevel}`, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRF-TOKEN': getCsrfToken()
+                    }
+                })
+                    .then(res => res.json())
+                    .then(classes => {
+                        classOptions.style.display = 'block';
+                        classOptionButtons.innerHTML = '';
+
+                        if (classes.length === 0) {
+                            classOptionButtons.innerHTML = `<p style="color: #64748b;">No classes available for this level.</p>`;
+                            return;
+                        }
+
+                        classes.forEach(c => {
+                            const btn = document.createElement('button');
+                            btn.type = 'button';
+                            btn.textContent = c.label;
+                            btn.onclick = () => {
+                                selectedClassSchedule.value = c.id;
+                                document.querySelectorAll('#classOptionButtons button').forEach(b => b.classList.remove('selected'));
+                                btn.classList.add('selected');
+                            };
+                            classOptionButtons.appendChild(btn);
+                        });
+                    });
+            });
 
             // Submit event registration form
             document.getElementById('event_register_form').addEventListener('submit', function (e) {
@@ -3114,7 +3031,7 @@
                 if (!classScheduleId) {
                     Swal.fire({
                         title: translations.scheduleRequired,
-                        text: translations.selectClassDateTime,
+                        text: translations.selectClassRequired ?? 'Please select a class before submitting.',
                         icon: 'warning',
                         confirmButtonText: translations.ok,
                         confirmButtonColor: '#3b82f6'

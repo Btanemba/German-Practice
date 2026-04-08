@@ -44,7 +44,6 @@ class AdminClassRegistrationNotification extends Notification
             ->line('')
             ->line('**📚 Class Information:**')
             ->line('**Level:** ' . ($this->classSchedule->level ?? 'German Language Class'))
-            ->line('**Schedule:** ' . ($this->classSchedule->date ?? 'To be determined'))
             ->line('')
             ->line('**📊 Stats:**')
             ->line('**Total Class Registrations:** ' . $totalClassRegistrations)

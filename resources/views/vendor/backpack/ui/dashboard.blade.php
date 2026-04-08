@@ -13,12 +13,12 @@
     // Count active subscribers
     $activeSubscribersCount = Subscriber::where('subscribed', true)->count();
 
-    // ✅ FIXED: Find the next event date (changed from Hangout to Event)
+    //  Find the next event date (changed from Hangout to Event)
     $nextEvent = Event::whereDate('event_date', '>=', Carbon::today())
         ->orderBy('event_date', 'asc')
         ->first();
 
-    // ✅ FIXED: Count total registrations for events (not hangouts on a date)
+    // FIXED: Count total registrations for events (not hangouts on a date)
     $totalEventRegistrations = Registration::where('type', 'Hangout')->count();
 
     // Count total booked classes

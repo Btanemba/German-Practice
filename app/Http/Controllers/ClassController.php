@@ -22,29 +22,16 @@ class ClassController extends Controller
         return response()->json($levels);
     }
 
-    public function dates($level)
+    public function classes($level)
     {
-        $dates = ClassSchedule::where('level', $level)
-            ->orderBy('date')
-            ->pluck('date')
-            ->map(fn($d) => \Carbon\Carbon::parse($d)->format('Y-m-d'))
-            ->values();
-
-        return response()->json($dates);
-    }
-
-    public function times($level, $date)
-    {
-        $times = ClassSchedule::where('level', $level)
-            ->where('date', $date)
-            ->orderBy('start_time')
-            ->get(['id', 'start_time', 'end_time'])
+        $classes = ClassSchedule::where('level', $level)
+            ->get(['id', 'level', 'topic'])
             ->map(fn($s) => [
                 'id' => $s->id,
-                'time' => "{$s->start_time} - {$s->end_time}"
+                'label' => $s->topic ?: "Level {$s->level} Class"
             ]);
 
-        return response()->json($times);
+        return response()->json($classes);
     }
 
     public function register(Request $request)

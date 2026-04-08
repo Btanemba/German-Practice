@@ -96,13 +96,9 @@ class RegistrationCrudController extends CrudController
                 $details = '';
                 if ($entry->classSchedule) {
                     $level = $entry->classSchedule->level;
-                    $date = \Carbon\Carbon::parse($entry->classSchedule->date)->format('M d, Y');
-                    $time = $entry->classSchedule->start_time . '–' . $entry->classSchedule->end_time;
                     $details = "
                     <div style='background: {$config['bg']}; border-left: 3px solid {$config['color']}; border-radius: 6px; padding: 8px 10px; margin-top: 8px;'>
                         <div style='font-weight: 600; color: #1f2937; font-size: 12px; margin-bottom: 4px;'>📚 Level {$level}</div>
-                        <div style='font-size: 11px; color: #6b7280; margin-bottom: 2px;'>📅 {$date}</div>
-                        <div style='font-size: 11px; color: #6b7280;'>⏰ {$time}</div>
                     </div>";
                 } elseif ($entry->type === 'Hangout' && $entry->eventRegistration) {
                     // For event registrations (hangout_id stores event_id)
@@ -530,9 +526,6 @@ class RegistrationCrudController extends CrudController
                 'Phone',
                 'City',
                 'Class Level',
-                'Class Date',
-                'Start Time',
-                'End Time',
                 'Registration Date',
                 'Registration Time'
             ]);
@@ -546,9 +539,6 @@ class RegistrationCrudController extends CrudController
                     $registration->phone ?? '',
                     $registration->city ?? '',
                     $classSchedule ? $classSchedule->level : '',
-                    $classSchedule ? \Carbon\Carbon::parse($classSchedule->date)->format('Y-m-d') : '',
-                    $classSchedule ? $classSchedule->start_time : '',
-                    $classSchedule ? $classSchedule->end_time : '',
                     $registration->created_at->format('Y-m-d'),
                     $registration->created_at->format('H:i:s')
                 ]);

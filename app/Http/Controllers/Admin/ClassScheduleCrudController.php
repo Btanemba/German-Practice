@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\ClassScheduleRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
-use Carbon\Carbon;
 
 class ClassScheduleCrudController extends CrudController
 {
@@ -27,22 +26,12 @@ class ClassScheduleCrudController extends CrudController
 
     protected function setupListOperation()
     {
-        // Order by date (upcoming first, then past) - SQLite compatible
-        $today = Carbon::today()->format('Y-m-d');
-        $this->crud->addClause('orderByRaw', "CASE WHEN date >= '{$today}' THEN 0 ELSE 1 END, date ASC");
-
         // Mobile-Optimized Class Card Layout
         CRUD::addColumn([
             'name' => 'class_card',
             'label' => 'German Class Details',
             'type' => 'closure',
             'function' => function ($entry) {
-                $date = Carbon::parse($entry->date);
-                $startTime = Carbon::parse($entry->start_time);
-                $endTime = Carbon::parse($entry->end_time);
-                $isUpcoming = $date->isFuture() || $date->isToday();
-                $daysUntil = $isUpcoming ? $date->diffInDays(Carbon::now()) : null;
-
                 // Get registration count
                 $registrationCount = \App\Models\Registration::where('class_schedule_id', $entry->id)->count();
 
@@ -57,11 +46,6 @@ class ClassScheduleCrudController extends CrudController
                 ];
                 $levelStyle = $levelColors[$entry->level] ?? 'background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);';
 
-                // Status badge
-                $statusBadge = $isUpcoming
-                    ? "<span style='background: #dcfce7; color: #166534; padding: 4px 8px; border-radius: 12px; font-size: 10px; font-weight: 600;'>✅ UPCOMING</span>"
-                    : "<span style='background: #fef2f2; color: #991b1b; padding: 4px 8px; border-radius: 12px; font-size: 10px; font-weight: 600;'>📅 COMPLETED</span>";
-
                 // Popularity badge
                 $popularityBadge = '';
                 if ($registrationCount >= 15) {
@@ -69,10 +53,6 @@ class ClassScheduleCrudController extends CrudController
                 } elseif ($registrationCount >= 10) {
                     $popularityBadge = "<span style='background: #e0e7ff; color: #3730a3; padding: 2px 6px; border-radius: 8px; font-size: 9px; font-weight: 600; margin-left: 4px;'>👥 POPULAR</span>";
                 }
-
-                // Duration calculation
-                $duration = $startTime->diffInMinutes($endTime);
-                $durationText = $duration >= 60 ? ($duration / 60) . 'h' : $duration . 'min';
 
                 return "
                 <div style='
@@ -87,7 +67,7 @@ class ClassScheduleCrudController extends CrudController
                 '>
                     <!-- Header Section -->
                     <div style='display: flex; align-items: center; gap: 10px; margin-bottom: 10px;'>
-                        <!-- Level Badge - Smaller for mobile -->
+                        <!-- Level Badge -->
                         <div style='
                             flex-shrink: 0;
                             width: 50px;
@@ -111,38 +91,20 @@ class ClassScheduleCrudController extends CrudController
                                 Level {$entry->level} Class
                             </div>
                             <div style='display: flex; align-items: center; gap: 4px; flex-wrap: wrap;'>
-                                {$statusBadge}
                                 {$popularityBadge}
                             </div>
                         </div>
                     </div>
 
-                    <!-- Date and Time Section -->
+                    <!-- Topic Section -->
+                    " . ($entry->topic ? "
                     <div style='margin-bottom: 10px;'>
-                        <div style='display: flex; align-items: center; gap: 6px; margin-bottom: 4px;'>
-                            <span style='font-size: 12px;'>📅</span>
-                            <span style='color: #475569; font-size: 12px; font-weight: 600;'>{$date->format('D, M d, Y')}</span>
-                        </div>
-
-                        <div style='display: flex; align-items: center; gap: 15px; flex-wrap: wrap;'>
-                            <div style='display: flex; align-items: center; gap: 4px;'>
-                                <span style='font-size: 12px;'>⏰</span>
-                                <span style='color: #475569; font-size: 11px; font-weight: 600;'>{$startTime->format('H:i')}-{$endTime->format('H:i')}</span>
-                            </div>
-
-                            <div style='display: flex; align-items: center; gap: 4px;'>
-                                <span style='font-size: 12px;'>⌛</span>
-                                <span style='color: #475569; font-size: 11px; font-weight: 600;'>{$durationText}</span>
-                            </div>
-
-                            " . ($daysUntil !== null && $daysUntil <= 7 ? "
-                            <div style='display: flex; align-items: center; gap: 4px;'>
-                                <span style='font-size: 12px;'>🎯</span>
-                                <span style='color: #7c2d12; font-size: 11px; font-weight: 600;'>{$daysUntil}d to go</span>
-                            </div>
-                            " : "") . "
+                        <div style='display: flex; align-items: center; gap: 6px;'>
+                            <span style='font-size: 12px;'>📚</span>
+                            <span style='color: #475569; font-size: 12px; font-weight: 600;'>{$entry->topic}</span>
                         </div>
                     </div>
+                    " : "") . "
 
                     <!-- Stats Section -->
                     <div style='display: flex; align-items: center; gap: 8px; flex-wrap: wrap;'>
@@ -194,11 +156,11 @@ class ClassScheduleCrudController extends CrudController
             'label' => '🎓 German Level',
             'type' => 'select_from_array',
             'options' => [
-                'A1' => '🟢 A1 - Beginner',
-                'A2' => '🔵 A2 - Elementary',
-                'B1' => '🟡 B1 - Intermediate',
-                'B2' => '🔴 B2 - Upper Intermediate',
-                
+                'P1' => '🟢 P1 - Package 1',
+                'P2' => '🔵 P2 - Package 2',
+                'P3' => '🟡 P3 - Package 3',
+                'P4' => '🔴 P4 - Package 4',
+
             ],
             'wrapper' => [
                 'class' => 'form-group col-md-6'
@@ -244,45 +206,6 @@ class ClassScheduleCrudController extends CrudController
                 'class' => 'form-group col-md-6'
             ],
             'hint' => 'Leave empty or set to 0 for free classes',
-        ]);
-
-        CRUD::addField([
-            'name' => 'date',
-            'label' => '📅 Class Date',
-            'type' => 'date',
-            'attributes' => [
-                'min' => Carbon::today()->format('Y-m-d'), // Prevent past dates
-                'class' => 'form-control',
-            ],
-            'wrapper' => [
-                'class' => 'form-group col-md-6'
-            ],
-        ]);
-
-        CRUD::addField([
-            'name' => 'start_time',
-            'label' => '🕐 Start Time',
-            'type' => 'time',
-            'attributes' => [
-                'class' => 'form-control',
-                'step' => '300', // 5-minute intervals
-            ],
-            'wrapper' => [
-                'class' => 'form-group col-md-6'
-            ],
-        ]);
-
-        CRUD::addField([
-            'name' => 'end_time',
-            'label' => '🕕 End Time',
-            'type' => 'time',
-            'attributes' => [
-                'class' => 'form-control',
-                'step' => '300', // 5-minute intervals
-            ],
-            'wrapper' => [
-                'class' => 'form-group col-md-6'
-            ],
         ]);
 
         // Add description field for class details (if you have this column)
