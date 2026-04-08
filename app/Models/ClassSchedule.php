@@ -9,7 +9,7 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 class ClassSchedule extends Model
 {
     use HasFactory, CrudTrait;
-    protected $fillable = ['level', 'topic', 'image', 'cost'];
+    protected $fillable = ['level', 'topic', 'image', 'cost', 'description'];
 
     public function setImageAttribute($value)
     {

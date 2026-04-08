@@ -163,7 +163,7 @@
                             <nav class="main_nav_contaner">
                                 <ul class="main_nav">
                                     <li class="active"><a href="">{{ __('messages.home') }}</a></li>
-                                    <li><a href="#events">{{ __('messages.events') }}</a></li>
+                                    <li><a href="#classes">{{ __('messages.events') }}</a></li>
                                     <li><a href="javascript:void(0);"
                                             class="contactUsBtn">{{ __('messages.contact') }}</a></li>
 
@@ -1279,12 +1279,7 @@
                                                 </select>
                                             </div>
 
-                                            <div id="classOptions" class="mb-3" style="display:none;">
-                                                <label style="color: #374151; font-weight: 500; margin-bottom: 10px; display: block;">
-                                                    {{ __('messages.select_class') ?? 'Select Class' }}
-                                                </label>
-                                                <div id="classOptionButtons" class="d-flex flex-wrap gap-2"></div>
-                                            </div>
+                                            <div id="classOptions" style="display:none;"></div>
 
                                             <input type="hidden" name="class_schedule_id" id="selectedClassSchedule">
                                         </div>
@@ -1655,22 +1650,6 @@
                                             ">{{ $colorScheme['icon'] }}</div>
                                 @endif
 
-                                <!-- Level Badge -->
-                                <div style="
-                                        position: absolute;
-                                        top: 15px;
-                                        right: 15px;
-                                        background: {{ $colorScheme['badge'] }};
-                                        color: white;
-                                        padding: 8px 16px;
-                                        border-radius: 50px;
-                                        font-weight: 700;
-                                        font-size: 0.9rem;
-                                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-                                    ">
-                                    {{ $levelName }}
-                                </div>
-
                                 <!-- Content Padding -->
                                 <div style="padding: 25px;">
                                     <!-- Topic and Title -->
@@ -1728,6 +1707,18 @@
                                             <span style="font-size: 1.2rem;">📚</span>
                                             <span style="color: #1e293b; font-weight: 600; font-size: 0.95rem;">{{ $class->topic }}</span>
                                         </div>
+                                    </div>
+                                    @endif
+
+                                    <!-- Description -->
+                                    @if($class->description)
+                                    <div style="
+                                        padding: 0 5px 15px;
+                                        color: #475569;
+                                        font-size: 0.9rem;
+                                        line-height: 1.5;
+                                    ">
+                                        {{ $class->description }}
                                     </div>
                                     @endif
 
@@ -2877,7 +2868,7 @@
                     .then(levels => {
                         levelSelect.innerHTML = `<option value="">${translations.selectLevel}</option>`;
                         levels.forEach(level => {
-                            levelSelect.innerHTML += `<option value="${level}">${level}</option>`;
+                            levelSelect.innerHTML += `<option value="${level.value}">${level.label}</option>`;
                         });
                     });
             }
@@ -2898,25 +2889,13 @@
                 })
                     .then(res => res.json())
                     .then(classes => {
-                        classOptions.style.display = 'block';
-                        classOptionButtons.innerHTML = '';
-
                         if (classes.length === 0) {
-                            classOptionButtons.innerHTML = `<p style="color: #64748b;">No classes available for this level.</p>`;
+                            selectedClassSchedule.value = '';
                             return;
                         }
 
-                        classes.forEach(c => {
-                            const btn = document.createElement('button');
-                            btn.type = 'button';
-                            btn.textContent = c.label;
-                            btn.onclick = () => {
-                                selectedClassSchedule.value = c.id;
-                                document.querySelectorAll('#classOptionButtons button').forEach(b => b.classList.remove('selected'));
-                                btn.classList.add('selected');
-                            };
-                            classOptionButtons.appendChild(btn);
-                        });
+                        // Auto-select the first (or only) class for this level
+                        selectedClassSchedule.value = classes[0].id;
                     });
             });
 

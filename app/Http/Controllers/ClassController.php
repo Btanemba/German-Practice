@@ -18,17 +18,33 @@ class ClassController extends Controller
 {
     public function levels()
     {
-        $levels = ClassSchedule::select('level')->distinct()->orderBy('level')->get()->pluck('level');
+        $levelNames = [
+
+            'P1' => 'Package 1', 'P2' => 'Package 2',
+            'P3' => 'Package 3', 'P4' => 'Package 4',
+        ];
+
+        $levels = ClassSchedule::select('level')->distinct()->orderBy('level')->get()->pluck('level')
+            ->map(fn($code) => [
+                'value' => $code,
+                'label' => $levelNames[$code] ?? $code,
+            ]);
+
         return response()->json($levels);
     }
 
     public function classes($level)
     {
+        $levelNames = [
+            'P1' => 'Package 1', 'P2' => 'Package 2',
+            'P3' => 'Package 3', 'P4' => 'Package 4',
+        ];
+
         $classes = ClassSchedule::where('level', $level)
             ->get(['id', 'level', 'topic'])
             ->map(fn($s) => [
                 'id' => $s->id,
-                'label' => $s->topic ?: "Level {$s->level} Class"
+                'label' => $s->topic ?: ($levelNames[$s->level] ?? $s->level) . ' Class'
             ]);
 
         return response()->json($classes);
