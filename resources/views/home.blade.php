@@ -1616,7 +1616,7 @@
                         $levelName = $levelNames[$class->level] ?? $class->level;
                     @endphp
 
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-3 col-md-6">
                         <a href="{{ url('/#register') }}" class="text-decoration-none">
                             <div class="class-card h-100" style="
                                     background: white;
@@ -1718,7 +1718,7 @@
                                         font-size: 0.9rem;
                                         line-height: 1.5;
                                     ">
-                                        {{ $class->description }}
+                                        {!! nl2br(str_replace(['– ', '- '], ['<br>– ', '<br>- '], e($class->description))) !!}
                                     </div>
                                     @endif
 
